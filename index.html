@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Raghid Muhammad</title>
-    <meta name="description" content="Portofolio Mahasiswa Software Engineering">
+    <title>Raghid Muhammad Portfolio</title>
+    <meta name="description" content="Software Engineering Student Portfolio">
     
-    <!-- Favicon (Ikon di Tab Browser) -->
-    <link rel="icon" type="image/png" href="favicon_rounded.png" >
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon_rounded.png">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,25 +15,34 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Inter, Noto Sans, & Noto Sans JP) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Markdown Parser for AI Responses -->
+    <!-- AOS Animation Library CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Markdown Parser -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <script>
         tailwind.config = {
-            darkMode: 'class', // Mengaktifkan mode gelap manual dengan class
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Inter', 'Noto Sans SC', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans Arabic', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#15803d', // Hijau Hutan
+                        primary: '#15803d', // Forest Green
                         secondary: '#dcfce7', 
                         dark: '#0f172a',    // Slate gelap
                         light: '#f8fafc',   // Slate terang
+                    },
+                    transitionProperty: {
+                        'height': 'height',
+                        'spacing': 'margin, padding',
+                        'colors': 'background-color, border-color, color, fill, stroke',
+                        'opacity': 'opacity',
                     }
                 }
             }
@@ -43,15 +52,11 @@
     <style>
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #f1f1f1; }
-        /* Dark mode scrollbar track */
         .dark ::-webkit-scrollbar-track { background: #1e293b; }
         ::-webkit-scrollbar-thumb { background: #166534; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #14532d; }
         
-        /* Typing animation dots */
-        .typing-dot {
-            animation: typing 1.4s infinite ease-in-out both;
-        }
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
         .typing-dot:nth-child(1) { animation-delay: -0.32s; }
         .typing-dot:nth-child(2) { animation-delay: -0.16s; }
         
@@ -60,167 +65,218 @@
             40% { transform: scale(1); }
         }
 
-        /* Markdown Styles inside chat */
+        /* Markdown Styles */
         .prose ul { list-style-type: disc; padding-left: 1.5em; margin: 0.5em 0; }
         .prose strong { font-weight: 700; color: inherit; }
         .prose p { margin-bottom: 0.5em; }
         .prose p:last-child { margin-bottom: 0; }
+
+        /* Language Transition Class */
+        .fade-lang {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .opacity-0 {
+            opacity: 0;
+        }
+        
+        /* Navbar Fix */
+        nav {
+            transform: none !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
     </style>
 </head>
-<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300 flex flex-col min-h-screen">
+<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-500 flex flex-col min-h-screen overflow-x-hidden">
 
-    <!-- Navigasi -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 shadow-sm transition-colors duration-300">
+    <!-- Navbar (NO AOS HERE) -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
+                <div class="flex-shrink-0 flex items-center hover:scale-105 transition-transform duration-300">
                     <a href="#" class="text-2xl font-bold text-primary dark:text-green-400">Git<span class="text-dark dark:text-white">.Dev</span></a>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition">Beranda</a>
-                    <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition">Tentang</a>
-                    <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition">Keahlian</a>
-                    <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition">Proyek</a>
-                    <!-- AI Feature Link -->
-                    <a href="#ai-chat" class="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition flex items-center gap-1"><i class="fas fa-sparkles text-yellow-500"></i> AI Chat</a>
-                    <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 transition font-medium">Kontak</a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_home">Home</a>
+                    <a href="#about" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_about">About</a>
+                    <a href="#skills" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_skills">Skills</a>
+                    <a href="#projects" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_projects">Projects</a>
+                    <a href="#ai-chat" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300 flex items-center gap-1">
+                        <i class="fas fa-sparkles text-yellow-500 animate-pulse"></i> <span data-i18n="nav_ai">AI Chat</span>
+                    </a>
+                    <a href="#contact" class="fade-lang px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5" data-i18n="nav_contact">Contact</a>
                     
+                    <!-- Divider -->
+                    <div class="h-6 w-px bg-slate-300 dark:bg-slate-700 mx-2"></div>
+
                     <!-- Theme Toggle Desktop -->
-                    <button id="theme-toggle-desktop" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition focus:outline-none">
+                    <button id="theme-toggle-desktop" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none hover:rotate-12">
                         <i class="fas fa-moon"></i>
                     </button>
+
+                    <!-- Language Dropdown Desktop -->
+                    <div class="relative group">
+                        <button id="lang-btn-desktop" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none flex items-center gap-1">
+                            <i class="fas fa-globe"></i> <span id="current-lang-label" class="text-xs font-bold">EN</span>
+                        </button>
+                        <!-- Dropdown Content -->
+                        <div id="lang-dropdown-desktop" class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-2 z-50 transition-all duration-200 transform origin-top-right">
+                            <button onclick="setLanguage('en')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇺🇸 English</button>
+                            <button onclick="setLanguage('id')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇮🇩 Indonesia</button>
+                            <button onclick="setLanguage('ja')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇯🇵 Japanese</button>
+                            <button onclick="setLanguage('zh')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇨🇳 Mandarin</button>
+                            <button onclick="setLanguage('ko')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇰🇷 Korean</button>
+                            <button onclick="setLanguage('ar')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-right transition-colors" dir="rtl">🇸🇦 العربية</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Mobile Menu Button & Toggle -->
-                <div class="md:hidden flex items-center gap-4">
+                <div class="md:hidden flex items-center gap-3">
                     <!-- Theme Toggle Mobile -->
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition focus:outline-none">
+                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none">
                         <i class="fas fa-moon"></i>
                     </button>
 
-                    <button id="mobile-menu-btn" class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none">
+                    <!-- Language Toggle Mobile (Cycle) -->
+                    <button id="lang-btn-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none">
+                        <i class="fas fa-globe"></i>
+                    </button>
+
+                    <button id="mobile-menu-btn" class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none transition-transform duration-300 active:scale-90">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-all duration-300 ease-in-out">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800">Beranda</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800">Tentang</a>
-                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800">Keahlian</a>
-                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800">Proyek</a>
-                <a href="#ai-chat" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 hover:bg-green-50 dark:hover:bg-slate-800"><i class="fas fa-sparkles text-yellow-500"></i> AI Chat</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-primary dark:text-green-400 font-bold hover:bg-green-50 dark:hover:bg-slate-800">Hubungi Saya</a>
+                <a href="#home" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_home">Home</a>
+                <a href="#about" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_about">About</a>
+                <a href="#skills" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_skills">Skills</a>
+                <a href="#projects" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_projects">Projects</a>
+                <a href="#ai-chat" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sparkles text-yellow-500"></i> <span data-i18n="nav_ai">AI Chat</span></a>
+                <a href="#contact" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-primary dark:text-green-400 font-bold hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_contact">Contact</a>
+                
+                <div class="border-t border-slate-200 dark:border-slate-700 my-2"></div>
+                <p class="px-3 text-xs text-slate-400 uppercase font-bold">Language</p>
+                <div class="grid grid-cols-3 gap-2 px-3 py-2">
+                    <button onclick="setLanguage('en')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">English</button>
+                    <button onclick="setLanguage('id')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">Indonesia</button>
+                    <button onclick="setLanguage('ja')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">日本語</button>
+                    <button onclick="setLanguage('zh')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">中文</button>
+                    <button onclick="setLanguage('ko')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">한국어</button>
+                    <button onclick="setLanguage('ar')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">العربية</button>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-green-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors duration-300">
+    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-green-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center">
-            <div class="w-full md:w-1/2 mt-10 md:mt-0 text-center md:text-left">
-                <span class="text-primary dark:text-green-400 font-semibold tracking-wider uppercase text-sm">Mahasiswa Software Engineering</span>
-                <h1 class="mt-3 text-4xl md:text-6xl font-bold text-dark dark:text-white leading-tight">
-                    Halo, saya <br>
+            <div class="w-full md:w-1/2 mt-10 md:mt-0 text-center md:text-left rtl:text-right" data-aos="fade-right" data-aos-delay="200">
+                <span class="fade-lang text-primary dark:text-green-400 font-semibold tracking-wider uppercase text-sm block mb-2" data-i18n="hero_subtitle">Software Engineering Student</span>
+                <h1 class="fade-lang mt-3 text-4xl md:text-6xl font-bold text-dark dark:text-white leading-tight">
+                    <span data-i18n="hero_greeting">Hello, I am</span> <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600 dark:from-green-400 dark:to-emerald-400">Raghid Muhammad</span>
                 </h1>
-                <p class="mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0">
-                    Mahasiswa semester 1 yang telah menekuni dunia koding sejak SMK. Fokus membangun solusi perangkat lunak yang efisien dan fungsional.
+                <p class="fade-lang mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0" data-i18n="hero_desc">
+                    1st Semester Student who has been coding since Vocational School. Focused on building efficient and functional software solutions.
                 </p>
                 <div class="mt-8 flex justify-center md:justify-start gap-4">
-                    <a href="#projects" class="px-6 py-3 bg-primary text-white rounded-lg shadow-lg hover:bg-green-800 transition transform hover:-translate-y-1">Lihat Proyek</a>
-                    <a href="#contact" class="px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-green-50 dark:hover:bg-slate-700 transition">Hubungi Saya</a>
+                    <a href="#projects" class="fade-lang px-6 py-3 bg-primary text-white rounded-lg shadow-lg hover:bg-green-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl" data-i18n="btn_projects">View Projects</a>
+                    <a href="#contact" class="fade-lang px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-green-50 dark:hover:bg-slate-700 transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_contact">Contact Me</a>
                 </div>
             </div>
-            <div class="w-full md:w-1/2 flex justify-center">
-                <div class="relative">
-                    <div class="absolute inset-0 bg-green-200 dark:bg-green-900/30 rounded-full blur-2xl opacity-30 animate-pulse"></div>
-                    <img src="tiktok.jpeg" onerror="this.src='https://placehold.co/400x400/15803d/ffffff?text=Foto+Tidak+Ditemukan'" alt="Profil Git" class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl">
+            <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="400">
+                <div class="relative group">
+                    <div class="absolute inset-0 bg-green-200 dark:bg-green-900/30 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-500"></div>
+                    <img src="tiktok.jpeg" onerror="this.src='https://placehold.co/400x400/15803d/ffffff?text=Photo+Not+Found'" alt="Profil Git" class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl transform transition duration-500 hover:scale-105">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tentang Saya -->
-    <section id="about" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+    <section id="about" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-500">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold text-dark dark:text-white mb-8">Tentang Saya</h2>
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
-                Perjalanan saya di dunia teknologi dimulai sejak saya duduk di bangku <strong>kelas 1 SMK</strong>. Ketertarikan awal pada logika pemrograman membawa saya untuk bereksperimen dengan berbagai bahasa seperti Java dan Python.
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white mb-8" data-aos="fade-up" data-i18n="about_title">About Me</h2>
+            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="100" data-i18n="about_p1">
+                My journey in the world of technology started in the <strong>1st grade of Vocational School (SMK)</strong>. Early interest in programming logic led me to experiment with various languages like Java and Python.
             </p>
-            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
-                Saat ini, saya sedang menempuh pendidikan <strong>S1 Software Engineering (Semester 1)</strong> untuk memperdalam pemahaman saya tentang arsitektur perangkat lunak. Saya percaya bahwa fondasi yang kuat sejak SMK dan rasa ingin tahu yang tinggi adalah kunci untuk menjadi engineer yang handal.
+            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed" data-aos="fade-up" data-aos-delay="200" data-i18n="about_p2">
+                Currently, I am pursuing a <strong>Bachelor's in Software Engineering (Semester 1)</strong> to deepen my understanding of software architecture. I believe that a strong foundation since SMK and high curiosity are the keys to becoming a reliable engineer.
             </p>
             
             <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6 text-center justify-center">
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition">
-                    <h3 class="text-xl font-bold text-primary dark:text-green-400">S1</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Software Engineering</p>
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="100">
+                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400">S1</h3>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_edu">Software Engineering</p>
                 </div>
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition">
-                    <h3 class="text-xl font-bold text-primary dark:text-green-400">3+ Tahun</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Belajar Koding (Sejak SMK)</p>
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="200">
+                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_exp_val">3+ Years</h3>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_exp_label">Coding (Since SMK)</p>
                 </div>
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition">
-                    <h3 class="text-xl font-bold text-primary dark:text-green-400">Full Stack</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Minat Utama</p>
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="300">
+                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_focus_val">Full Stack</h3>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_focus_label">Main Interest</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Keahlian (Skills) -->
-    <section id="skills" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    <section id="skills" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-dark dark:text-white text-center mb-12">Tech Stack & Keahlian</h2>
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-12" data-aos="fade-down" data-i18n="skills_title">Tech Stack & Skills</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Backend & Logic -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 text-primary dark:text-green-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-primary group-hover:text-white transition">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 text-primary dark:text-green-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-dark dark:text-white mb-4">Backend & Logic</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_backend">Backend & Logic</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Python</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Java</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">PHP</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Laravel</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Dart</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Python</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Java</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">PHP</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Laravel</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Dart</span>
                     </div>
                 </div>
 
                 <!-- Frontend & Mobile -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group">
-                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-emerald-600 group-hover:text-white transition">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-dark dark:text-white mb-4">Frontend & Mobile</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_frontend">Frontend & Mobile</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">HTML5</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">CSS3</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Tailwind</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Flutter</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">HTML5</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">CSS3</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Tailwind</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Flutter</span>
                     </div>
                 </div>
 
                 <!-- Database & Tools -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group">
-                    <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-teal-600 group-hover:text-white transition">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-dark dark:text-white mb-4">Data & Tools</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_tools">Data & Tools</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">MySQL</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">PHPMyAdmin</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Git</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600">Android Studio</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">MySQL</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">PHPMyAdmin</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Git</span>
+                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Android Studio</span>
                     </div>
                 </div>
             </div>
@@ -228,22 +284,22 @@
     </section>
 
     <!-- Proyek -->
-    <section id="projects" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+    <section id="projects" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-bold text-dark dark:text-white text-center mb-4">Proyek Saya</h2>
-            <p class="text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto">Beberapa hasil eksplorasi dan tugas yang telah saya kerjakan, mulai dari logika dasar, aplikasi web, hingga mobile.</p>
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-4" data-aos="fade-down" data-i18n="proj_title">My Projects</h2>
+            <p class="fade-lang text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto" data-aos="fade-down" data-aos-delay="100" data-i18n="proj_desc">Some results of exploration and tasks I have done, ranging from basic logic, web apps, to mobile.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <!-- Proyek 1: Perpustakaan -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
+                <!-- Proyek 1 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
                     <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-book text-6xl text-primary/30 dark:text-green-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <i class="fas fa-book text-6xl text-primary dark:text-green-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
                         <span class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wide">Web Development</span>
-                        <h3 class="text-xl font-bold text-dark dark:text-white mt-2 mb-3">Sistem Informasi Perpustakaan</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Aplikasi web untuk manajemen peminjaman dan pengembalian buku. Dibangun menggunakan framework Laravel dan database MySQL.</p>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p1_title">Library Information System</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p1_desc">Web app for borrowing and returning books. Built using Laravel framework and MySQL database.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded font-medium">Laravel</span>
                             <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">PHPMyAdmin</span>
@@ -252,15 +308,15 @@
                     </div>
                 </div>
 
-                <!-- Proyek 2: Python Projects -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
+                <!-- Proyek 2 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
                     <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fab fa-python text-6xl text-blue-500/30 dark:text-blue-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <i class="fab fa-python text-6xl text-blue-500/30 dark:text-blue-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
                         <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide">Python Logic</span>
-                        <h3 class="text-xl font-bold text-dark dark:text-white mt-2 mb-3">Program Kasir & Game</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Kumpulan program logika menggunakan Python: Simulasi kasir sederhana dan permainan Gunting Batu Kertas.</p>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p2_title">Cashier & Game Program</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p2_desc">Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">Python</span>
                             <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Logic</span>
@@ -269,15 +325,15 @@
                     </div>
                 </div>
 
-                <!-- Proyek 3: Kalkulator -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
+                <!-- Proyek 3 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
                     <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-calculator text-6xl text-orange-500/30 dark:text-orange-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <i class="fas fa-calculator text-6xl text-orange-500/30 dark:text-orange-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
                         <span class="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide">Multi-Language</span>
-                        <h3 class="text-xl font-bold text-dark dark:text-white mt-2 mb-3">Aplikasi Kalkulator</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Eksplorasi logika matematika dasar yang diimplementasikan ulang menggunakan tiga bahasa berbeda untuk studi komparasi.</p>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p3_title">Calculator App</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p3_desc">Basic math logic exploration implemented in three different languages for comparative study.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Java</span>
                             <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Python</span>
@@ -286,15 +342,15 @@
                     </div>
                 </div>
 
-                <!-- Proyek 4: Flutter -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition duration-300 flex flex-col">
+                <!-- Proyek 4 -->
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
                     <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-stopwatch text-6xl text-cyan-500/30 dark:text-cyan-400/30 group-hover:scale-110 transition duration-500"></i>
+                        <i class="fas fa-stopwatch text-6xl text-cyan-500/30 dark:text-cyan-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
                         <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wide">Mobile App</span>
-                        <h3 class="text-xl font-bold text-dark dark:text-white mt-2 mb-3">Stopwatch & Timer</h3>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Aplikasi Android sederhana untuk mengukur waktu (Stopwatch & Timer) yang dikembangkan menggunakan Android Studio.</p>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p4_title">Stopwatch & Timer</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p4_desc">Simple Android app for measuring time developed using Android Studio.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 px-2 py-1 rounded font-medium">Flutter</span>
                             <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Dart</span>
@@ -306,31 +362,27 @@
             </div>
         </div>
     </section>
-    <div class="text-center mb-12">
-    <a 
-        href="https://github.com/G1ts-3" 
-        target="_blank" 
-        class="inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-5 py-2 rounded-lg transition"
-    >
-        Lihat Semua Proyek di GitHub →
-    </a>
+    <div class="text-center mb-12" data-aos="fade-up">
+        <a href="https://github.com/G1ts-3" target="_blank" class="fade-lang inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-5 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg" data-i18n="btn_github_all">
+            View All Projects on GitHub →
+        </a>
     </div>
 
     <!-- Gemini AI Chat Section -->
-    <section id="ai-chat" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
+    <section id="ai-chat" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10">
+            <div class="text-center mb-10" data-aos="zoom-in">
                 <span class="inline-block py-1 px-3 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2">
                     <i class="fas fa-sparkles mr-1"></i> Powered by Gemini AI
                 </span>
-                <h2 class="text-3xl font-bold text-dark dark:text-white">Tanya Virtual Git</h2>
-                <p class="text-slate-600 dark:text-slate-400 mt-4">
-                    Penasaran tentang pengalaman atau proyek saya? Tanyakan pada AI Assistant saya yang sudah dilatih dengan data portofolio ini.
+                <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white" data-i18n="ai_title">Ask Virtual Git</h2>
+                <p class="fade-lang text-slate-600 dark:text-slate-400 mt-4" data-i18n="ai_desc">
+                    Curious about my experience or projects? Ask my AI Assistant trained with this portfolio data.
                 </p>
             </div>
 
             <!-- Chat Interface -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col h-[500px] relative">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col h-[500px] relative" data-aos="fade-up" data-aos-delay="200">
                 
                 <!-- Chat Header -->
                 <div class="bg-primary/10 dark:bg-green-900/20 p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
@@ -346,58 +398,58 @@
                         </div>
                     </div>
                     <!-- Settings Button -->
-                    <button id="settings-btn" class="text-slate-500 hover:text-primary dark:hover:text-white transition">
+                    <button id="settings-btn" class="text-slate-500 hover:text-primary dark:hover:text-white transition-colors duration-300">
                         <i class="fas fa-cog text-lg"></i>
                     </button>
                 </div>
 
                 <!-- Settings Panel (Hidden by default) -->
-                <div id="settings-panel" class="hidden absolute top-20 right-4 z-10 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-600 w-72">
-                    <h4 class="font-bold text-dark dark:text-white mb-2 text-sm">Pengaturan API</h4>
+                <div id="settings-panel" class="hidden absolute top-20 right-4 z-10 bg-white dark:bg-slate-800 p-4 rounded-xl shadow-2xl border border-slate-200 dark:border-slate-600 w-72 transition-opacity duration-300">
+                    <h4 class="font-bold text-dark dark:text-white mb-2 text-sm">API Settings</h4>
                     <label class="block text-xs text-slate-500 dark:text-slate-400 mb-1">Google Gemini API Key:</label>
-                    <input type="password" id="api-key-input" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm mb-2 dark:bg-slate-700 dark:text-white" placeholder="Paste API Key disini...">
+                    <input type="password" id="api-key-input" class="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-md text-sm mb-2 dark:bg-slate-700 dark:text-white transition-colors duration-300" placeholder="Paste API Key here...">
                     <div class="flex justify-end gap-2">
-                        <button id="save-api-key" class="px-3 py-1 bg-primary text-white text-xs rounded hover:bg-green-700">Simpan</button>
-                        <button id="close-settings" class="px-3 py-1 bg-slate-200 text-slate-700 text-xs rounded hover:bg-slate-300">Tutup</button>
+                        <button id="save-api-key" class="px-3 py-1 bg-primary text-white text-xs rounded hover:bg-green-700 transition-colors duration-300">Save</button>
+                        <button id="close-settings" class="px-3 py-1 bg-slate-200 text-slate-700 text-xs rounded hover:bg-slate-300 transition-colors duration-300">Close</button>
                     </div>
-                    <p class="text-[10px] text-slate-400 mt-2">Key disimpan di browser Anda (Local Storage).</p>
+                    <p class="text-[10px] text-slate-400 mt-2">Key stored in Local Storage.</p>
                 </div>
 
                 <!-- Chat Output Area -->
-                <div id="chat-output" class="flex-grow p-6 overflow-y-auto space-y-4 bg-slate-50 dark:bg-slate-900/50">
+                <div id="chat-output" class="flex-grow p-6 overflow-y-auto space-y-4 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-500">
                     <!-- Welcome Message -->
                     <div class="flex items-start gap-3">
                         <div class="w-8 h-8 rounded-full bg-primary/20 dark:bg-green-900/40 flex-shrink-0 flex items-center justify-center text-primary dark:text-green-400 text-xs">
                             AI
                         </div>
                         <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 max-w-[80%]">
-                            <p class="text-sm text-slate-700 dark:text-slate-300">
-                                Halo! Saya adalah asisten AI Git. Kamu bisa tanya saya tentang skill coding (Java, Python, Flutter), proyek yang pernah dikerjakan, atau latar belakang pendidikan Git. Mau tanya apa? 😊
+                            <p class="fade-lang text-sm text-slate-700 dark:text-slate-300" data-i18n="ai_welcome">
+                                Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What would you like to know? 😊
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Chat Input Area -->
-                <div class="p-4 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700">
+                <div class="p-4 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 transition-colors duration-500">
                     <form id="chat-form" class="flex gap-2">
                         <input 
                             type="text" 
                             id="chat-input" 
-                            placeholder="Contoh: Ceritakan tentang proyek yang pernah dikerjakan..." 
-                            class="flex-grow px-4 py-3 bg-slate-100 dark:bg-slate-900 border-transparent focus:border-primary dark:focus:border-green-500 focus:ring-0 rounded-xl text-slate-800 dark:text-white text-sm transition placeholder-slate-400"
+                            placeholder="Type your question..." 
+                            class="flex-grow px-4 py-3 bg-slate-100 dark:bg-slate-900 border-transparent focus:border-primary dark:focus:border-green-500 focus:ring-0 rounded-xl text-slate-800 dark:text-white text-sm transition-colors duration-300 placeholder-slate-400"
                             autocomplete="off"
                         >
                         <button 
                             type="submit" 
                             id="send-btn"
-                            class="px-4 py-3 bg-primary hover:bg-green-700 text-white rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="px-4 py-3 bg-primary hover:bg-green-700 text-white rounded-xl transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </form>
                     <div class="text-center mt-2">
-                         <p class="text-[10px] text-slate-400">AI bisa membuat kesalahan. Mohon verifikasi informasi penting.</p>
+                         <p class="text-[10px] text-slate-400">AI can make mistakes. Verify important info.</p>
                     </div>
                 </div>
             </div>
@@ -405,40 +457,49 @@
     </section>
 
     <!-- Kontak -->
-    <section id="contact" class="py-20 bg-dark dark:bg-slate-950 text-white transition-colors duration-300">
+    <section id="contact" class="py-20 bg-dark dark:bg-slate-950 text-white transition-colors duration-500" data-aos="fade-up">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-6">Terhubung dengan Saya</h2>
-            <p class="text-slate-400 mb-10 text-lg">Tertarik berdiskusi tentang teknologi atau melihat kode saya lebih detail?</p>
+            <h2 class="fade-lang text-3xl font-bold mb-6" data-i18n="contact_title">Connect with Me</h2>
+            <p class="fade-lang text-slate-400 mb-10 text-lg" data-i18n="contact_desc">Interested in discussing technology or viewing my code in more detail?</p>
             
             <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                <a href="mailto:raghidmuhammad3@gmail.com" class="flex items-center gap-3 px-8 py-4 bg-primary hover:bg-green-700 rounded-lg transition w-full md:w-auto justify-center">
+                <a href="mailto:raghidmuhammad3@gmail.com" class="fade-lang flex items-center gap-3 px-8 py-4 bg-primary hover:bg-green-700 rounded-lg transition-all duration-300 w-full md:w-auto justify-center transform hover:scale-105 shadow-lg">
                     <i class="fas fa-envelope"></i>
-                    <span>Kirim Email</span>
+                    <span data-i18n="btn_email">Send Email</span>
                 </a>
-                <!-- <a href="https://wa.me/6281381222576" target="_blank" class="flex items-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-lg transition w-full md:w-auto justify-center">
-                    <i class="fab fa-whatsapp"></i>
-                    <span>WhatsApp</span>
-                </a> -->
             </div>
 
             <div class="mt-16 flex justify-center space-x-8">
-                <a href="https://github.com/G1ts-3" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/raghidma/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/raghm_/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110" title="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/ramaa3_" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110" title="X / Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="https://github.com/G1ts-3" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/raghidma/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/raghm_/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/ramaa3_" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 py-8 transition-colors duration-300">
+    <footer class="bg-dark dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 py-8 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
-            <p>&copy; 2025 Raghid Muhammad. Dibuat dengan HTML & Tailwind CSS.</p>
+            <p>&copy; 2025 Raghid Muhammad. Made with HTML & Tailwind CSS.</p>
         </div>
     </footer>
 
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
     <!-- Script Logic -->
     <script>
+        // Inisialisasi AOS (Animasi Scroll)
+        AOS.init({
+            once: true,  // UBAH KE TRUE: Agar animasi cuma sekali saat muncul (mengurangi beban browser)
+            mirror: false, // UBAH KE FALSE: Mematikan animasi saat scroll ke atas (penyebab utama lag/nyangkut)
+            offset: 50, // Kurangi offset agar elemen lebih cepat muncul
+            duration: 600, // Durasi sedikit dipercepat
+            easing: 'ease-out',
+            disable: 'mobile' // Opsi tambahan: Matikan animasi di HP jika masih berat (tapi kita coba nyalakan dulu)
+        });
+
         /* ------------------- UI Logic (Navbar & Theme) ------------------- */
         const mobileBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -483,6 +544,180 @@
         mobileToggle.addEventListener('click', toggleTheme);
         checkTheme();
 
+        /* ------------------- Language Logic (i18n) ------------------- */
+        const langBtnDesktop = document.getElementById('lang-btn-desktop');
+        const langDropdownDesktop = document.getElementById('lang-dropdown-desktop');
+        const langLabel = document.getElementById('current-lang-label');
+        const langBtnMobile = document.getElementById('lang-btn-mobile');
+
+        const translations = {
+            en: {
+                nav_home: "Home", nav_about: "About", nav_skills: "Skills", nav_projects: "Projects", nav_ai: "AI Chat", nav_contact: "Contact",
+                hero_subtitle: "Software Engineering Student", hero_greeting: "Hello, I am", hero_desc: "1st Semester Student who has been coding since Vocational School. Focused on building efficient and functional software solutions.",
+                btn_projects: "View Projects", btn_contact: "Contact Me",
+                about_title: "About Me", about_p1: "My journey in the world of technology started in the <strong>1st grade of Vocational School (SMK)</strong>. Early interest in programming logic led me to experiment with various languages like Java and Python.", about_p2: "Currently, I am pursuing a <strong>Bachelor's in Software Engineering (Semester 1)</strong> to deepen my understanding of software architecture. I believe that a strong foundation since SMK and high curiosity are the keys to becoming a reliable engineer.",
+                stat_edu: "Software Engineering", stat_exp_val: "3+ Years", stat_exp_label: "Coding (Since SMK)", stat_focus_val: "Full Stack", stat_focus_label: "Main Interest",
+                skills_title: "Tech Stack & Skills", skill_backend: "Backend & Logic", skill_frontend: "Frontend & Mobile", skill_tools: "Data & Tools",
+                proj_title: "My Projects", proj_desc: "Some results of exploration and tasks I have done, ranging from basic logic, web apps, to mobile.",
+                p1_title: "Library Information System", p1_desc: "Web app for borrowing and returning books. Built using Laravel framework and MySQL database.",
+                p2_title: "Cashier & Game Program", p2_desc: "Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game.",
+                p3_title: "Calculator App", p3_desc: "Basic math logic exploration implemented in three different languages for comparative study.",
+                p4_title: "Stopwatch & Timer", p4_desc: "Simple Android app for measuring time developed using Android Studio.",
+                ai_title: "Ask Virtual Git", ai_desc: "Curious about my experience or projects? Ask my AI Assistant trained with this portfolio data.", ai_welcome: "Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What would you like to know? 😊",
+                contact_title: "Connect with Me", contact_desc: "Interested in discussing technology or viewing my code in more detail?", btn_email: "Send Email",
+                btn_github_all: "View All Projects on GitHub →"
+            },
+            id: {
+                nav_home: "Beranda", nav_about: "Tentang", nav_skills: "Keahlian", nav_projects: "Proyek", nav_ai: "Tanya AI", nav_contact: "Kontak",
+                hero_subtitle: "Mahasiswa Software Engineering", hero_greeting: "Halo, saya", hero_desc: "Mahasiswa semester 1 yang telah menekuni dunia koding sejak SMK. Fokus membangun solusi perangkat lunak yang efisien dan fungsional.",
+                btn_projects: "Lihat Proyek", btn_contact: "Hubungi Saya",
+                about_title: "Tentang Saya", about_p1: "Perjalanan saya di dunia teknologi dimulai sejak saya duduk di bangku <strong>kelas 1 SMK</strong>. Ketertarikan awal pada logika pemrograman membawa saya untuk bereksperimen dengan berbagai bahasa seperti Java dan Python.", about_p2: "Saat ini, saya sedang menempuh pendidikan <strong>S1 Software Engineering (Semester 1)</strong> untuk memperdalam pemahaman saya tentang arsitektur perangkat lunak. Saya percaya bahwa fondasi yang kuat sejak SMK dan rasa ingin tahu yang tinggi adalah kunci untuk menjadi engineer yang handal.",
+                stat_edu: "Software Engineering", stat_exp_val: "3+ Tahun", stat_exp_label: "Koding (Sejak SMK)", stat_focus_val: "Full Stack", stat_focus_label: "Minat Utama",
+                skills_title: "Tech Stack & Keahlian", skill_backend: "Backend & Logika", skill_frontend: "Frontend & Mobile", skill_tools: "Data & Tools",
+                proj_title: "Proyek Saya", proj_desc: "Beberapa hasil eksplorasi dan tugas yang telah saya kerjakan, mulai dari logika dasar, aplikasi web, hingga mobile.",
+                p1_title: "Sistem Informasi Perpustakaan", p1_desc: "Aplikasi web untuk peminjaman dan pengembalian buku. Dibangun menggunakan Laravel dan MySQL.",
+                p2_title: "Program Kasir & Game", p2_desc: "Kumpulan program logika Python: Simulasi kasir sederhana dan game Gunting Batu Kertas.",
+                p3_title: "Aplikasi Kalkulator", p3_desc: "Eksplorasi logika matematika dasar yang diimplementasikan dalam tiga bahasa berbeda untuk studi komparasi.",
+                p4_title: "Stopwatch & Timer", p4_desc: "Aplikasi Android sederhana untuk mengukur waktu yang dikembangkan menggunakan Android Studio.",
+                ai_title: "Tanya Virtual Git", ai_desc: "Penasaran tentang pengalaman atau proyek saya? Tanyakan pada Asisten AI saya yang sudah dilatih dengan data portofolio ini.", ai_welcome: "Halo! Saya asisten AI Git. Kamu bisa tanya tentang skill koding, proyek, atau latar belakang pendidikan Git. Mau tanya apa? 😊",
+                contact_title: "Terhubung dengan Saya", contact_desc: "Tertarik berdiskusi tentang teknologi atau melihat kode saya lebih detail?", btn_email: "Kirim Email",
+                btn_github_all: "Lihat Semua Proyek di GitHub →"
+            },
+            ja: {
+                nav_home: "ホーム", nav_about: "プロフィール", nav_skills: "スキル", nav_projects: "プロジェクト", nav_ai: "AIチャット", nav_contact: "お問い合わせ",
+                hero_subtitle: "ソフトウェア工学専攻 学生", hero_greeting: "こんにちは、私は", hero_desc: "職業高校（SMK）1年生からプログラミングを始めた、ソフトウェア工学専攻の大学1年生です。効率的で機能的なソフトウェアソリューションの構築に注力しています。",
+                btn_projects: "プロジェクトを見る", btn_contact: "連絡する",
+                about_title: "私について", about_p1: "テクノロジーの世界への旅は、<strong>職業高校（SMK）1年生</strong>の時に始まりました。プログラミングロジックへの興味から、JavaやPythonなど様々な言語に触れるようになりました。", about_p2: "現在は、<strong>ソフトウェア工学の学士課程（1学期）</strong>で、ソフトウェアアーキテクチャへの理解を深めています。SMK時代からの強固な基礎と好奇心が、信頼できるエンジニアになる鍵だと信じています。",
+                stat_edu: "ソフトウェア工学", stat_exp_val: "3年以上", stat_exp_label: "プログラミング歴", stat_focus_val: "フルスタック", stat_focus_label: "主な関心分野",
+                skills_title: "技術スタック & スキル", skill_backend: "バックエンド & ロジック", skill_frontend: "フロントエンド & モバイル", skill_tools: "データ & ツール",
+                proj_title: "マイプロジェクト", proj_desc: "基本的なロジックからWebアプリ、モバイルアプリまで、これまでの学習と課題の成果です。",
+                p1_title: "図書館情報システム", p1_desc: "本の貸出・返却管理Webアプリ。LaravelフレームワークとMySQLデータベースを使用。",
+                p2_title: "レジ & ゲームプログラム", p2_desc: "Pythonロジックプログラム集：簡易レジシミュレーションとじゃんけんゲーム。",
+                p3_title: "電卓アプリ", p3_desc: "比較学習のために3つの異なる言語で実装された基本的な数学ロジックの探求。",
+                p4_title: "ストップウォッチ & タイマー", p4_desc: "Android Studioを使用して開発された、時間を計測するシンプルなAndroidアプリ。",
+                ai_title: "バーチャルGitに質問", ai_desc: "私の経験やプロジェクトについて気になりますか？このポートフォリオデータでトレーニングされたAIアシスタントに聞いてみてください。", ai_welcome: "こんにちは！GitのAIアシスタントです。コーディングスキル、プロジェクト、経歴について質問できます。何を知りたいですか？😊",
+                contact_title: "連絡先", contact_desc: "技術についての議論や、コードの詳細に興味がありますか？", btn_email: "メールを送る",
+                btn_github_all: "GitHubですべてのプロジェクトを見る →"
+            },
+            zh: {
+                nav_home: "主页", nav_about: "关于", nav_skills: "技能", nav_projects: "项目", nav_ai: "AI 聊天", nav_contact: "联系",
+                hero_subtitle: "软件工程专业学生", hero_greeting: "你好，我是", hero_desc: "从职业高中开始编程的第一学期大学生。专注于构建高效实用的软件解决方案。",
+                btn_projects: "查看项目", btn_contact: "联系我",
+                about_title: "关于我", about_p1: "我的技术之旅始于<strong>职业高中一年级</strong>。对编程逻辑的早期兴趣促使我尝试了 Java 和 Python 等各种语言。", about_p2: "目前，我正在攻读<strong>软件工程学士学位（第一学期）</strong>，以加深对软件架构的理解。我相信，自高中打下的坚实基础和强烈的好奇心是成为一名可靠工程师的关键。",
+                stat_edu: "软件工程", stat_exp_val: "3+ 年", stat_exp_label: "编程（自职高起）", stat_focus_val: "全栈", stat_focus_label: "主要兴趣",
+                skills_title: "技术栈与技能", skill_backend: "后端与逻辑", skill_frontend: "前端与移动端", skill_tools: "数据与工具",
+                proj_title: "我的项目", proj_desc: "我完成的一些探索和任务成果，从基础逻辑到网络应用及移动端开发。",
+                p1_title: "图书馆信息系统", p1_desc: "用于借阅和归还书籍的 Web 应用程序。使用 Laravel 框架和 MySQL 数据库构建。",
+                p2_title: "收银与游戏程序", p2_desc: "Python 逻辑程序集合：简单的收银模拟和石头剪刀布游戏。",
+                p3_title: "计算器应用", p3_desc: "用三种不同语言实现的基础数学逻辑探索，用于比较研究。",
+                p4_title: "秒表与计时器", p4_desc: "使用 Android Studio 开发的简单 Android 计时应用。",
+                ai_title: "询问虚拟 Git", ai_desc: "对我的经验或项目感到好奇吗？请询问我已经过此作品集数据训练的 AI 助手。", ai_welcome: "你好！我是 Git 的 AI 助手。你可以问我关于编程技能、项目或背景的问题。你想知道什么？😊",
+                contact_title: "与我联系", contact_desc: "有兴趣讨论技术或更详细地查看我的代码吗？", btn_email: "发送邮件",
+                btn_github_all: "在 GitHub 上查看所有项目 →"
+            },
+            ko: {
+                nav_home: "홈", nav_about: "소개", nav_skills: "기술", nav_projects: "프로젝트", nav_ai: "AI 채팅", nav_contact: "연락처",
+                hero_subtitle: "소프트웨어 공학 학생", hero_greeting: "안녕하세요, 저는", hero_desc: "직업 고등학교 때부터 코딩을 해온 1학년 대학생입니다. 효율적이고 기능적인 소프트웨어 솔루션을 구축하는 데 집중하고 있습니다.",
+                btn_projects: "프로젝트 보기", btn_contact: "연락하기",
+                about_title: "저에 대해", about_p1: "저의 기술 여정은 <strong>직업 고등학교 1학년</strong> 때 시작되었습니다. 프로그래밍 논리에 대한 초기 관심으로 Java 및 Python과 같은 다양한 언어를 실험하게 되었습니다.", about_p2: "현재 저는 소프트웨어 아키텍처에 대한 이해를 깊게 하기 위해 <strong>소프트웨어 공학 학사 과정(1학기)</strong>을 밟고 있습니다. 고등학교 때부터 다져온 탄탄한 기초와 높은 호기심이 신뢰할 수 있는 엔지니어가 되는 열쇠라고 믿습니다.",
+                stat_edu: "소프트웨어 공학", stat_exp_val: "3년 이상", stat_exp_label: "코딩 (고교 시절부터)", stat_focus_val: "풀 스택", stat_focus_label: "주요 관심사",
+                skills_title: "기술 스택 및 능력", skill_backend: "백엔드 및 로직", skill_frontend: "프론트엔드 및 모바일", skill_tools: "데이터 및 도구",
+                proj_title: "내 프로젝트", proj_desc: "기본 로직부터 웹 앱, 모바일에 이르기까지 제가 수행한 탐구 및 과제의 결과물입니다.",
+                p1_title: "도서관 정보 시스템", p1_desc: "책 대출 및 반납을 위한 웹 앱입니다. Laravel 프레임워크와 MySQL 데이터베이스를 사용하여 구축되었습니다.",
+                p2_title: "계산원 및 게임 프로그램", p2_desc: "Python 로직 프로그램 모음: 간단한 계산원 시뮬레이션 및 가위바위보 게임.",
+                p3_title: "계산기 앱", p3_desc: "비교 연구를 위해 세 가지 다른 언어로 구현된 기초 수학 로직 탐구입니다.",
+                p4_title: "스톱워치 및 타이머", p4_desc: "Android Studio를 사용하여 개발된 간단한 시간 측정 Android 앱입니다.",
+                ai_title: "가상 Git에게 질문하기", ai_desc: "제 경험이나 프로젝트가 궁금하신가요? 이 포트폴리오 데이터로 훈련된 제 AI 비서에게 물어보세요.", ai_welcome: "안녕하세요! Git의 AI 비서입니다. 코딩 기술, 프로젝트 또는 배경에 대해 물어보실 수 있습니다. 무엇을 도와드릴까요? 😊",
+                contact_title: "연결하기", contact_desc: "기술에 대해 논의하거나 제 코드를 더 자세히 보고 싶으신가요?", btn_email: "이메일 보내기",
+                btn_github_all: "GitHub에서 모든 프로젝트 보기 →"
+            },
+            ar: {
+                nav_home: "الرئيسية", nav_about: "من أنا", nav_skills: "المهارات", nav_projects: "المشاريع", nav_ai: "محادثة AI", nav_contact: "تواصل",
+                hero_subtitle: "طالب هندسة برمجيات", hero_greeting: "مرحباً، أنا", hero_desc: "طالب في الفصل الدراسي الأول يبرمج منذ المدرسة الثانوية المهنية. أركز على بناء حلول برمجية فعالة وعملية.",
+                btn_projects: "عرض المشاريع", btn_contact: "تواصل معي",
+                about_title: "عني", about_p1: "بدأت رحلتي في عالم التكنولوجيا منذ <strong>الصف الأول في المدرسة الثانوية المهنية</strong>. قادني اهتمامي المبكر بمنطق البرمجة إلى تجربة لغات مختلفة مثل Java و Python.", about_p2: "حالياً، أدرس <strong>بكالوريوس هندسة البرمجيات (الفصل الأول)</strong> لتعميق فهمي لهندسة البرمجيات. أؤمن أن الأساس القوي منذ الثانوية والفضول العالي هما المفتاح لأصبح مهندساً موثوقاً.",
+                stat_edu: "هندسة البرمجيات", stat_exp_val: "+3 سنوات", stat_exp_label: "برمجة (منذ الثانوية)", stat_focus_val: "فول ستاك", stat_focus_label: "الاهتمام الرئيسي",
+                skills_title: "التقنيات والمهارات", skill_backend: "الخلفية والمنطق", skill_frontend: "الواجهة والهاتف", skill_tools: "البيانات والأدوات",
+                proj_title: "مشاريعي", proj_desc: "بعض نتائج الاستكشاف والمهام التي أنجزتها، من المنطق الأساسي وتطبيقات الويب إلى تطبيقات الهاتف.",
+                p1_title: "نظام معلومات المكتبة", p1_desc: "تطبيق ويب لاستعارة وإرجاع الكتب. مبني باستخدام إطار عمل Laravel وقاعدة بيانات MySQL.",
+                p2_title: "برنامج الكاشير والألعاب", p2_desc: "مجموعة برامج منطقية بـ Python: محاكاة كاشير بسيطة ولعبة حجر-ورقة-مقص.",
+                p3_title: "تطبيق الآلة الحاسبة", p3_desc: "استكشاف للمنطق الرياضي الأساسي تم تنفيذه بثلاث لغات مختلفة للدراسة المقارنة.",
+                p4_title: "ساعة إيقاف ومؤقت", p4_desc: "تطبيق Android بسيط لقياس الوقت تم تطويره باستخدام Android Studio.",
+                ai_title: "اسأل Git الافتراضي", ai_desc: "هل لديك فضول حول خبرتي أو مشاريعي؟ اسأل مساعد الذكاء الاصطناعي المدرب ببيانات هذا الملف الشخصي.", ai_welcome: "مرحباً! أنا مساعد الذكاء الاصطناعي الخاص بـ Git. يمكنك سؤالي عن مهارات البرمجة أو المشاريع أو الخلفية. ماذا تود أن تعرف؟ 😊",
+                contact_title: "تواصل معي", contact_desc: "هل أنت مهتم بمناقشة التكنولوجيا أو رؤية الكود الخاص بي بمزيد من التفصيل؟", btn_email: "إرسال بريد إلكتروني",
+                btn_github_all: "عرض جميع المشاريع على GitHub →"
+            }
+        };
+
+        // Toggle Desktop Dropdown
+        if(langBtnDesktop) {
+            langBtnDesktop.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdownDesktop.classList.toggle('hidden');
+            });
+        }
+
+        // Mobile toggle cycles languages
+        const langsList = ['en', 'id', 'ja', 'zh', 'ko', 'ar']; // Updated list
+        if(langBtnMobile) {
+            langBtnMobile.addEventListener('click', () => {
+                let current = localStorage.getItem('lang') || 'en';
+                let idx = langsList.indexOf(current);
+                let next = langsList[(idx + 1) % langsList.length];
+                setLanguage(next);
+            });
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', () => {
+            if(langDropdownDesktop && !langDropdownDesktop.classList.contains('hidden')) {
+                langDropdownDesktop.classList.add('hidden');
+            }
+        });
+
+        function setLanguage(lang) {
+            // 1. Fade out text
+            const elements = document.querySelectorAll('.fade-lang');
+            elements.forEach(el => el.classList.add('opacity-0'));
+
+            // 2. Wait for fade out, then change text and fade in
+            setTimeout(() => {
+                localStorage.setItem('lang', lang);
+                const data = translations[lang];
+                
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (data[key]) {
+                        if(el.innerHTML.includes('<strong>')) { 
+                             el.innerHTML = data[key];
+                        } else {
+                             el.textContent = data[key];
+                        }
+                    }
+                });
+
+                // Update Label
+                if(langLabel) langLabel.textContent = lang.toUpperCase();
+
+                // Handle RTL for Arabic
+                if (lang === 'ar') {
+                    document.documentElement.setAttribute('dir', 'rtl');
+                    document.body.classList.add('font-arabic');
+                } else {
+                    document.documentElement.setAttribute('dir', 'ltr');
+                    document.body.classList.remove('font-arabic');
+                }
+
+                // Fade in
+                elements.forEach(el => el.classList.remove('opacity-0'));
+            }, 300); // Match transition duration
+        }
+
+        // Init Lang on Load (Default EN)
+        const savedLang = localStorage.getItem('lang') || 'en';
+        setLanguage(savedLang);
+
+
         /* ------------------- Settings & API Key Logic ------------------- */
         const settingsBtn = document.getElementById('settings-btn');
         const settingsPanel = document.getElementById('settings-panel');
@@ -504,10 +739,10 @@
             const key = apiKeyInput.value.trim();
             if (key) {
                 localStorage.setItem('gemini_api_key', key);
-                alert('API Key berhasil disimpan!');
+                alert('API Key saved!');
                 settingsPanel.classList.add('hidden');
             } else {
-                alert('Mohon masukkan API Key.');
+                alert('Please enter API Key.');
             }
         });
 
@@ -528,7 +763,7 @@
         // Konteks Sistem (Data Portofolio untuk AI)
         const systemPrompt = `
             Kamu adalah asisten AI untuk website portofolio milik Git (Raghid Muhammad). 
-            Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, dan ramah.
+            Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, menarik, interaktif, gaul, dan ramah.
 
             Berikut adalah data profil Git:
 
@@ -590,6 +825,7 @@
             **Panduan Jawaban:**
             - Jawab sebagai Git(jadi kalo ditanya 'kamu' jawab pake 'aku')
             - Jawab dalam **bahasa yang sama** dengan pertanyaan pengunjung.
+            - Answer in the **same language** as the user's question (English, Indonesian, Japanese, etc).
             - Jawaban harus singkat, padat, dan relevan (maksimal 3-4 kalimat kecuali diminta detail).
             - Gunakan Markdown bila perlu (bold, list).
             - Jika ditanya mengenai hal yang tidak ada dalam profil (misalnya hobi masak), jawab dengan sopan bahwa kamu hanya mengetahui informasi profesional Git.
@@ -656,7 +892,7 @@
 
             if (!currentKey) {
                  chatOutput.removeChild(loadingBubble);
-                 appendMessage('model', "⚠️ **API Key belum diatur.** Silakan klik ikon gerigi (⚙️) di atas chat ini dan masukkan Google Gemini API Key Anda agar saya bisa menjawab.");
+                 appendMessage('model', "⚠️ **API Key missing.** Please set it in settings.");
                  chatInput.disabled = false;
                  sendBtn.disabled = false;
                  return;
@@ -701,13 +937,13 @@
                 if (aiResponse) {
                     appendMessage('model', aiResponse);
                 } else {
-                    appendMessage('model', "Maaf, saya sedang tidak bisa berpikir jernih. Coba lagi nanti ya.");
+                    appendMessage('model', "Sorry, I can't think right now.");
                 }
 
             } catch (error) {
                 chatOutput.removeChild(loadingBubble);
                 console.error("Gemini Error:", error);
-                appendMessage('model', "Maaf, terjadi kesalahan koneksi. Pastikan API Key sudah dikonfigurasi atau coba lagi nanti.");
+                appendMessage('model', "Sorry, connection error.");
             } finally {
                 chatInput.disabled = false;
                 sendBtn.disabled = false;
