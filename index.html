@@ -755,7 +755,7 @@
 
         // Helper: Get Active API Key (Hardcoded OR LocalStorage)
         function getApiKey() {
-            const hardcodedKey = "AIzaSyBlfAZkEGV7n3StP-ZbOz6X2i_qS4cwdak"; // Biarkan kosong jika ingin user input sendiri
+            const hardcodedKey = ""; // Biarkan kosong jika ingin user input sendiri
             const storedKey = localStorage.getItem('gemini_api_key');
             return hardcodedKey || storedKey;
         }
