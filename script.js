@@ -172,7 +172,7 @@ if(langBtnDesktop) {
 }
 
 // Mobile toggle cycles languages
-const langsList = ['en', 'id', 'ja', 'zh', 'ko', 'ar']; // Updated list
+const langsList = ['en', 'id', 'ja', 'zh', 'ko', 'ar'];
 if(langBtnMobile) {
     langBtnMobile.addEventListener('click', () => {
         let current = localStorage.getItem('lang') || 'en';
@@ -189,7 +189,7 @@ window.addEventListener('click', () => {
     }
 });
 
-// Expose setLanguage globally so onclick in HTML works
+// Expose setLanguage globally
 window.setLanguage = function(lang) {
     // 1. Fade out text
     const elements = document.querySelectorAll('.fade-lang');
@@ -233,11 +233,53 @@ const savedLang = localStorage.getItem('lang') || 'en';
 window.setLanguage(savedLang);
 
 
-/* ------------------- Gemini AI Logic ------------------- */
+/* ------------------- Gemini AI Chat Widget Logic ------------------- */
+const chatPopup = document.getElementById('chat-popup');
+const chatToggleBtn = document.getElementById('chat-toggle-btn');
+const closeChatBtn = document.getElementById('close-chat-btn');
+const chatHeaderAction = document.getElementById('chat-header-action');
 const chatOutput = document.getElementById('chat-output');
 const chatForm = document.getElementById('chat-form');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
+const navAiChatBtn = document.getElementById('nav-ai-chat-btn');
+const mobileAiChatBtn = document.getElementById('mobile-ai-chat-btn');
+
+function toggleChat() {
+    if (chatPopup.classList.contains('chat-open')) {
+        closeChat();
+    } else {
+        openChat();
+    }
+}
+
+function openChat() {
+    chatPopup.classList.add('chat-open');
+    chatInput.focus();
+}
+
+function closeChat() {
+    chatPopup.classList.remove('chat-open');
+}
+
+// Event Listeners for Chat Toggles
+if (chatToggleBtn) chatToggleBtn.addEventListener('click', toggleChat);
+if (closeChatBtn) closeChatBtn.addEventListener('click', closeChat);
+if (chatHeaderAction) chatHeaderAction.addEventListener('click', toggleChat);
+
+if (navAiChatBtn) {
+    navAiChatBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChat();
+    });
+}
+if (mobileAiChatBtn) {
+    mobileAiChatBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openChat();
+        if (mobileMenu) mobileMenu.classList.add('hidden'); // Close mobile menu
+    });
+}
 
 // Konteks Sistem (Data Portofolio untuk AI)
 const systemPrompt = `
@@ -319,23 +361,23 @@ const systemPrompt = `
 // Helper: Tambah pesan ke UI
 function appendMessage(role, text, isLoading = false) {
     const div = document.createElement('div');
-    div.className = `flex items-start gap-3 ${role === 'user' ? 'flex-row-reverse' : ''}`;
+    div.className = `flex items-start gap-2 ${role === 'user' ? 'flex-row-reverse' : ''}`;
     
     const avatar = role === 'user' 
-        ? `<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-slate-600 dark:text-slate-300"><i class="fas fa-user"></i></div>`
-        : `<div class="w-8 h-8 rounded-full bg-primary/20 dark:bg-green-900/40 flex-shrink-0 flex items-center justify-center text-primary dark:text-green-400 text-xs">AI</div>`;
+        ? `<div class="w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-slate-600 dark:text-slate-300 text-xs"><i class="fas fa-user"></i></div>`
+        : `<div class="w-6 h-6 rounded-full bg-primary/20 dark:bg-green-900/40 flex-shrink-0 flex items-center justify-center text-primary dark:text-green-400 text-xs">AI</div>`;
     
     const bubbleClass = role === 'user'
         ? `bg-primary text-white rounded-2xl rounded-tr-none shadow-md`
-        : `bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 prose dark:prose-invert prose-sm max-w-none`;
+        : `bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 prose dark:prose-invert prose-sm`;
 
     let contentHtml = '';
     if (isLoading) {
         contentHtml = `
-            <div class="flex gap-1 items-center h-6 px-2">
-                <div class="w-2 h-2 bg-current rounded-full typing-dot"></div>
-                <div class="w-2 h-2 bg-current rounded-full typing-dot"></div>
-                <div class="w-2 h-2 bg-current rounded-full typing-dot"></div>
+            <div class="flex gap-1 items-center h-4 px-2">
+                <div class="w-1.5 h-1.5 bg-current rounded-full typing-dot"></div>
+                <div class="w-1.5 h-1.5 bg-current rounded-full typing-dot"></div>
+                <div class="w-1.5 h-1.5 bg-current rounded-full typing-dot"></div>
             </div>
         `;
     } else {
@@ -344,7 +386,7 @@ function appendMessage(role, text, isLoading = false) {
 
     div.innerHTML = `
         ${avatar}
-        <div class="${bubbleClass} p-3 px-4 max-w-[85%]">
+        <div class="${bubbleClass} p-2 px-3 max-w-[85%] text-sm">
             ${contentHtml}
         </div>
     `;
