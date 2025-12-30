@@ -240,7 +240,7 @@ const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
 
 // Konteks Sistem (Data Portofolio untuk AI)
-const systemPrompt = `
+const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user bertanya dalam bahasa lain.
             Kamu adalah asisten AI untuk website portofolio milik Git (Raghid Muhammad). 
             Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, menarik, interaktif, gaul, dan ramah.
 
