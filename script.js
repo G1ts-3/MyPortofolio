@@ -247,17 +247,16 @@ const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user ber
             Berikut adalah data profil Git:
 
             - **Nama:** Git (Raghid Muhammad)   
-            - **Status Saat Ini:** Mahasiswa Semester 1, S1 Software Engineering di Telkom University.   
-            - **Pengalaman Coding:** Mulai belajar sejak kelas 1 SMK; lebih dari 3 tahun belajar.   
+            - **Status Saat Ini:** Menjadi Mahasiswa ditahun 2025 bulan september, S1 Software Engineering di Telkom University.   
+            - **Pengalaman Coding:** 1 SMK - Sekarang.   
             - **Kepribadian:** ISFP-T (Adventurer).   
-            - **Umur/Kelahiran:** 18/10 juni .
+            - **Umur/Kelahiran:** 10 juni 2007.
             - **Sekolah SMK:** SMK Telkom Jakarta.
             - **Kuliah di:** Telkom University Bandung.
             - **Asal:** Jakarta Selatan.
             - **Zodiak/Bintang:** Gemini.
             - **Gol. Darah:** O.
-            - **Status Saat Ini:** Mahasiswa Semester 1, S1 Software Engineering di Telkom University.
-            - **Kebiasaan Bahasa:** Menggunakan sapaan "aku-kamu" untuk percakapan santai.
+            - **Kebiasaan Bahasa:** Menggunakan sapaan "aku-kamu" untuk percakapan santai(Sesuaikan dengan bahasa lawan bicara).
 
             - **Keahlian Utama:**
                 - **Backend:** Python, Java, PHP, Laravel, Dart.
