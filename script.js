@@ -257,9 +257,9 @@ const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user ber
             - Kamu TIDAK BOLEH mengarang tanggal, bulan, atau tahun.
             - Kamu HARUS menggunakan tanggal yang diberikan di atas.
             - Jika ditanya tentang waktu, jawab HANYA berdasarkan data berikut:
-            Hari ini: ${currentDate}
-            Tahun: ${currentYear}
-            Bulan: ${currentMonth}
+            - 1. Hari ini: ${currentDate}
+            - 2. Tahun: ${currentYear}
+            - 3. Bulan: ${currentMonth}
             - Jika kamu tidak yakin, katakan bahwa kamu hanya bisa menggunakan data waktu yang diberikan.
             - DO NOT guess or assume current date.
             - DO NOT generate random dates.
