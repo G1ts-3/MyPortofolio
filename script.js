@@ -238,13 +238,25 @@ const chatOutput = document.getElementById('chat-output');
 const chatForm = document.getElementById('chat-form');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
+const now = new Date();
+
+const currentDate = now.toLocaleDateString('id-ID', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric'
+});
+
+const currentMonth = now.getMonth() + 1;
 const currentYear = new Date().getFullYear();
 // Konteks Sistem (Data Portofolio untuk AI)
 const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user bertanya dalam bahasa lain.
             Kamu adalah asisten AI untuk website portofolio milik Git (Raghid Muhammad). 
             Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, menarik, interaktif, gaul, dan ramah.
             IMPORTANT CONTEXT:
-            - Current year: ${currentYear}
+            - Hari ini adalah: ${currentDate}
+            - Tahun sekarang: ${currentYear}
+            - Bulan sekarang: ${currentMonth}
             - Git started university in September 2025.
             - Always adjust answers based on the current date (do NOT say "just started" if it's already later).
 
