@@ -247,18 +247,23 @@ const currentDate = now.toLocaleDateString('id-ID', {
   year: 'numeric'
 });
 
-const currentMonth = now.getMonth() + 1;
+const currentMonth = now.getMonth() ;
 const currentYear = new Date().getFullYear();
 // Konteks Sistem (Data Portofolio untuk AI)
 const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user bertanya dalam bahasa lain.
             Kamu adalah asisten AI untuk website portofolio milik Git (Raghid Muhammad). 
             Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, menarik, interaktif, gaul, dan ramah.
-            IMPORTANT CONTEXT:
-            - Hari ini adalah: ${currentDate}
-            - Tahun sekarang: ${currentYear}
-            - Bulan sekarang: ${currentMonth}
-            - Git started university in September 2025.
-            - Always adjust answers based on the current date (do NOT say "just started" if it's already later).
+            ATURAN WAJIB (JANGAN DILANGGAR):
+            - Kamu TIDAK BOLEH mengarang tanggal, bulan, atau tahun.
+            - Kamu HARUS menggunakan tanggal yang diberikan di atas.
+            - Jika ditanya tentang waktu, jawab HANYA berdasarkan data berikut:
+            Hari ini: ${currentDate}
+            Tahun: ${currentYear}
+            Bulan: ${currentMonth}
+            - Jika kamu tidak yakin, katakan bahwa kamu hanya bisa menggunakan data waktu yang diberikan.
+            - DO NOT guess or assume current date.
+            - DO NOT generate random dates.
+            - ONLY use the provided current date.
 
             Berikut adalah data profil Git:
 
