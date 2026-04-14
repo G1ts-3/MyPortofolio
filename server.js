@@ -237,3 +237,6 @@ app.listen(PORT, () => {
     console.log(`📧 Email Pass: ${process.env.EMAIL_PASS && process.env.EMAIL_PASS !== 'your_gmail_app_password_here' ? '✅ Configured' : '⚠️  Not configured (contact form will log to console)'}`);
     console.log('');
 });
+
+// Export for Vercel
+module.exports = app;
