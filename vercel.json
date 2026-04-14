@@ -16,6 +16,10 @@
     {
       "src": "*.js",
       "use": "@vercel/static"
+    },
+    {
+      "src": "*.{png,jpg,jpeg,gif,svg}",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
