@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth overflow-x-hidden">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raghid Muhammad Portfolio</title>
     <meta name="description" content="Software Engineering Student Portfolio">
-    
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon_rounded.png">
+    <link rel="icon" type="image/png" href="image.png">
 
     <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <!-- AOS Animation Library CSS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
@@ -37,8 +40,8 @@
                         sans: ['Inter', 'Noto Sans SC', 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans Arabic', 'sans-serif'],
                     },
                     colors: {
-                        primary: '#15803d', // Forest Green
-                        secondary: '#dcfce7', 
+                        primary: '#d97706', // Sunrise Amber
+                        secondary: '#fff7ed', // Warm light
                         dark: '#0f172a',    // Slate gelap
                         light: '#f8fafc',   // Slate terang
                     }
@@ -47,61 +50,96 @@
         }
     </script>
 </head>
-<body class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-500 flex flex-col min-h-screen overflow-x-hidden">
+
+<body
+    class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-500 flex flex-col min-h-screen overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav class="fixed w-full z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-500">
+    <nav
+        class="fixed w-full z-50 bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm border-b border-slate-200 dark:border-slate-700 shadow-sm transition-all duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center hover:scale-105 transition-transform duration-300">
-                    <a href="#" class="text-2xl font-bold text-primary dark:text-green-400">Git<span class="text-dark dark:text-white">'s</span></a>
+                    <a href="#" class="text-2xl font-bold text-primary dark:text-green-400">Git<span
+                            class="text-dark dark:text-white">'s</span></a>
                 </div>
-                
+
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-6">
-                    <a href="#home" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_home">Home</a>
-                    <a href="#about" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_about">About</a>
-                    <a href="#skills" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_skills">Skills</a>
-                    <a href="#projects" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300" data-i18n="nav_projects">Projects</a>
-                    <a href="#ai-chat" class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300 flex items-center gap-1">
-                        <i class="fas fa-sparkles text-yellow-500 animate-pulse"></i> <span data-i18n="nav_ai">AI Chat</span>
+                    <a href="#home"
+                        class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300"
+                        data-i18n="nav_home">Home</a>
+                    <a href="#about"
+                        class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300"
+                        data-i18n="nav_about">About</a>
+                    <a href="#skills"
+                        class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300"
+                        data-i18n="nav_skills">Skills</a>
+                    <a href="#projects"
+                        class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300"
+                        data-i18n="nav_projects">Projects</a>
+                    <a href="javascript:void(0)" data-chat-trigger onclick="window.openChat && window.openChat()"
+                        class="fade-lang text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-green-400 font-medium transition-colors duration-300 flex items-center gap-1">
+                        <i class="fas fa-sparkles text-yellow-500 animate-pulse"></i> <span data-i18n="nav_ai">AI
+                            Chat</span>
                     </a>
-                    <a href="#contact" class="fade-lang px-4 py-2 bg-primary text-white rounded-md hover:bg-green-800 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5" data-i18n="nav_contact">Contact</a>
-                    
+                    <a href="#contact"
+                        class="fade-lang px-4 py-2 bg-primary text-white rounded-md hover:bg-amber-700 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 dark:bg-green-700 dark:hover:bg-green-800"
+                        data-i18n="nav_contact">Contact</a>
+
                     <!-- Divider -->
                     <div class="h-6 w-px bg-slate-300 dark:bg-slate-700 mx-2"></div>
 
                     <!-- Theme Toggle Desktop -->
-                    <button id="theme-toggle-desktop" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none hover:rotate-12">
+                    <button id="theme-toggle-desktop"
+                        class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none hover:rotate-12">
                         <i class="fas fa-moon"></i>
                     </button>
 
                     <!-- Language Dropdown Desktop -->
                     <div class="relative group">
-                        <button id="lang-btn-desktop" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none flex items-center gap-1">
-                            <i class="fas fa-globe"></i> <span id="current-lang-label" class="text-xs font-bold">EN</span>
+                        <button id="lang-btn-desktop"
+                            class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none flex items-center gap-1">
+                            <i class="fas fa-globe"></i> <span id="current-lang-label"
+                                class="text-xs font-bold">EN</span>
                         </button>
-                        <div id="lang-dropdown-desktop" class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-2 z-50 transition-all duration-200 transform origin-top-right">
-                            <button onclick="setLanguage('en')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇺🇸 English</button>
-                            <button onclick="setLanguage('id')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇮🇩 Indonesia</button>
-                            <button onclick="setLanguage('ja')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇯🇵 Japanese</button>
-                            <button onclick="setLanguage('zh')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇨🇳 Mandarin</button>
-                            <button onclick="setLanguage('ko')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇰🇷 Korean</button>
-                            <button onclick="setLanguage('ar')" class="block w-full text-left px-4 py-2 text-sm hover:bg-green-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-right transition-colors" dir="rtl">🇸🇦 العربية</button>
+                        <div id="lang-dropdown-desktop"
+                            class="hidden absolute right-0 mt-2 w-40 bg-white dark:bg-slate-800 rounded-lg shadow-xl border border-slate-200 dark:border-slate-700 py-2 z-50 transition-all duration-200 transform origin-top-right">
+                            <button onclick="setLanguage('en')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇺🇸
+                                English</button>
+                            <button onclick="setLanguage('id')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇮🇩
+                                Indonesia</button>
+                            <button onclick="setLanguage('ja')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇯🇵
+                                Japanese</button>
+                            <button onclick="setLanguage('zh')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇨🇳
+                                Mandarin</button>
+                            <button onclick="setLanguage('ko')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors">🇰🇷
+                                Korean</button>
+                            <button onclick="setLanguage('ar')"
+                                class="block w-full text-left px-4 py-2 text-sm hover:bg-amber-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-right transition-colors"
+                                dir="rtl">🇸🇦 العربية</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button & Toggle -->
                 <div class="md:hidden flex items-center gap-3">
-                    <button id="theme-toggle-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none">
+                    <button id="theme-toggle-mobile"
+                        class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none">
                         <i class="fas fa-moon"></i>
                     </button>
-                    <button id="lang-btn-mobile" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none">
+                    <button id="lang-btn-mobile"
+                        class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none">
                         <i class="fas fa-globe"></i>
                     </button>
-                    <button id="mobile-menu-btn" class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none transition-transform duration-300 active:scale-90">
+                    <button id="mobile-menu-btn"
+                        class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none transition-transform duration-300 active:scale-90">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -109,50 +147,86 @@
         </div>
 
         <!-- Mobile Menu Content -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-all duration-300 ease-in-out">
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 transition-all duration-300 ease-in-out">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_home">Home</a>
-                <a href="#about" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_about">About</a>
-                <a href="#skills" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_skills">Skills</a>
-                <a href="#projects" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_projects">Projects</a>
-                <a href="#ai-chat" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-green-50 dark:hover:bg-slate-800 transition-colors"><i class="fas fa-sparkles text-yellow-500"></i> <span data-i18n="nav_ai">AI Chat</span></a>
-                <a href="#contact" class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-primary dark:text-green-400 font-bold hover:bg-green-50 dark:hover:bg-slate-800 transition-colors" data-i18n="nav_contact">Contact</a>
-                
+                <a href="#home"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"
+                    data-i18n="nav_home">Home</a>
+                <a href="#about"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"
+                    data-i18n="nav_about">About</a>
+                <a href="#skills"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"
+                    data-i18n="nav_skills">Skills</a>
+                <a href="#projects"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"
+                    data-i18n="nav_projects">Projects</a>
+                <a href="javascript:void(0)" data-chat-trigger onclick="window.openChat && window.openChat()"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-slate-700 dark:text-slate-300 hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"><i
+                        class="fas fa-sparkles text-yellow-500"></i> <span data-i18n="nav_ai">AI Chat</span></a>
+                <a href="#contact"
+                    class="fade-lang block px-3 py-2 rounded-md text-base font-medium text-primary dark:text-green-400 font-bold hover:bg-amber-50 dark:hover:bg-slate-800 transition-colors"
+                    data-i18n="nav_contact">Contact</a>
+
                 <div class="border-t border-slate-200 dark:border-slate-700 my-2"></div>
                 <p class="px-3 text-xs text-slate-400 uppercase font-bold">Language</p>
                 <div class="grid grid-cols-3 gap-2 px-3 py-2">
-                    <button onclick="setLanguage('en')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">English</button>
-                    <button onclick="setLanguage('id')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">Indonesia</button>
-                    <button onclick="setLanguage('ja')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">日本語</button>
-                    <button onclick="setLanguage('zh')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">中文</button>
-                    <button onclick="setLanguage('ko')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">한국어</button>
-                    <button onclick="setLanguage('ar')" class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">العربية</button>
+                    <button onclick="setLanguage('en')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">English</button>
+                    <button onclick="setLanguage('id')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">Indonesia</button>
+                    <button onclick="setLanguage('ja')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">日本語</button>
+                    <button onclick="setLanguage('zh')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">中文</button>
+                    <button onclick="setLanguage('ko')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">한국어</button>
+                    <button onclick="setLanguage('ar')"
+                        class="text-xs p-2 rounded bg-slate-100 dark:bg-slate-800 hover:bg-primary hover:text-white transition-colors">العربية</button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-green-50 to-white dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
+    <section id="home"
+        class="pt-32 pb-20 md:pt-40 md:pb-28 bg-gradient-to-br from-amber-50 via-orange-50/30 to-white dark:from-slate-900 dark:to-slate-800 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col-reverse md:flex-row items-center">
-            <div class="w-full md:w-1/2 mt-10 md:mt-0 text-center md:text-left rtl:text-right" data-aos="fade-right" data-aos-delay="200">
-                <span class="fade-lang text-primary dark:text-green-400 font-semibold tracking-wider uppercase text-sm block mb-2" data-i18n="hero_subtitle">Software Engineering Student</span>
+            <div class="w-full md:w-1/2 mt-10 md:mt-0 text-center md:text-left rtl:text-right" data-aos="fade-right"
+                data-aos-delay="200">
+                <span
+                    class="fade-lang text-primary dark:text-green-400 font-semibold tracking-wider uppercase text-sm block mb-2"
+                    data-i18n="hero_subtitle">Software Engineering Student</span>
                 <h1 class="fade-lang mt-3 text-4xl md:text-6xl font-bold text-dark dark:text-white leading-tight">
                     <span data-i18n="hero_greeting">Hello, I am</span> <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-600 dark:from-green-400 dark:to-emerald-400">Raghid Muhammad</span>
+                    <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-rose-500 dark:from-green-400 dark:to-emerald-400">Raghid
+                        Muhammad</span>
                 </h1>
-                <p class="fade-lang mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0" data-i18n="hero_desc">
-                    1st Semester Student who has been coding since Vocational School. Focused on building efficient and functional software solutions.
+                <p class="fade-lang mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0"
+                    data-i18n="hero_desc">
+                    1st Semester Student who has been coding since Vocational School. Focused on building efficient and
+                    functional software solutions.
                 </p>
                 <div class="mt-8 flex justify-center md:justify-start gap-4">
-                    <a href="#projects" class="fade-lang px-6 py-3 bg-primary text-white rounded-lg shadow-lg hover:bg-green-800 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl" data-i18n="btn_projects">View Projects</a>
-                    <a href="#contact" class="fade-lang px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-lg hover:bg-green-50 dark:hover:bg-slate-700 transition-all duration-300 transform hover:-translate-y-1" data-i18n="btn_contact">Contact Me</a>
+                    <a href="#projects"
+                        class="fade-lang px-6 py-3 bg-gradient-to-r from-amber-500 to-orange-500 dark:from-green-600 dark:to-emerald-600 text-white rounded-lg shadow-lg hover:from-amber-600 hover:to-orange-600 dark:hover:from-green-700 dark:hover:to-emerald-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl"
+                        data-i18n="btn_projects">View Projects</a>
+                    <a href="#contact"
+                        class="fade-lang px-6 py-3 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-orange-200 dark:border-slate-600 rounded-lg hover:bg-amber-50 dark:hover:bg-slate-700 transition-all duration-300 transform hover:-translate-y-1"
+                        data-i18n="btn_contact">Contact Me</a>
                 </div>
             </div>
             <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-left" data-aos-delay="400">
                 <div class="relative group">
-                    <div class="absolute inset-0 bg-green-200 dark:bg-green-900/30 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-500"></div>
-                    <img src="tiktok.jpeg" onerror="this.src='https://placehold.co/400x400/15803d/ffffff?text=Photo+Not+Found'" alt="Profil Git" class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl transform transition duration-500 hover:scale-105">
+                    <div
+                        class="absolute inset-0 bg-amber-200 dark:bg-green-900/30 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-500">
+                    </div>
+                    <img src="tiktok.jpeg"
+                        onerror="this.src='https://placehold.co/400x400/d97706/ffffff?text=Photo+Not+Found'"
+                        alt="Profil Git"
+                        class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl transform transition duration-500 hover:scale-105">
                 </div>
             </div>
         </div>
@@ -161,26 +235,41 @@
     <!-- Tentang Saya -->
     <section id="about" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-500">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white mb-8" data-aos="fade-up" data-i18n="about_title">About Me</h2>
-            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6" data-aos="fade-up" data-aos-delay="100" data-i18n="about_p1">
-                My journey in the world of technology started in the <strong>1st grade of Vocational School (SMK)</strong>. Early interest in programming logic led me to experiment with various languages like Java and Python.
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white mb-8" data-aos="fade-up"
+                data-i18n="about_title">About Me</h2>
+            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-6" data-aos="fade-up"
+                data-aos-delay="100" data-i18n="about_p1">
+                My journey in the world of technology started in the <strong>1st grade of Vocational School
+                    (SMK)</strong>. Early interest in programming logic led me to experiment with various languages like
+                Java and Python.
             </p>
-            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed" data-aos="fade-up" data-aos-delay="200" data-i18n="about_p2">
-                Currently, I am pursuing a <strong>Bachelor's in Software Engineering (Semester 1)</strong> to deepen my understanding of software architecture. I believe that a strong foundation since SMK and high curiosity are the keys to becoming a reliable engineer.
+            <p class="fade-lang text-lg text-slate-600 dark:text-slate-400 leading-relaxed" data-aos="fade-up"
+                data-aos-delay="200" data-i18n="about_p2">
+                Currently, I am pursuing a <strong>Bachelor's in Software Engineering (Semester 1)</strong> to deepen my
+                understanding of software architecture. I believe that a strong foundation since SMK and high curiosity
+                are the keys to becoming a reliable engineer.
             </p>
-            
+
             <div class="mt-10 grid grid-cols-2 md:grid-cols-3 gap-6 text-center justify-center">
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md"
+                    data-aos="zoom-in" data-aos-delay="100">
                     <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400">S1</h3>
-                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_edu">Software Engineering</p>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_edu">Software
+                        Engineering</p>
                 </div>
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="200">
-                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_exp_val">3+ Years</h3>
-                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_exp_label">Coding (Since SMK)</p>
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md"
+                    data-aos="zoom-in" data-aos-delay="200">
+                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_exp_val">3+
+                        Years</h3>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_exp_label">
+                        Coding (Since SMK)</p>
                 </div>
-                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md" data-aos="zoom-in" data-aos-delay="300">
-                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_focus_val">Full Stack</h3>
-                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_focus_label">Main Interest</p>
+                <div class="p-4 border border-slate-200 dark:border-slate-700 rounded-xl bg-slate-50 dark:bg-slate-800 hover:border-primary dark:hover:border-green-500 transition-all duration-300 hover:scale-105 hover:shadow-md"
+                    data-aos="zoom-in" data-aos-delay="300">
+                    <h3 class="fade-lang text-xl font-bold text-primary dark:text-green-400" data-i18n="stat_focus_val">
+                        Full Stack</h3>
+                    <p class="fade-lang text-sm text-slate-500 dark:text-slate-400 mt-1" data-i18n="stat_focus_label">
+                        Main Interest</p>
                 </div>
             </div>
         </div>
@@ -189,49 +278,73 @@
     <!-- Keahlian (Skills) -->
     <section id="skills" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-12" data-aos="fade-down" data-i18n="skills_title">Tech Stack & Skills</h2>
-            
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-12" data-aos="fade-down"
+                data-i18n="skills_title">Tech Stack & Skills</h2>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Backend & Logic -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900/50 text-primary dark:text-green-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div
+                        class="w-12 h-12 bg-amber-100 dark:bg-green-900/50 text-amber-600 dark:text-green-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-server"></i>
                     </div>
-                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_backend">Backend & Logic</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_backend">
+                        Backend & Logic</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Python</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Java</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">PHP</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Laravel</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Dart</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Python</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Java</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">PHP</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Laravel</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Dart</span>
                     </div>
                 </div>
 
                 <!-- Frontend & Mobile -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="w-12 h-12 bg-orange-100 dark:bg-emerald-900/50 text-orange-500 dark:text-emerald-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-orange-500 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-mobile-alt"></i>
                     </div>
-                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_frontend">Frontend & Mobile</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_frontend">
+                        Frontend & Mobile</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">HTML5</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">CSS3</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Tailwind</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Flutter</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">HTML5</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">CSS3</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Tailwind</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Flutter</span>
                     </div>
                 </div>
 
                 <!-- Database & Tools -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 bg-teal-100 dark:bg-teal-900/50 text-teal-600 dark:text-teal-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-teal-600 group-hover:text-white transition-colors duration-300">
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-b-4 border-transparent hover:border-primary dark:hover:border-green-500 group hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="w-12 h-12 bg-rose-100 dark:bg-teal-900/50 text-rose-500 dark:text-teal-400 rounded-lg flex items-center justify-center mb-4 text-xl group-hover:bg-rose-500 group-hover:text-white transition-colors duration-300">
                         <i class="fas fa-database"></i>
                     </div>
-                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_tools">Data & Tools</h3>
+                    <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mb-4" data-i18n="skill_tools">Data
+                        & Tools</h3>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">MySQL</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">PHPMyAdmin</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Git</span>
-                        <span class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-green-50 dark:hover:bg-slate-600 transition-colors">Android Studio</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">MySQL</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">PHPMyAdmin</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Git</span>
+                        <span
+                            class="px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-full text-sm border border-slate-200 dark:border-slate-600 hover:bg-amber-50 dark:hover:bg-slate-600 transition-colors">Android
+                            Studio</span>
                     </div>
                 </div>
             </div>
@@ -241,75 +354,116 @@
     <!-- Proyek -->
     <section id="projects" class="py-20 bg-white dark:bg-slate-900 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-4" data-aos="fade-down" data-i18n="proj_title">My Projects</h2>
-            <p class="fade-lang text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto" data-aos="fade-down" data-aos-delay="100" data-i18n="proj_desc">Some results of exploration and tasks I have done, ranging from basic logic, web apps, to mobile.</p>
+            <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white text-center mb-4" data-aos="fade-down"
+                data-i18n="proj_title">My Projects</h2>
+            <p class="fade-lang text-slate-600 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto"
+                data-aos="fade-down" data-aos-delay="100" data-i18n="proj_desc">Some results of exploration and tasks I
+                have done, ranging from basic logic, web apps, to mobile.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+
                 <!-- Proyek 1 -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="0">
-                    <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-book text-6xl text-primary dark:text-green-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="0">
+                    <div
+                        class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
+                        <i
+                            class="fas fa-book text-6xl text-amber-500/50 dark:text-green-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
-                        <span class="text-xs font-bold text-primary dark:text-green-400 uppercase tracking-wide">Web Development</span>
-                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p1_title">Library Information System</h3>
-                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p1_desc">Web app for borrowing and returning books. Built using Laravel framework and MySQL database.</p>
+                        <span class="text-xs font-bold text-amber-600 dark:text-green-400 uppercase tracking-wide">Web
+                            Development</span>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3"
+                            data-i18n="p1_title">Library Information System</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p1_desc">Web app
+                            for borrowing and returning books. Built using Laravel framework and MySQL database.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded font-medium">Laravel</span>
-                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">PHPMyAdmin</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Bootstrap</span>
+                            <span
+                                class="text-xs bg-amber-100 dark:bg-green-900 text-amber-800 dark:text-green-200 px-2 py-1 rounded font-medium">Laravel</span>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">PHPMyAdmin</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Bootstrap</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Proyek 2 -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
-                    <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fab fa-python text-6xl text-blue-500/30 dark:text-blue-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="100">
+                    <div
+                        class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
+                        <i
+                            class="fab fa-python text-6xl text-blue-500/30 dark:text-blue-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
-                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide">Python Logic</span>
-                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p2_title">Cashier & Game Program</h3>
-                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p2_desc">Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game.</p>
+                        <span class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wide">Python
+                            Logic</span>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3"
+                            data-i18n="p2_title">Cashier & Game Program</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p2_desc">
+                            Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game.
+                        </p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">Python</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Logic</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">CLI</span>
+                            <span
+                                class="text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded font-medium">Python</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Logic</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">CLI</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Proyek 3 -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
-                    <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-calculator text-6xl text-orange-500/30 dark:text-orange-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="200">
+                    <div
+                        class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
+                        <i
+                            class="fas fa-calculator text-6xl text-orange-500/30 dark:text-orange-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
-                        <span class="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide">Multi-Language</span>
-                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p3_title">Calculator App</h3>
-                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p3_desc">Basic math logic exploration implemented in three different languages for comparative study.</p>
+                        <span
+                            class="text-xs font-bold text-orange-600 dark:text-orange-400 uppercase tracking-wide">Multi-Language</span>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3"
+                            data-i18n="p3_title">Calculator App</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p3_desc">Basic
+                            math logic exploration implemented in three different languages for comparative study.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Java</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Python</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">HTML/CSS</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Java</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Python</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">HTML/CSS</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Proyek 4 -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
-                    <div class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
-                        <i class="fas fa-stopwatch text-6xl text-cyan-500/30 dark:text-cyan-400/30 group-hover:scale-110 transition-transform duration-500"></i>
+                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col hover:-translate-y-1"
+                    data-aos="fade-up" data-aos-delay="300">
+                    <div
+                        class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
+                        <i
+                            class="fas fa-stopwatch text-6xl text-cyan-500/30 dark:text-cyan-400/30 group-hover:scale-110 transition-transform duration-500"></i>
                     </div>
                     <div class="p-6 flex-grow">
-                        <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wide">Mobile App</span>
-                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3" data-i18n="p4_title">Stopwatch & Timer</h3>
-                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p4_desc">Simple Android app for measuring time developed using Android Studio.</p>
+                        <span class="text-xs font-bold text-cyan-600 dark:text-cyan-400 uppercase tracking-wide">Mobile
+                            App</span>
+                        <h3 class="fade-lang text-xl font-bold text-dark dark:text-white mt-2 mb-3"
+                            data-i18n="p4_title">Stopwatch & Timer</h3>
+                        <p class="fade-lang text-slate-600 dark:text-slate-400 text-sm mb-4" data-i18n="p4_desc">Simple
+                            Android app for measuring time developed using Android Studio.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 px-2 py-1 rounded font-medium">Flutter</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Dart</span>
-                            <span class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Android Studio</span>
+                            <span
+                                class="text-xs bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 px-2 py-1 rounded font-medium">Flutter</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Dart</span>
+                            <span
+                                class="text-xs bg-slate-100 dark:bg-slate-700 dark:text-slate-300 px-2 py-1 rounded">Android
+                                Studio</span>
                         </div>
                     </div>
                 </div>
@@ -318,110 +472,251 @@
         </div>
     </section>
     <div class="text-center mb-12" data-aos="fade-up">
-        <a href="https://github.com/G1ts-3" target="_blank" class="fade-lang inline-block bg-green-600 hover:bg-green-700 text-white font-medium px-5 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg" data-i18n="btn_github_all">
+        <a href="https://github.com/G1ts-3" target="_blank"
+            class="fade-lang inline-block bg-gradient-to-r from-amber-500 to-orange-500 dark:from-green-600 dark:to-emerald-600 hover:from-amber-600 hover:to-orange-600 dark:hover:from-green-700 dark:hover:to-emerald-700 text-white font-medium px-5 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            data-i18n="btn_github_all">
             View All Projects on GitHub →
         </a>
     </div>
 
-    <!-- Gemini AI Chat Section -->
-    <section id="ai-chat" class="py-20 bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="zoom-in">
-                <span class="inline-block py-1 px-3 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-400 text-xs font-bold uppercase tracking-wider mb-2">
-                    <i class="fas fa-sparkles mr-1"></i> Powered by Gemini AI
-                </span>
-                <h2 class="fade-lang text-3xl font-bold text-dark dark:text-white" data-i18n="ai_title">Ask Virtual Git</h2>
-                <p class="fade-lang text-slate-600 dark:text-slate-400 mt-4" data-i18n="ai_desc">
-                    Curious about my experience or projects? Ask my AI Assistant trained with this portfolio data.
-                </p>
+    <!-- Floating AI Chat Popup -->
+    <div id="ai-chat-popup" class="fixed bottom-6 right-6 z-[999] flex flex-col items-end">
+
+        <!-- Chat Window (Hidden by default) -->
+        <div id="ai-chat-window" class="ai-chat-window hidden mb-4 w-[380px] max-w-[calc(100vw-2rem)] h-[550px] max-h-[75vh] rounded-2xl shadow-2xl overflow-hidden flex flex-col border transition-all duration-500 transform origin-bottom-right scale-95 opacity-0
+            bg-white border-orange-200/60
+            dark:bg-slate-800 dark:border-slate-700">
+
+            <!-- Chat Header -->
+            <div class="ai-chat-header p-4 flex justify-between items-center relative z-20
+                bg-gradient-to-r from-amber-400 via-orange-400 to-rose-400
+                dark:bg-gradient-to-r dark:from-green-800 dark:via-emerald-700 dark:to-teal-700">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm border border-white/30">
+                        <i class="fas fa-robot text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg leading-tight" data-i18n="ai_title">Git's AI Assistant</h3>
+                        <p
+                            class="text-xs text-orange-50 dark:text-green-100 opacity-90 relative flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-green-300 animate-pulse"></span> Online — Powered by
+                            Gemini</p>
+                    </div>
+                </div>
+                <!-- Close Button -->
+                <button id="close-chat"
+                    class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
             </div>
 
-            <!-- Chat Interface -->
-            <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-700 flex flex-col h-[500px] relative" data-aos="fade-up" data-aos-delay="200">
-                
-                <!-- Chat Header (Cleaned) -->
-                <div class="bg-primary/10 dark:bg-green-900/20 p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-white dark:bg-slate-700 flex items-center justify-center text-primary dark:text-green-400 shadow-sm">
-                            <i class="fas fa-robot text-lg"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-dark dark:text-white">Git's AI Assistant</h3>
-                            <p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                                <span class="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse"></span> Online
-                            </p>
-                        </div>
+            <!-- Mode Toggle (Only visible in INDONESIAN) -->
+            <div id="chat-mode-container"
+                class="hidden px-4 py-2.5 bg-orange-50 dark:bg-slate-800 border-b border-orange-100 dark:border-slate-700 justify-between items-center relative z-0 transition-all duration-300">
+                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400"><i
+                        class="fas fa-sliders-h mr-1"></i> Mode Asisten:</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="chat-mode-toggle" class="sr-only peer">
+                    <div
+                        class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer dark:bg-slate-600 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-slate-600 peer-checked:bg-orange-500 dark:peer-checked:bg-green-600 shadow-inner">
                     </div>
-                    <!-- Settings Button REMOVED here -->
+                    <span id="chat-mode-label"
+                        class="ml-2 text-xs font-bold text-orange-600 dark:text-green-400 w-24">Profesional</span>
+                </label>
+            </div>
+
+            <!-- Chat Output -->
+            <div id="chat-output" class="flex-grow p-5 overflow-y-auto flex flex-col gap-4 scroll-smooth min-h-0
+                bg-white relative
+                dark:bg-slate-900 border-b border-orange-100 dark:border-slate-800">
+                <!-- Decorative background inside chat -->
+                <div
+                    class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmOWNhMjQiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] pointer-events-none">
                 </div>
 
-                <!-- Settings Panel REMOVED here -->
-
-                <!-- Chat Output Area -->
-                <div id="chat-output" class="flex-grow p-6 overflow-y-auto space-y-4 bg-slate-50 dark:bg-slate-900/50 transition-colors duration-500">
-                    <!-- Welcome Message -->
-                    <div class="flex items-start gap-3">
-                        <div class="w-8 h-8 rounded-full bg-primary/20 dark:bg-green-900/40 flex-shrink-0 flex items-center justify-center text-primary dark:text-green-400 text-xs">
-                            AI
-                        </div>
-                        <div class="bg-white dark:bg-slate-800 p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 max-w-[80%]">
-                            <p class="fade-lang text-sm text-slate-700 dark:text-slate-300" data-i18n="ai_welcome">
-                                Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What would you like to know? 😊
-                            </p>
-                        </div>
+                <!-- Initial Dummy Message -->
+                <div class="flex items-start gap-3 relative z-10 w-full">
+                    <div
+                        class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 dark:from-green-700 dark:to-emerald-600 flex-shrink-0 flex items-center justify-center text-white dark:text-green-400 text-xs font-bold shadow-md">
+                        AI</div>
+                    <div class="bg-orange-50 dark:bg-slate-800 p-3 px-4 rounded-2xl rounded-tl-none border border-orange-100 dark:border-slate-700 text-slate-700 dark:text-slate-300 shadow-sm text-sm"
+                        data-i18n="ai_welcome">
+                        Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What
+                        would you like to know? 😊
                     </div>
                 </div>
+            </div>
 
-                <!-- Chat Input Area -->
-                <div class="p-4 bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 transition-colors duration-500">
-                    <form id="chat-form" class="flex gap-2">
-                        <input 
-                            type="text" 
-                            id="chat-input" 
-                            placeholder="Type your question..." 
-                            class="flex-grow px-4 py-3 bg-slate-100 dark:bg-slate-900 border-transparent focus:border-primary dark:focus:border-green-500 focus:ring-0 rounded-xl text-slate-800 dark:text-white text-sm transition-colors duration-300 placeholder-slate-400"
-                            autocomplete="off"
-                        >
-                        <button 
-                            type="submit" 
-                            id="send-btn"
-                            class="px-4 py-3 bg-primary hover:bg-green-700 text-white rounded-xl transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        >
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                    <div class="text-center mt-2">
-                         <p class="text-[10px] text-slate-400">AI can make mistakes. Verify important info.</p>
-                    </div>
+            <!-- Input Area -->
+            <div class="p-3 
+                bg-white border-t border-orange-100
+                dark:bg-slate-900 dark:border-slate-800 relative z-10">
+                <form id="chat-form" class="flex gap-2">
+                    <input type="text" id="chat-input" placeholder="Type your question..." class="flex-grow px-4 py-2.5 rounded-xl text-sm transition-colors duration-300 placeholder-slate-400 outline-none
+                            bg-orange-50 border border-orange-200 focus:border-orange-400 focus:ring-2 focus:ring-orange-200 text-slate-800
+                            dark:bg-slate-900 dark:border-slate-600 dark:focus:border-green-500 dark:text-white"
+                        autocomplete="off">
+                    <button type="submit" id="send-btn"
+                        class="px-4 py-2.5 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium
+                            bg-gradient-to-r from-orange-500 to-rose-500 hover:from-orange-600 hover:to-rose-600 shadow-md hover:shadow-lg
+                            dark:bg-gradient-to-r dark:from-green-600 dark:to-emerald-600 dark:hover:from-green-700 dark:hover:to-emerald-700">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+                <div class="text-center mt-1.5">
+                    <p class="text-[10px] text-slate-400">AI can make mistakes. Verify important info.</p>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Floating Action Button (FAB) -->
+        <button id="ai-chat-fab"
+            class="ai-fab-btn group relative w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-500 transform hover:scale-110 active:scale-95
+            bg-gradient-to-br from-amber-400 via-orange-500 to-rose-500 hover:from-amber-500 hover:via-orange-600 hover:to-rose-600
+            dark:from-green-500 dark:via-emerald-500 dark:to-teal-500 dark:hover:from-green-600 dark:hover:via-emerald-600 dark:hover:to-teal-600">
+
+            <!-- Pulse Rings -->
+            <span class="ai-fab-ring absolute inset-0 rounded-full animate-ping opacity-30
+                bg-orange-400 dark:bg-green-400"></span>
+            <span class="ai-fab-ring-slow absolute inset-[-4px] rounded-full opacity-20
+                bg-gradient-to-br from-amber-300 to-rose-400 dark:from-green-400 dark:to-emerald-400"></span>
+
+            <!-- Icon -->
+            <i id="ai-fab-icon"
+                class="fas fa-comments text-white text-2xl relative z-10 transition-transform duration-300 group-hover:scale-110"></i>
+
+            <!-- Notification Badge -->
+            <span id="ai-fab-badge"
+                class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-red-500 text-white text-[10px] font-bold flex items-center justify-center shadow-lg animate-bounce z-20">1</span>
+        </button>
+    </div>
 
     <!-- Kontak -->
-    <section id="contact" class="py-20 bg-dark dark:bg-slate-950 text-white transition-colors duration-500" data-aos="fade-up">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="fade-lang text-3xl font-bold mb-6" data-i18n="contact_title">Connect with Me</h2>
-            <p class="fade-lang text-slate-400 mb-10 text-lg" data-i18n="contact_desc">Interested in discussing technology or viewing my code in more detail?</p>
-            
-            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                <a href="mailto:raghidmuhammad3@gmail.com" class="fade-lang flex items-center gap-3 px-8 py-4 bg-primary hover:bg-green-700 rounded-lg transition-all duration-300 w-full md:w-auto justify-center transform hover:scale-105 shadow-lg">
-                    <i class="fas fa-envelope"></i>
-                    <span data-i18n="btn_email">Send Email</span>
-                </a>
+    <section id="contact"
+        class="py-24 bg-dark dark:bg-slate-950 text-white transition-colors duration-500 relative overflow-hidden"
+        data-aos="fade-up">
+        <!-- Background Decor -->
+        <div
+            class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-amber-500/10 dark:bg-green-500/10 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-orange-600/10 dark:bg-emerald-600/10 rounded-full blur-3xl opacity-50 pointer-events-none">
+        </div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="fade-lang text-3xl md:text-4xl font-bold mb-4" data-i18n="contact_title">Connect with Me</h2>
+                <p class="fade-lang text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="contact_desc">Interested in
+                    discussing technology, collaborating on a project, or reviewing my code in more detail?</p>
             </div>
 
-            <div class="mt-16 flex justify-center space-x-8">
-                <a href="https://github.com/G1ts-3" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/raghidma/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/raghm_/" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-instagram"></i></a>
-                <a href="https://x.com/ramaa3_" target="_blank" class="text-slate-400 hover:text-white text-2xl transition transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8 items-center">
+                <!-- Info & Socials (2 Columns width on LG) -->
+                <div class="lg:col-span-2 flex flex-col justify-center order-2 lg:order-1">
+                    <h3
+                        class="text-2xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-500 dark:from-green-400 dark:to-emerald-400">
+                        Get In Touch</h3>
+                    <p class="text-slate-400 mb-8 leading-relaxed">
+                        Whether you have an idea for a project or just want to chat about code, feel free to drop me a
+                        message. I'll get back to you as soon as I can!
+                    </p>
+
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-center gap-4 group">
+                            <div
+                                class="w-12 h-12 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-amber-500 dark:text-green-400 group-hover:scale-110 group-hover:bg-amber-500/20 dark:group-hover:bg-green-500/20 transition-all duration-300 shadow-lg">
+                                <i class="fas fa-envelope text-lg"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-1">Email</p>
+                                <a href="mailto:raghidmuhammad3@gmail.com"
+                                    class="text-slate-200 hover:text-amber-400 dark:hover:text-green-400 font-medium transition-colors text-sm sm:text-base">raghidmuhammad3@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <p class="text-xs text-slate-500 uppercase tracking-widest font-bold mb-4">Follow Me</p>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/G1ts-3" target="_blank"
+                                class="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-amber-600 dark:hover:bg-green-700 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"><i
+                                    class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/in/raghidma/" target="_blank"
+                                class="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-[#0A66C2] transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"><i
+                                    class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/raghm_/" target="_blank"
+                                class="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-tr hover:from-amber-500 hover:via-pink-500 hover:to-purple-500 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"><i
+                                    class="fab fa-instagram"></i></a>
+                            <a href="https://x.com/ramaa3_" target="_blank"
+                                class="w-10 h-10 rounded-full bg-slate-800/80 border border-slate-700/50 flex items-center justify-center text-slate-400 hover:text-white hover:bg-slate-600 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"><i
+                                    class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form (3 Columns width on LG) -->
+                <div class="lg:col-span-3 order-1 lg:order-2">
+                    <div
+                        class="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-6 md:p-8 rounded-2xl shadow-2xl relative overflow-hidden group hover:border-slate-700 transition-colors duration-500">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-rose-500/5 dark:from-green-500/5 dark:to-emerald-500/5 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+
+                        <form id="contact-form" class="relative z-10 flex flex-col gap-5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="contact-name"
+                                        class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide fade-lang"
+                                        data-i18n="contact_name">Name</label>
+                                    <input type="text" id="contact-name" required placeholder="John Doe"
+                                        class="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-700/80 focus:border-amber-500 dark:focus:border-green-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:ring-green-500/20 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                                </div>
+                                <div>
+                                    <label for="contact-email"
+                                        class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide fade-lang"
+                                        data-i18n="contact_email">Email</label>
+                                    <input type="email" id="contact-email" required placeholder="john@example.com"
+                                        class="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-700/80 focus:border-amber-500 dark:focus:border-green-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:ring-green-500/20 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="contact-subject"
+                                    class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide fade-lang"
+                                    data-i18n="contact_subject">Subject</label>
+                                <input type="text" id="contact-subject" placeholder="Project Inquiry"
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-700/80 focus:border-amber-500 dark:focus:border-green-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:ring-green-500/20 text-white placeholder-slate-600 outline-none transition-all text-sm">
+                            </div>
+                            <div>
+                                <label for="contact-message"
+                                    class="block text-xs font-semibold text-slate-400 mb-1.5 uppercase tracking-wide fade-lang"
+                                    data-i18n="contact_message">Message</label>
+                                <textarea id="contact-message" required rows="4"
+                                    placeholder="Hello, I'd like to talk about..."
+                                    class="w-full px-4 py-3 rounded-xl bg-slate-950/50 border border-slate-700/80 focus:border-amber-500 dark:focus:border-green-500 focus:ring-2 focus:ring-amber-500/20 dark:focus:ring-green-500/20 text-white placeholder-slate-600 outline-none transition-all text-sm resize-y"></textarea>
+                            </div>
+                            <button type="submit"
+                                class="mt-2 w-full py-4 bg-gradient-to-r from-amber-500 to-orange-500 dark:from-green-600 dark:to-emerald-600 hover:from-amber-600 hover:to-orange-600 dark:hover:from-green-700 dark:hover:to-emerald-700 text-white font-bold rounded-xl shadow-lg hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] dark:hover:shadow-[0_0_20px_rgba(22,163,74,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed">
+                                <i
+                                    class="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></i>
+                                <span data-i18n="contact_send" class="fade-lang">Send Message</span>
+                            </button>
+                        </form>
+
+                        <!-- Status Alert -->
+                        <div id="contact-status"
+                            class="hidden mt-4 p-4 rounded-xl text-sm font-medium transition-all duration-500 w-full animate-fade-in flex items-start gap-3 border">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 py-8 transition-colors duration-500">
+    <footer
+        class="bg-dark dark:bg-slate-950 border-t border-slate-800 dark:border-slate-900 py-8 transition-colors duration-500">
         <div class="max-w-6xl mx-auto px-4 text-center text-slate-500 text-sm">
             <p>&copy; 2025 Git. All Rights Reserved.</p>
         </div>
@@ -434,4 +729,5 @@
     <script type="module" src="script.js"></script>
 
 </body>
+
 </html>

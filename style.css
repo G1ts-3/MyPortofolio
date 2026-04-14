@@ -2,8 +2,10 @@
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 .dark ::-webkit-scrollbar-track { background: #1e293b; }
-::-webkit-scrollbar-thumb { background: #166534; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: #14532d; }
+::-webkit-scrollbar-thumb { background: #d97706; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #b45309; }
+.dark ::-webkit-scrollbar-thumb { background: #166534; }
+.dark ::-webkit-scrollbar-thumb:hover { background: #14532d; }
 
 /* Typing Animation for AI Chat */
 .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
@@ -39,4 +41,141 @@ nav {
 /* Arabic Font Support */
 .font-arabic {
     font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* ============================================
+   FLOATING AI CHATBOT POPUP STYLES
+   ============================================ */
+
+/* FAB Button Glow Animation */
+@keyframes fabGlow {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(251, 146, 60, 0.4), 0 0 40px rgba(251, 146, 60, 0.2), 0 8px 32px rgba(0,0,0,0.15);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(251, 146, 60, 0.6), 0 0 60px rgba(251, 146, 60, 0.3), 0 8px 32px rgba(0,0,0,0.2);
+    }
+}
+
+.dark .ai-fab-btn {
+    animation: fabGlowDark 3s ease-in-out infinite;
+}
+
+@keyframes fabGlowDark {
+    0%, 100% { 
+        box-shadow: 0 0 20px rgba(34, 197, 94, 0.4), 0 0 40px rgba(34, 197, 94, 0.2), 0 8px 32px rgba(0,0,0,0.3);
+    }
+    50% { 
+        box-shadow: 0 0 30px rgba(34, 197, 94, 0.6), 0 0 60px rgba(34, 197, 94, 0.3), 0 8px 32px rgba(0,0,0,0.4);
+    }
+}
+
+.ai-fab-btn {
+    animation: fabGlow 3s ease-in-out infinite;
+}
+
+/* Slow outer ring pulse */
+@keyframes ringPulseSlow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.15;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 0.3;
+    }
+}
+
+.ai-fab-ring-slow {
+    animation: ringPulseSlow 2.5s ease-in-out infinite;
+}
+
+/* Chat Window - Show/Hide Transitions */
+.ai-chat-window {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                opacity 0.3s ease-out;
+}
+
+.ai-chat-window.chat-open {
+    transform: scale(1) !important;
+    opacity: 1 !important;
+}
+
+.ai-chat-window.chat-closing {
+    transform: scale(0.9) !important;
+    opacity: 0 !important;
+    transition: transform 0.25s ease-in, opacity 0.2s ease-in;
+}
+
+/* Light mode: Sunrise glassmorphism on chat window */
+.ai-chat-window {
+    backdrop-filter: blur(20px);
+}
+
+/* Light mode sunrise shadow glow */
+#ai-chat-window:not(.dark *) {
+    box-shadow: 
+        0 0 40px rgba(251, 146, 60, 0.15),
+        0 0 80px rgba(244, 63, 94, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.1);
+}
+
+.dark .ai-chat-window,
+.dark #ai-chat-window {
+    box-shadow: 
+        0 0 40px rgba(34, 197, 94, 0.1),
+        0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Chat output scrollbar - sunrise style in light mode */
+#chat-output::-webkit-scrollbar { width: 5px; }
+#chat-output::-webkit-scrollbar-track { background: transparent; }
+#chat-output::-webkit-scrollbar-thumb { 
+    background: linear-gradient(to bottom, #fb923c, #f43f5e);
+    border-radius: 10px; 
+}
+.dark #chat-output::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #22c55e, #14b8a6);
+}
+
+/* FAB icon rotation on hover */
+.ai-fab-btn:hover #ai-fab-icon {
+    transform: rotate(-10deg) scale(1.15);
+}
+
+/* Notification badge subtle animation */
+@keyframes badgePop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+#ai-fab-badge {
+    animation: badgePop 2s ease-in-out infinite;
+}
+
+/* Mobile responsive for chat window */
+@media (max-width: 440px) {
+    #ai-chat-popup {
+        bottom: 1rem !important;
+        right: 1rem !important;
+    }
+    #ai-chat-window {
+        width: calc(100vw - 2rem) !important;
+    }
+}
+
+/* Links inside chat messages */
+#chat-output a {
+    color: #ea580c;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+#chat-output a:hover {
+    color: #c2410c;
+}
+.dark #chat-output a {
+    color: #4ade80;
+}
+.dark #chat-output a:hover {
+    color: #22c55e;
 }

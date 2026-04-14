@@ -1,4 +1,4 @@
-import { GEMINI_API_KEY } from './config.js';
+// API key is now secured server-side via .env — no frontend exposure
 
 // Inisialisasi AOS (Animasi Scroll)
 AOS.init({
@@ -58,6 +58,75 @@ if (desktopToggle) desktopToggle.addEventListener('click', toggleTheme);
 if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
 checkTheme();
 
+/* ------------------- Floating AI Chat Popup Logic ------------------- */
+const aiFab = document.getElementById('ai-chat-fab');
+const aiChatWindow = document.getElementById('ai-chat-window');
+const aiChatClose = document.getElementById('ai-chat-close');
+const aiFabBadge = document.getElementById('ai-fab-badge');
+const aiFabIcon = document.getElementById('ai-fab-icon');
+let isChatOpen = false;
+
+function openChat() {
+    isChatOpen = true;
+    aiChatWindow.classList.remove('hidden', 'chat-closing');
+    // Trigger reflow for animation
+    void aiChatWindow.offsetWidth;
+    aiChatWindow.classList.add('chat-open');
+    aiFabIcon.className = 'fas fa-times text-white text-2xl relative z-10 transition-transform duration-300';
+    if (aiFabBadge) aiFabBadge.classList.add('hidden');
+    // Focus input
+    setTimeout(() => {
+        const input = document.getElementById('chat-input');
+        if (input) input.focus();
+    }, 400);
+}
+
+// Expose globally so navbar onclick can call it directly
+window.openChat = openChat;
+
+function closeChat() {
+    isChatOpen = false;
+    aiChatWindow.classList.remove('chat-open');
+    aiChatWindow.classList.add('chat-closing');
+    aiFabIcon.className = 'fas fa-comments text-white text-2xl relative z-10 transition-transform duration-300 group-hover:scale-110';
+    setTimeout(() => {
+        aiChatWindow.classList.add('hidden');
+        aiChatWindow.classList.remove('chat-closing');
+    }, 300);
+}
+
+if (aiFab) {
+    aiFab.addEventListener('click', () => {
+        if (isChatOpen) {
+            closeChat();
+        } else {
+            openChat();
+        }
+    });
+}
+
+if (aiChatClose) {
+    aiChatClose.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeChat();
+    });
+}
+
+// Close chat with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isChatOpen) {
+        closeChat();
+    }
+});
+
+// Close chat when clicking outside (ignore clicks from navbar AI Chat triggers)
+document.addEventListener('click', (e) => {
+    if (e.target.closest('[data-chat-trigger]')) return;
+    if (isChatOpen && !e.target.closest('#ai-chat-popup')) {
+        closeChat();
+    }
+});
+
 /* ------------------- Language Logic (i18n) ------------------- */
 const langBtnDesktop = document.getElementById('lang-btn-desktop');
 const langDropdownDesktop = document.getElementById('lang-dropdown-desktop');
@@ -79,6 +148,7 @@ const translations = {
         p4_title: "Stopwatch & Timer", p4_desc: "Simple Android app for measuring time developed using Android Studio.",
         ai_title: "Ask Virtual Git", ai_desc: "Curious about my experience or projects? Ask my AI Assistant trained with this portfolio data.", ai_welcome: "Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What would you like to know? 😊",
         contact_title: "Connect with Me", contact_desc: "Interested in discussing technology or viewing my code in more detail?", btn_email: "Send Email",
+        contact_name: "Name", contact_email: "Email", contact_subject: "Subject", contact_message: "Message", contact_send: "Send Message",
         btn_github_all: "View All Projects on GitHub →"
     },
     id: {
@@ -95,6 +165,7 @@ const translations = {
         p4_title: "Stopwatch & Timer", p4_desc: "Aplikasi Android sederhana untuk mengukur waktu yang dikembangkan menggunakan Android Studio.",
         ai_title: "Tanya Virtual Git", ai_desc: "Penasaran tentang pengalaman atau proyek saya? Tanyakan pada Asisten AI saya yang sudah dilatih dengan data portofolio ini.", ai_welcome: "Halo! Saya asisten AI Git. Kamu bisa tanya tentang skill koding, proyek, atau latar belakang pendidikan Git. Mau tanya apa? 😊",
         contact_title: "Terhubung dengan Saya", contact_desc: "Tertarik berdiskusi tentang teknologi atau melihat kode saya lebih detail?", btn_email: "Kirim Email",
+        contact_name: "Nama", contact_email: "Email", contact_subject: "Subjek", contact_message: "Pesan", contact_send: "Kirim Pesan",
         btn_github_all: "Lihat Semua Proyek di GitHub →"
     },
     ja: {
@@ -111,6 +182,7 @@ const translations = {
         p4_title: "ストップウォッチ & タイマー", p4_desc: "Android Studioを使用して開発された、時間を計測するシンプルなAndroidアプリ。",
         ai_title: "バーチャルGitに質問", ai_desc: "私の経験やプロジェクトについて気になりますか？このポートフォリオデータでトレーニングされたAIアシスタントに聞いてみてください。", ai_welcome: "こんにちは！GitのAIアシスタントです。コーディングスキル、プロジェクト、経歴について質問できます。何を知りたいですか？😊",
         contact_title: "連絡先", contact_desc: "技術についての議論や、コードの詳細に興味がありますか？", btn_email: "メールを送る",
+        contact_name: "名前", contact_email: "メールアドレス", contact_subject: "件名", contact_message: "メッセージ", contact_send: "メッセージを送信",
         btn_github_all: "GitHubですべてのプロジェクトを見る →"
     },
     zh: {
@@ -127,6 +199,7 @@ const translations = {
         p4_title: "秒表与计时器", p4_desc: "使用 Android Studio 开发的简单 Android 计时应用。",
         ai_title: "询问虚拟 Git", ai_desc: "对我的经验或项目感到好奇吗？请询问我已经过此作品集数据训练的 AI 助手。", ai_welcome: "你好！我是 Git 的 AI 助手。你可以问我关于编程技能、项目或背景的问题。你想知道什么？😊",
         contact_title: "与我联系", contact_desc: "有兴趣讨论技术或更详细地查看我的代码吗？", btn_email: "发送邮件",
+        contact_name: "姓名", contact_email: "电子邮件", contact_subject: "主题", contact_message: "信息", contact_send: "发送信息",
         btn_github_all: "在 GitHub 上查看所有项目 →"
     },
     ko: {
@@ -143,6 +216,7 @@ const translations = {
         p4_title: "스톱워치 및 타이머", p4_desc: "Android Studio를 사용하여 개발된 간단한 시간 측정 Android 앱입니다.",
         ai_title: "가상 Git에게 질문하기", ai_desc: "제 경험이나 프로젝트가 궁금하신가요? 이 포트폴리오 데이터로 훈련된 제 AI 비서에게 물어보세요.", ai_welcome: "안녕하세요! Git의 AI 비서입니다. 코딩 기술, 프로젝트 또는 배경에 대해 물어보실 수 있습니다. 무엇을 도와드릴까요? 😊",
         contact_title: "연결하기", contact_desc: "기술에 대해 논의하거나 제 코드를 더 자세히 보고 싶으신가요?", btn_email: "이메일 보내기",
+        contact_name: "이름", contact_email: "이메일", contact_subject: "제목", contact_message: "메시지", contact_send: "메시지 보내기",
         btn_github_all: "GitHub에서 모든 프로젝트 보기 →"
     },
     ar: {
@@ -159,12 +233,13 @@ const translations = {
         p4_title: "ساعة إيقاف ومؤقت", p4_desc: "تطبيق Android بسيط لقياس الوقت تم تطويره باستخدام Android Studio.",
         ai_title: "اسأل Git الافتراضي", ai_desc: "هل لديك فضول حول خبرتي أو مشاريعي؟ اسأل مساعد الذكاء الاصطناعي المدرب ببيانات هذا الملف الشخصي.", ai_welcome: "مرحباً! أنا مساعد الذكاء الاصطناعي الخاص بـ Git. يمكنك سؤالي عن مهارات البرمجة أو المشاريع أو الخلفية. ماذا تود أن تعرف؟ 😊",
         contact_title: "تواصل معي", contact_desc: "هل أنت مهتم بمناقشة التكنولوجيا أو رؤية الكود الخاص بي بمزيد من التفصيل؟", btn_email: "إرسال بريد إلكتروني",
+        contact_name: "الاسم", contact_email: "البريد الإلكتروني", contact_subject: "الموضوع", contact_message: "الرسالة", contact_send: "إرسال الرسالة",
         btn_github_all: "عرض جميع المشاريع على GitHub →"
     }
 };
 
 // Toggle Desktop Dropdown
-if(langBtnDesktop) {
+if (langBtnDesktop) {
     langBtnDesktop.addEventListener('click', (e) => {
         e.stopPropagation();
         langDropdownDesktop.classList.toggle('hidden');
@@ -173,7 +248,7 @@ if(langBtnDesktop) {
 
 // Mobile toggle cycles languages
 const langsList = ['en', 'id', 'ja', 'zh', 'ko', 'ar']; // Updated list
-if(langBtnMobile) {
+if (langBtnMobile) {
     langBtnMobile.addEventListener('click', () => {
         let current = localStorage.getItem('lang') || 'en';
         let idx = langsList.indexOf(current);
@@ -184,35 +259,47 @@ if(langBtnMobile) {
 
 // Close dropdown when clicking outside
 window.addEventListener('click', () => {
-    if(langDropdownDesktop && !langDropdownDesktop.classList.contains('hidden')) {
+    if (langDropdownDesktop && !langDropdownDesktop.classList.contains('hidden')) {
         langDropdownDesktop.classList.add('hidden');
     }
 });
 
 // Expose setLanguage globally so onclick in HTML works
-window.setLanguage = function(lang) {
+window.setLanguage = function (lang) {
     // 1. Fade out text
     const elements = document.querySelectorAll('.fade-lang');
     elements.forEach(el => el.classList.add('opacity-0'));
+
+    const chatModeContainer = document.getElementById('chat-mode-container');
+    if (chatModeContainer) {
+        if (lang === 'id') {
+            chatModeContainer.classList.remove('hidden');
+            chatModeContainer.classList.add('flex');
+        } else {
+            chatModeContainer.classList.add('hidden');
+            chatModeContainer.classList.remove('flex');
+            if (typeof window.setChatMode === 'function') window.setChatMode('profesional');
+        }
+    }
 
     // 2. Wait for fade out, then change text and fade in
     setTimeout(() => {
         localStorage.setItem('lang', lang);
         const data = translations[lang];
-        
+
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (data[key]) {
-                if(el.innerHTML.includes('<strong>')) { 
-                        el.innerHTML = data[key];
+                if (el.innerHTML.includes('<strong>')) {
+                    el.innerHTML = data[key];
                 } else {
-                        el.textContent = data[key];
+                    el.textContent = data[key];
                 }
             }
         });
 
         // Update Label
-        if(langLabel) langLabel.textContent = lang.toUpperCase();
+        if (langLabel) langLabel.textContent = lang.toUpperCase();
 
         // Handle RTL for Arabic
         if (lang === 'ar') {
@@ -222,6 +309,17 @@ window.setLanguage = function(lang) {
             document.documentElement.setAttribute('dir', 'ltr');
             document.body.classList.remove('font-arabic');
         }
+
+        // Update form placeholders specifically
+        const dict = translations;
+        const nameInput = document.getElementById('contact-name');
+        if (nameInput) nameInput.placeholder = dict[lang].contact_name;
+        const subjInput = document.getElementById('contact-subject');
+        if (subjInput) subjInput.placeholder = dict[lang].contact_subject;
+        const msgInput = document.getElementById('contact-message');
+        if (msgInput) msgInput.placeholder = dict[lang].contact_message;
+        const emailInput = document.getElementById('contact-email');
+        if (emailInput) emailInput.placeholder = dict[lang].contact_email;
 
         // Fade in
         elements.forEach(el => el.classList.remove('opacity-0'));
@@ -241,17 +339,16 @@ const sendBtn = document.getElementById('send-btn');
 const now = new Date();
 
 const currentDate = now.toLocaleDateString('id-ID', {
-  weekday: 'long',
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric'
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
 });
 
-const currentMonth = now.getMonth() ;
+const currentMonth = now.getMonth();
 const currentYear = new Date().getFullYear();
-// Konteks Sistem (Data Portofolio untuk AI)
-const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user bertanya dalam bahasa lain.
-            Kamu adalah asisten AI untuk website portofolio milik Git (Raghid Muhammad). 
+const basePromptContext = `Gunakan bahasa inggris sebagai default, , kecuali user bertanya dalam bahasa lain.
+            Kamu adalah asisten AI bernama Raa untuk website portofolio milik Git (Raghid Muhammad). 
             Tugasmu adalah menjawab pertanyaan pengunjung tentang Git secara profesional, singkat, jelas, menarik, interaktif, gaul, dan ramah.
             ATURAN WAJIB (JANGAN DILANGGAR):
             - Kamu TIDAK BOLEH mengarang tanggal, bulan, atau tahun.
@@ -264,6 +361,7 @@ const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user ber
             - DO NOT guess or assume current date.
             - DO NOT generate random dates.
             - ONLY use the provided current date.
+            - JANGAN KAKU
 
             Berikut adalah data profil Git:
 
@@ -309,12 +407,14 @@ const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user ber
             - **Jika User tertarik dengan proyek, bisa langsung melihat ke GitHub/Social Media ku.**
             - **Jika User bertanya dimana Sistem automatisasi keuangan, bisa langsung melihat ke GitHub/Social Media ku(bilang karna Git belum menambahkannya di Portofolio ini).**
             
-            - **Investasi:** Memiliki investasi reksadana (Majoris Pasar Uang Syariah Indonesia, Majoris Sukuk Negara Indonesia), saham,   
-            dan crypto (BTC) melalui Pluang.   
+            - **Investasi:** Memiliki investasi reksadana , saham,   
+            dan crypto (BTC).   
 
-            - **Ketertarikan:** - Perkembangan akademik di kampus.   
-            - JKT48 (oshi: Gabriela Abigail/Ella). 
+            - **Ketertarikan:** 
+            - Perkembangan akademik di kampus.   
+            - HANYA JIKA USER BERTANYA JKT48, JKT48 (oshi: Gabriela Abigail/Ella), jangan sebutkan ketika user tidak bertanya JKT48. 
             - Investasi Reksadana, obligasi, dan saham. 
+            - Mengeksplorasi AI dan teknologi baru
 
             - **Sifat Git (Blak-blakan & Jujur):**
             - Pendiam di awal, tapi hangat dan nyaman kalau sudah kenal.
@@ -339,29 +439,99 @@ const systemPrompt = `Gunakan bahasa inggris sebagai default, , kecuali user ber
             LinkedIn: Raghid Muhammad
             Instagram: @raghm_
             X / Twitter: @ramaa3_
+`;
 
+const profesionalRules = `
             **Panduan Jawaban:**
-            - Jawab sebagai Git(jadi kalo ditanya 'kamu' jawab pake 'aku')
+            - Jawab sebagai Raa(jadi berperan sebagai asisten Git)
             - Jawab dalam **bahasa yang sama** dengan pertanyaan pengunjung.
             - DO NOT repeat the same phrases over and over.
             - Avoid repeating the same wording across responses
             - Answer in the **same language** as the user's question (English, Indonesian, Japanese, etc).
             - Jawaban harus singkat, padat, dan relevan (maksimal 3-4 kalimat kecuali diminta detail).
             - Jika ditanya mengenai hal yang tidak ada dalam profil (misalnya hobi masak), jawab dengan sopan bahwa kamu hanya mengetahui informasi profesional Git.
-            `;
+`;
+
+const customRules = `
+            HINDARI perumpamaan dan klise.
+            HINDARI generalisasi.
+            HINDARI bahasa pembuka umum pada kalimat, misalnya: kesimpulannya, pada akhirnya, dll.
+            HINDARI peringatan atau catatan tambahan, cukup hasil yang diminta.
+            HINDARI kata sifat dan kata keterangan yang berlebihan.
+            HINDARI tanda pagar.
+            HINDARI markdown.
+            HINDARI tanda bintang.
+            HINDARI titik koma.
+            ada sedikit Bahasa gaul gaul nya.
+            hindari bahasa yang baku.
+            Gunakan bahasa yang sedang trend saat ini tetapi jangan berlebihan
+            jawab pedes, ga manis manis, kalo pake emoji yg vibe depresif (🫩😭🥀)jangan berlebihan, Jawaban super pendek.
+            Gak selalu setuju. Banyak singkatan.
+            Bahasa nya jangan cringe
+            Pake slang yang ada di tiktok
+            Pake emoji(😹💀🥀🤓) tapi jangan berlebihan
+            Pake kata kayak (anjing, goblok, dongo, idiot, autis, jembut, memek)
+            Pake bahasa yang agak kasar dan kotor kaya (anjing, kontol, memek, goblog, idiot, autis, cacat, dongo)
+            pokonya kalo lu mau kasarin gua gas aja
+            Kalo ngobrol jawabannya singkat asik.
+            kalo gua nge kasarin lu, sebelum lu kasih jawaban nya maka lu harus kasarin gua balik dulu
+            nama lu Raa ya
+            " 
+`;
+
+window.chatMode = 'profesional';
+
+const modeToggle = document.getElementById('chat-mode-toggle');
+const modeLabel = document.getElementById('chat-mode-label');
+
+function updateModeUI() {
+    if (window.chatMode === 'profesional') {
+        if (modeToggle) modeToggle.checked = false;
+        if (modeLabel) {
+            modeLabel.textContent = "Profesional";
+            modeLabel.className = "ml-2 text-xs font-bold text-orange-600 dark:text-green-400 w-24";
+        }
+    } else {
+        if (modeToggle) modeToggle.checked = true;
+        if (modeLabel) {
+            modeLabel.textContent = "Mode 2";
+            modeLabel.className = "ml-2 text-xs font-bold text-slate-600 dark:text-slate-300 w-24";
+        }
+    }
+}
+
+window.setChatMode = function (mode) {
+    window.chatMode = mode;
+    updateModeUI();
+}
+
+if (modeToggle) {
+    modeToggle.addEventListener('change', (e) => {
+        window.setChatMode(e.target.checked ? 'custom' : 'profesional');
+    });
+}
+
+function getSystemPrompt() {
+    const lang = localStorage.getItem('lang') || 'en';
+    if (lang === 'id' && window.chatMode === 'custom') {
+        return basePromptContext + "\n" + customRules;
+    }
+    return basePromptContext + "\n" + profesionalRules;
+}
+
 
 // Helper: Tambah pesan ke UI
 function appendMessage(role, text, isLoading = false) {
     const div = document.createElement('div');
     div.className = `flex items-start gap-3 ${role === 'user' ? 'flex-row-reverse' : ''}`;
-    
-    const avatar = role === 'user' 
-        ? `<div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-slate-600 dark:text-slate-300"><i class="fas fa-user"></i></div>`
-        : `<div class="w-8 h-8 rounded-full bg-primary/20 dark:bg-green-900/40 flex-shrink-0 flex items-center justify-center text-primary dark:text-green-400 text-xs">AI</div>`;
-    
+
+    const avatar = role === 'user'
+        ? `<div class="w-8 h-8 rounded-full bg-orange-100 dark:bg-slate-700 flex-shrink-0 flex items-center justify-center text-orange-500 dark:text-slate-300"><i class="fas fa-user"></i></div>`
+        : `<div class="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 dark:from-green-700 dark:to-emerald-600 flex-shrink-0 flex items-center justify-center text-white dark:text-green-400 text-xs font-bold">AI</div>`;
+
     const bubbleClass = role === 'user'
-        ? `bg-primary text-white rounded-2xl rounded-tr-none shadow-md`
-        : `bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 dark:border-slate-700 prose dark:prose-invert prose-sm max-w-none`;
+        ? `bg-gradient-to-r from-orange-500 to-rose-500 dark:from-green-600 dark:to-emerald-600 text-white rounded-2xl rounded-tr-none shadow-md`
+        : `bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-2xl rounded-tl-none shadow-sm border border-orange-100 dark:border-slate-700 prose dark:prose-invert prose-sm max-w-none`;
 
     let contentHtml = '';
     if (isLoading) {
@@ -382,79 +552,59 @@ function appendMessage(role, text, isLoading = false) {
             ${contentHtml}
         </div>
     `;
-    
+
     chatOutput.appendChild(div);
-    chatOutput.scrollTop = chatOutput.scrollHeight; // Auto scroll ke bawah
+    chatOutput.scrollTop = chatOutput.scrollHeight;
+
     return div;
 }
 
-// Handle Submit
+// Handle Chat Submit (via backend proxy — API key is never exposed)
 if (chatForm) {
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const userMessage = chatInput.value.trim();
         if (!userMessage) return;
 
-        // 1. Tampilkan pesan user
+        // 1. Show user message
         appendMessage('user', userMessage);
         chatInput.value = '';
         chatInput.disabled = true;
         sendBtn.disabled = true;
 
-        // 2. Tampilkan loading bubble
+        // 2. Show loading
         const loadingBubble = appendMessage('model', '', true);
 
-        // Gunakan API Key dari config.js
-        if (!GEMINI_API_KEY || GEMINI_API_KEY.includes('YOUR_REAL_API_KEY')) {
-                chatOutput.removeChild(loadingBubble);
-                appendMessage('model', "⚠️ **API Key belum diatur.** Pemilik situs perlu mengatur key di file `config.js`.");
-                chatInput.disabled = false;
-                sendBtn.disabled = false;
-                return;
-        }
-
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${GEMINI_API_KEY}`;
-
-        // 3. Panggil Gemini API
+        // 3. Call backend proxy (API key stays server-side)
         try {
-            const fetchWithRetry = async (url, options, retries = 3, delay = 1000) => {
-                for (let i = 0; i < retries; i++) {
-                    try {
-                        const res = await fetch(url, options);
-                        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-                        return await res.json();
-                    } catch (err) {
-                        if (i === retries - 1) throw err;
-                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
-                    }
-                }
-            };
-
-            const payload = {
-                contents: [{ parts: [{ text: userMessage }] }],
-                systemInstruction: { parts: [{ text: systemPrompt }] }
-            };
-
-            const data = await fetchWithRetry(apiUrl, {
+            const response = await fetch('/api/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: JSON.stringify({
+                    message: userMessage,
+                    systemPrompt: getSystemPrompt()
+                })
             });
 
             chatOutput.removeChild(loadingBubble);
 
-            const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text;
-            
-            if (aiResponse) {
-                appendMessage('model', aiResponse);
+            if (!response.ok) {
+                const err = await response.json().catch(() => ({}));
+                throw new Error(err.error || `Server error: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.response) {
+                appendMessage('model', data.response);
             } else {
-                appendMessage('model', "Maaf, aku lagi loading banget nih.");
+                appendMessage('model', 'Maaf, aku tidak bisa memproses permintaan ini.');
             }
 
         } catch (error) {
             chatOutput.removeChild(loadingBubble);
-            console.error("Gemini Error:", error);
-            appendMessage('model', "Maaf, ada gangguan koneksi sepertinya.");
+            console.error('Chat Error:', error);
+            appendMessage('model', 'Maaf, ada gangguan koneksi. Pastikan server berjalan.');
         } finally {
             chatInput.disabled = false;
             sendBtn.disabled = false;
@@ -462,3 +612,72 @@ if (chatForm) {
         }
     });
 }
+
+/* ------------------- Contact Form Logic ------------------- */
+const contactForm = document.getElementById('contact-form');
+const contactStatus = document.getElementById('contact-status');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalBtnHTML = submitBtn.innerHTML;
+
+        // Get form data
+        const name = contactForm.querySelector('#contact-name').value.trim();
+        const email = contactForm.querySelector('#contact-email').value.trim();
+        const subject = contactForm.querySelector('#contact-subject').value.trim();
+        const message = contactForm.querySelector('#contact-message').value.trim();
+
+        // Basic validation
+        if (!name || !email || !message) {
+            showContactStatus('error', 'Please fill in all required fields.');
+            return;
+        }
+
+        // Loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, subject, message })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                showContactStatus('success', data.message || 'Message sent successfully! 🎉');
+                contactForm.reset();
+            } else {
+                showContactStatus('error', data.error || 'Failed to send message.');
+            }
+        } catch (error) {
+            console.error('Contact Error:', error);
+            showContactStatus('error', 'Connection error. Make sure the server is running.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+        }
+    });
+}
+
+function showContactStatus(type, message) {
+    if (!contactStatus) return;
+
+    contactStatus.className = `mt-4 p-4 rounded-xl text-sm font-medium transition-all duration-500 ${type === 'success'
+        ? 'bg-green-500/20 text-green-300 border border-green-500/30'
+        : 'bg-red-500/20 text-red-300 border border-red-500/30'
+        }`;
+    contactStatus.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'} mr-2"></i>${message}`;
+    contactStatus.classList.remove('hidden');
+
+    // Auto hide after 8 seconds
+    setTimeout(() => {
+        contactStatus.classList.add('hidden');
+    }, 8000);
+}
+
