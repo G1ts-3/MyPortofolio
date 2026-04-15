@@ -10,6 +10,196 @@ AOS.init({
     disable: 'mobile'
 });
 
+/* ------------------- Loading Screen Logic ------------------- */
+(function () {
+    const loadingScreen = document.getElementById('loading-screen');
+    const body = document.body;
+    const LOADING_DURATION = 3800; // ms
+
+    function dismissLoading(playMusicNow) {
+        if (!loadingScreen || loadingScreen.classList.contains('fade-out')) return;
+        loadingScreen.classList.add('fade-out');
+        // Remove loading-active — pointer-events are restored, no overflow manipulation needed
+        body.classList.remove('loading-active');
+
+        setTimeout(() => {
+            if (loadingScreen.parentNode) loadingScreen.remove();
+            if (typeof AOS !== 'undefined') AOS.refresh();
+        }, 900);
+
+        // If user clicked/tapped loading screen — valid gesture, play music directly
+        if (playMusicNow) {
+            const bgMusic = document.getElementById('bg-music');
+            if (bgMusic && bgMusic.paused) {
+                bgMusic.play().catch(() => {});
+            }
+        } else {
+            // Auto-dismissed — show music prompt toast since no user gesture happened
+            setTimeout(() => {
+                const bgMusic = document.getElementById('bg-music');
+                if (bgMusic && bgMusic.paused) {
+                    const prompt = document.getElementById('music-prompt');
+                    if (prompt) prompt.classList.add('visible');
+                }
+            }, 600);
+        }
+    }
+
+    if (loadingScreen) {
+        // Auto dismiss after animation completes
+        setTimeout(() => dismissLoading(false), LOADING_DURATION);
+        // Skip on click/tap — this IS a user gesture so music can play directly
+        loadingScreen.addEventListener('click', () => dismissLoading(true), { once: true });
+        loadingScreen.addEventListener('touchend', () => dismissLoading(true), { once: true });
+    } else {
+        body.classList.remove('loading-active');
+    }
+})();
+
+/* ------------------- Background Music Logic ------------------- */
+(function () {
+    const bgMusic = document.getElementById('bg-music');
+    const musicToggleDesktop = document.getElementById('music-toggle-desktop');
+    const musicToggleMobile = document.getElementById('music-toggle-mobile');
+    const vinylContainer = document.getElementById('vinyl-container');
+    let isMusicPlaying = false;
+    let userHasInteracted = false;
+    let autoplayRetryInterval = null;
+
+    if (!bgMusic) return;
+
+    // Set initial volume
+    bgMusic.volume = 0.3;
+
+    // Check saved preference
+    const savedMusicPref = localStorage.getItem('musicEnabled');
+    const musicShouldPlay = savedMusicPref !== 'false'; // default: try to play
+
+    function updateVinylSpin() {
+        if (!vinylContainer) return;
+        if (isMusicPlaying) {
+            vinylContainer.classList.add('spinning');
+        } else {
+            vinylContainer.classList.remove('spinning');
+        }
+    }
+
+    // Hide music prompt when music is playing
+    function hideMusicPrompt() {
+        const prompt = document.getElementById('music-prompt');
+        if (prompt) prompt.classList.remove('visible');
+    }
+
+    // Music prompt click → play music
+    const musicPrompt = document.getElementById('music-prompt');
+    if (musicPrompt) {
+        musicPrompt.addEventListener('click', () => {
+            playMusic();
+            hideMusicPrompt();
+        });
+    }
+
+    function updateMusicToggleUI() {
+        const btns = [musicToggleDesktop, musicToggleMobile];
+        btns.forEach(btn => {
+            if (!btn) return;
+            if (isMusicPlaying) {
+                btn.classList.add('playing');
+                btn.title = 'Pause Music';
+            } else {
+                btn.classList.remove('playing');
+                btn.title = 'Play Music';
+            }
+        });
+        updateVinylSpin();
+    }
+
+    function playMusic() {
+        bgMusic.play().then(() => {
+            isMusicPlaying = true;
+            localStorage.setItem('musicEnabled', 'true');
+            updateMusicToggleUI();
+            hideMusicPrompt();
+            if (autoplayRetryInterval) {
+                clearInterval(autoplayRetryInterval);
+                autoplayRetryInterval = null;
+            }
+        }).catch(() => {
+            isMusicPlaying = false;
+            updateMusicToggleUI();
+        });
+    }
+
+    function pauseMusic() {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        localStorage.setItem('musicEnabled', 'false');
+        updateMusicToggleUI();
+    }
+
+    function toggleMusic() {
+        userHasInteracted = true;
+        if (isMusicPlaying) {
+            pauseMusic();
+        } else {
+            playMusic();
+        }
+    }
+
+    // Bind toggle buttons
+    if (musicToggleDesktop) musicToggleDesktop.addEventListener('click', toggleMusic);
+    if (musicToggleMobile) musicToggleMobile.addEventListener('click', toggleMusic);
+
+    // Also allow clicking vinyl/profile to toggle music
+    if (vinylContainer) {
+        vinylContainer.addEventListener('click', toggleMusic);
+    }
+
+    // Try autoplay immediately on page load
+    if (musicShouldPlay) {
+        // Attempt 1: direct (works if browser allows)
+        playMusic();
+
+        // Attempt 2: retry every 300ms for first 8 seconds
+        // (browser may unblock after DOMContentLoaded or user scrolls)
+        const retryTimer = setInterval(() => {
+            if (isMusicPlaying) {
+                clearInterval(retryTimer);
+                return;
+            }
+            playMusic();
+        }, 300);
+        setTimeout(() => clearInterval(retryTimer), 8000);
+    }
+
+    // Fallback: play on ANY first user interaction (click, touch, scroll, key, move)
+    // Using capture phase so it fires before any other handlers
+    function onFirstInteraction() {
+        if (musicShouldPlay && !isMusicPlaying) {
+            playMusic();
+        }
+        ['click', 'touchstart', 'touchend', 'keydown', 'scroll', 'mousemove', 'pointerdown', 'wheel'].forEach(evt => {
+            document.removeEventListener(evt, onFirstInteraction, true);
+        });
+    }
+
+    ['click', 'touchstart', 'touchend', 'keydown', 'scroll', 'mousemove', 'pointerdown', 'wheel'].forEach(evt => {
+        document.addEventListener(evt, onFirstInteraction, { capture: true, passive: true, once: false });
+    });
+
+    // Listen for audio play/pause events to keep vinyl in sync
+    bgMusic.addEventListener('play', () => {
+        isMusicPlaying = true;
+        updateMusicToggleUI();
+    });
+    bgMusic.addEventListener('pause', () => {
+        isMusicPlaying = false;
+        updateMusicToggleUI();
+    });
+
+    updateMusicToggleUI();
+})();
+
 /* ------------------- UI Logic (Navbar & Theme) ------------------- */
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
@@ -61,7 +251,7 @@ checkTheme();
 /* ------------------- Floating AI Chat Popup Logic ------------------- */
 const aiFab = document.getElementById('ai-chat-fab');
 const aiChatWindow = document.getElementById('ai-chat-window');
-const aiChatClose = document.getElementById('ai-chat-close');
+const aiChatClose = document.getElementById('close-chat-btn');
 const aiFabBadge = document.getElementById('ai-fab-badge');
 const aiFabIcon = document.getElementById('ai-fab-icon');
 let isChatOpen = false;
@@ -105,12 +295,26 @@ if (aiFab) {
     });
 }
 
+// Close button inside chat header
 if (aiChatClose) {
     aiChatClose.addEventListener('click', (e) => {
         e.stopPropagation();
+        e.preventDefault();
         closeChat();
     });
 }
+
+// Also bind by querying directly in case of timing issues
+document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('close-chat-btn');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            closeChat();
+        });
+    }
+});
 
 // Close chat with Escape key
 document.addEventListener('keydown', (e) => {
@@ -323,8 +527,68 @@ window.setLanguage = function (lang) {
 
         // Fade in
         elements.forEach(el => el.classList.remove('opacity-0'));
-    }, 300); // Match transition duration
+
+        // Update semester numbers dynamically after translation applied
+        setTimeout(() => updateSemesterText(lang), 50);
+    }, 300);
 };
+
+/* ------------------- Dynamic Semester Calculator ------------------- */
+function getCurrentSemester() {
+    // Semester 1 started September 2025, each semester = 6 months
+    const start = new Date(2025, 8, 1); // Sep 1, 2025 (month 0-indexed)
+    const now = new Date();
+    if (now < start) return 1;
+    const monthsElapsed = (now.getFullYear() - start.getFullYear()) * 12
+        + (now.getMonth() - start.getMonth());
+    return Math.max(1, Math.floor(monthsElapsed / 6) + 1);
+}
+
+function semOrdinal(n, lang) {
+    if (lang === 'en') {
+        const s = ['th', 'st', 'nd', 'rd'];
+        const v = n % 100;
+        return n + (s[(v - 20) % 10] || s[v] || s[0]);
+    }
+    return n;
+}
+
+function updateSemesterText(lang) {
+    const sem = getCurrentSemester();
+    const ord = semOrdinal(sem, lang);
+
+    const rules = {
+        en: [
+            { sel: '[data-i18n="hero_desc"]',  rx: /\b\d+(?:st|nd|rd|th)\s+Semester/i,   rep: `${ord} Semester` },
+            { sel: '[data-i18n="about_p2"]',   rx: /Semester\s+\d+/gi,                    rep: `Semester ${sem}` }
+        ],
+        id: [
+            { sel: '[data-i18n="hero_desc"]',  rx: /semester\s+\d+/i,                     rep: `semester ${sem}` },
+            { sel: '[data-i18n="about_p2"]',   rx: /Semester\s+\d+/gi,                    rep: `Semester ${sem}` }
+        ],
+        ja: [
+            { sel: '[data-i18n="hero_desc"]',  rx: /大学\d+年生/,                           rep: `大学${sem}年生` },
+            { sel: '[data-i18n="about_p2"]',   rx: /\d+学期/g,                             rep: `${sem}学期` }
+        ],
+        zh: [
+            { sel: '[data-i18n="hero_desc"]',  rx: /第.学期/,                              rep: `第${sem}学期` },
+            { sel: '[data-i18n="about_p2"]',   rx: /第.学期/g,                             rep: `第${sem}学期` }
+        ],
+        ko: [
+            { sel: '[data-i18n="hero_desc"]',  rx: /\d+학년/,                              rep: `${sem}학년` },
+            { sel: '[data-i18n="about_p2"]',   rx: /\d+학기/g,                             rep: `${sem}학기` }
+        ],
+        ar: [
+            { sel: '[data-i18n="about_p2"]',   rx: /\(الفصل[^)]+\)/,                      rep: `(الفصل ${sem})` }
+        ]
+    };
+
+    (rules[lang] || []).forEach(({ sel, rx, rep }) => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        el.innerHTML = el.innerHTML.replace(rx, rep);
+    });
+}
 
 // Init Lang on Load (Default EN)
 const savedLang = localStorage.getItem('lang') || 'en';

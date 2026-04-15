@@ -52,7 +52,55 @@
 </head>
 
 <body
-    class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-500 flex flex-col min-h-screen overflow-x-hidden">
+    class="bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-500 flex flex-col min-h-screen overflow-x-hidden loading-active">
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto" autoplay>
+        <source src="bgm.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Prompt Toast (shown if autoplay blocked) -->
+    <div id="music-prompt">
+        <span class="music-prompt-icon">🎵</span>
+        <span>Tap to play music</span>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <!-- Floating particles -->
+        <div class="particle" style="top:15%;left:10%;animation-delay:0s;"></div>
+        <div class="particle" style="top:25%;left:80%;animation-delay:0.5s;"></div>
+        <div class="particle" style="top:60%;left:20%;animation-delay:1s;"></div>
+        <div class="particle" style="top:70%;left:75%;animation-delay:1.5s;"></div>
+        <div class="particle" style="top:40%;left:50%;animation-delay:0.8s;"></div>
+        <div class="particle" style="top:80%;left:40%;animation-delay:2s;"></div>
+        <div class="particle" style="top:10%;left:60%;animation-delay:0.3s;"></div>
+        <div class="particle" style="top:50%;left:90%;animation-delay:1.2s;"></div>
+
+        <!-- Water surface -->
+        <div class="water-surface"></div>
+
+        <!-- Ripple rings (appear on impact) -->
+        <div class="ripple-container">
+            <div class="ripple-ring"></div>
+            <div class="ripple-ring"></div>
+            <div class="ripple-ring"></div>
+        </div>
+
+        <!-- Profile photo (water drop) -->
+        <img src="image.png" alt="Loading" class="drop-photo"
+            onerror="this.src='https://placehold.co/140x140/d97706/ffffff?text=Git'">
+
+        <!-- Loading text -->
+        <div class="loading-text">
+            <span>W</span><span>e</span><span>l</span><span>c</span><span>o</span><span>m</span><span>e</span>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="loading-bar">
+            <div class="loading-bar-fill"></div>
+        </div>
+    </div>
 
     <!-- Navbar -->
     <nav
@@ -126,10 +174,22 @@
                                 dir="rtl">🇸🇦 العربية</button>
                         </div>
                     </div>
+
+                    <!-- Music Toggle Desktop -->
+                    <button id="music-toggle-desktop"
+                        class="music-toggle-btn p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none"
+                        title="Toggle Music">
+                        <div class="music-bars">
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                        </div>
+                    </button>
                 </div>
 
                 <!-- Mobile Menu Button & Toggle -->
-                <div class="md:hidden flex items-center gap-3">
+                <div class="md:hidden flex items-center gap-2">
                     <button id="theme-toggle-mobile"
                         class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-yellow-300 transition-all duration-300 focus:outline-none">
                         <i class="fas fa-moon"></i>
@@ -137,6 +197,16 @@
                     <button id="lang-btn-mobile"
                         class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none">
                         <i class="fas fa-globe"></i>
+                    </button>
+                    <button id="music-toggle-mobile"
+                        class="music-toggle-btn p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-all duration-300 focus:outline-none"
+                        title="Toggle Music">
+                        <div class="music-bars">
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                            <div class="music-bar"></div>
+                        </div>
                     </button>
                     <button id="mobile-menu-btn"
                         class="text-slate-600 dark:text-slate-300 hover:text-primary focus:outline-none transition-transform duration-300 active:scale-90">
@@ -206,7 +276,7 @@
                 </h1>
                 <p class="fade-lang mt-4 text-lg text-slate-600 dark:text-slate-400 max-w-lg mx-auto md:mx-0"
                     data-i18n="hero_desc">
-                    1st Semester Student who has been coding since Vocational School. Focused on building efficient and
+                    2nd Semester Student who has been coding since Vocational School. Focused on building efficient and
                     functional software solutions.
                 </p>
                 <div class="mt-8 flex justify-center md:justify-start gap-4">
@@ -223,10 +293,12 @@
                     <div
                         class="absolute inset-0 bg-amber-200 dark:bg-green-900/30 rounded-full blur-2xl opacity-30 animate-pulse group-hover:opacity-50 transition-opacity duration-500">
                     </div>
-                    <img src="tiktok.jpeg"
-                        onerror="this.src='https://placehold.co/400x400/d97706/ffffff?text=Photo+Not+Found'"
-                        alt="Profil Git"
-                        class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl transform transition duration-500 hover:scale-105">
+                    <div id="vinyl-container" class="profile-spin-container">
+                        <img src="profil.png"
+                            onerror="this.src='https://placehold.co/400x400/d97706/ffffff?text=Photo+Not+Found'"
+                            alt="Profil Git"
+                            class="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-4 border-white dark:border-slate-700 shadow-xl">
+                    </div>
                 </div>
             </div>
         </div>
@@ -505,8 +577,9 @@
                     </div>
                 </div>
                 <!-- Close Button -->
-                <button id="close-chat"
-                    class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                <button id="close-chat-btn"
+                    class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
+                    aria-label="Close chat">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
