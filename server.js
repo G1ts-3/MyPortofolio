@@ -78,7 +78,7 @@ app.post('/api/chat', chatLimiter, async (req, res) => {
             return res.status(500).json({ error: 'Server configuration error.' });
         }
 
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
         const payload = {
             contents: [{ parts: [{ text: message }] }],
