@@ -526,3 +526,290 @@ body.loading-active > *:not(#loading-screen):not(audio) {
 .dark .profile-spin-container.spinning img {
     box-shadow: 0 0 0 4px rgba(34,197,94,0.35), 0 0 24px rgba(34,197,94,0.15), 0 8px 32px rgba(0,0,0,0.3);
 }
+
+/* ============================================
+   NEOBRUTALISM THEME (ADVANCED)
+   ============================================ */
+
+/* Continuous Marquee Animations */
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); } 
+}
+@keyframes marquee-reverse {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+.animate-marquee {
+    animation: marquee 20s linear infinite;
+    will-change: transform;
+}
+.animate-marquee-reverse {
+    animation: marquee-reverse 30s linear infinite;
+    will-change: transform;
+}
+
+.marquee-container {
+    touch-action: pan-y; /* Prevent touch horizontal scroll locking on mobile */
+}
+
+/* Pause animations when hovering on the container */
+.marquee-container:hover .animate-marquee,
+.marquee-container:hover .animate-marquee-reverse {
+    animation-play-state: paused !important;
+}
+
+/* Pause animations on touch hold for mobile */
+.marquee-container:active .animate-marquee,
+.marquee-container:active .animate-marquee-reverse {
+    animation-play-state: paused !important;
+}
+
+/* Enhancing hovered cards in marquees */
+.marquee-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.marquee-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    z-index: 20;
+}
+
+body.neobrutalism {
+    --neo-border-color: #000;
+    --neo-shadow-color: #000;
+    --neo-bg-primary: #fde047; /* Bright Yellow */
+    --neo-text-primary: #000;
+    --neo-bg-skills: #67e8f9; /* Bright Cyan */
+    --neo-bg-projects: #f9a8d4; /* Bright Pink */
+    --neo-text-cards: #000;
+    --neo-nav-bg: #fff;
+    --neo-nav-text: #000;
+    --neo-input-bg: #fff;
+    --neo-input-text: #000;
+    
+    --neo-border: 3px solid var(--neo-border-color);
+    --neo-shadow: 5px 5px 0px 0px var(--neo-shadow-color);
+    --neo-shadow-hover: 7px 7px 0px 0px var(--neo-shadow-color);
+    --neo-shadow-active: 2px 2px 0px 0px var(--neo-shadow-color);
+}
+
+html.dark body.neobrutalism {
+    /* Cyberpunk/Dark Neo Palette */
+    --neo-border-color: #22d3ee; /* Neon Cyan */
+    --neo-shadow-color: #22d3ee;
+    --neo-bg-primary: #bef264; /* Neon Lime */
+    --neo-text-primary: #000;
+    --neo-bg-skills: #1e293b; /* Dark */
+    --neo-bg-projects: #1e293b; /* Dark */
+    --neo-text-cards: #f8fafc; /* White */
+    --neo-nav-bg: #0f172a; /* Dark */
+    --neo-nav-text: #f8fafc;
+    --neo-input-bg: #1e293b;
+    --neo-input-text: #f8fafc;
+}
+
+body.neobrutalism *:not(.rounded-full):not(.music-bar):not(.particle):not(.ripple-ring):not(.ai-fab-ring) {
+    border-radius: 0 !important;
+}
+
+/* Base Overrides for Major UI Elements */
+body.neobrutalism .bg-white,
+body.neobrutalism .bg-slate-50,
+body.neobrutalism .bg-slate-800,
+body.neobrutalism .bg-slate-900,
+body.neobrutalism .bg-slate-950,
+body.neobrutalism input,
+body.neobrutalism textarea,
+body.neobrutalism button.px-4,
+body.neobrutalism a.px-6,
+body.neobrutalism a.px-4,
+body.neobrutalism .border,
+body.neobrutalism .shadow-sm,
+body.neobrutalism .shadow-md,
+body.neobrutalism .shadow-lg,
+body.neobrutalism .shadow-xl,
+body.neobrutalism .ai-chat-window,
+body.neobrutalism #lang-dropdown-desktop {
+    border: var(--neo-border) !important;
+    box-shadow: var(--neo-shadow) !important;
+}
+
+/* Interactive Element Colors (Bright & High Contrast) */
+body.neobrutalism a.bg-primary,
+body.neobrutalism a.bg-gradient-to-r,
+body.neobrutalism button.bg-gradient-to-r,
+body.neobrutalism .ai-fab-btn {
+    background: var(--neo-bg-primary) !important;
+    color: var(--neo-text-primary) !important;
+    border: var(--neo-border) !important;
+    background-image: none !important;
+    font-weight: 800 !important;
+}
+html.dark body.neobrutalism a.bg-primary,
+html.dark body.neobrutalism a.bg-gradient-to-r,
+html.dark body.neobrutalism button.bg-gradient-to-r,
+html.dark body.neobrutalism .ai-fab-btn {
+    border-color: #000 !important; /* Black border on neon button */
+    box-shadow: 5px 5px 0px 0px var(--neo-bg-primary) !important;
+}
+
+body.neobrutalism a.bg-gradient-to-r i,
+body.neobrutalism button.bg-gradient-to-r i,
+body.neobrutalism .ai-fab-btn i {
+    color: var(--neo-text-primary) !important;
+}
+
+/* Hover effects for buttons/links */
+body.neobrutalism a.bg-primary:hover,
+body.neobrutalism a.bg-gradient-to-r:hover,
+body.neobrutalism button.bg-gradient-to-r:hover,
+body.neobrutalism .ai-fab-btn:hover {
+    filter: brightness(1.1);
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--neo-shadow-hover) !important;
+}
+html.dark body.neobrutalism a.bg-primary:hover,
+html.dark body.neobrutalism a.bg-gradient-to-r:hover,
+html.dark body.neobrutalism button.bg-gradient-to-r:hover,
+html.dark body.neobrutalism .ai-fab-btn:hover {
+    box-shadow: 7px 7px 0px 0px var(--neo-bg-primary) !important;
+}
+
+body.neobrutalism a.bg-primary:active,
+body.neobrutalism a.bg-gradient-to-r:active,
+body.neobrutalism button.bg-gradient-to-r:active,
+body.neobrutalism .ai-fab-btn:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: var(--neo-shadow-active) !important;
+}
+html.dark body.neobrutalism a.bg-primary:active,
+html.dark body.neobrutalism a.bg-gradient-to-r:active,
+html.dark body.neobrutalism button.bg-gradient-to-r:active,
+html.dark body.neobrutalism .ai-fab-btn:active {
+    box-shadow: 2px 2px 0px 0px var(--neo-bg-primary) !important;
+}
+
+/* Specific Section Colors (Cards) */
+body.neobrutalism #skills .bg-white,
+body.neobrutalism #skills .bg-slate-800 {
+    background-color: var(--neo-bg-skills) !important;
+    color: var(--neo-text-cards) !important;
+}
+body.neobrutalism #skills .bg-white *,
+body.neobrutalism #skills .bg-slate-800 * {
+    color: var(--neo-text-cards) !important;
+}
+html.dark body.neobrutalism #skills .bg-white,
+html.dark body.neobrutalism #skills .bg-slate-800 {
+    border-color: #f472b6 !important; /* Neon Pink */
+    box-shadow: 5px 5px 0px 0px #f472b6 !important;
+}
+
+body.neobrutalism #projects .bg-white,
+body.neobrutalism #projects .bg-slate-800 {
+    background-color: var(--neo-bg-projects) !important;
+    color: var(--neo-text-cards) !important;
+}
+body.neobrutalism #projects .bg-white *,
+body.neobrutalism #projects .bg-slate-800 * {
+    color: var(--neo-text-cards) !important;
+}
+html.dark body.neobrutalism #projects .bg-white,
+html.dark body.neobrutalism #projects .bg-slate-800 {
+    border-color: #c084fc !important; /* Neon Purple */
+    box-shadow: 5px 5px 0px 0px #c084fc !important;
+}
+
+/* Make Project titles prominent inside cards */
+body.neobrutalism #projects .bg-white h3,
+body.neobrutalism #projects .bg-slate-800 h3 {
+    font-weight: 900 !important;
+}
+
+/* Fix Contact Form Inputs */
+body.neobrutalism input,
+body.neobrutalism textarea {
+    background-color: var(--neo-input-bg) !important;
+    color: var(--neo-input-text) !important;
+}
+body.neobrutalism input:focus,
+body.neobrutalism textarea:focus {
+    box-shadow: var(--neo-shadow-hover) !important;
+    outline: none !important;
+    border-color: var(--neo-border-color) !important;
+}
+
+/* Navbar specific override */
+body.neobrutalism nav {
+    border-bottom: var(--neo-border) !important;
+    box-shadow: 0px 4px 0px 0px var(--neo-shadow-color) !important;
+    background-color: var(--neo-nav-bg) !important;
+}
+body.neobrutalism nav a.text-slate-600,
+body.neobrutalism nav a.text-slate-300 {
+    color: var(--neo-nav-text) !important;
+    font-weight: 700 !important;
+}
+body.neobrutalism nav .text-primary,
+body.neobrutalism nav .text-green-400 {
+    color: #f43f5e !important;
+    font-weight: 900 !important;
+}
+html.dark body.neobrutalism nav .text-primary,
+html.dark body.neobrutalism nav .text-green-400 {
+    color: #4ade80 !important;
+}
+
+/* Floating AI Chat specifics */
+body.neobrutalism .ai-chat-header {
+    background: var(--neo-bg-primary) !important;
+    color: var(--neo-text-primary) !important;
+    border-bottom: var(--neo-border) !important;
+}
+body.neobrutalism .ai-chat-header h3,
+body.neobrutalism .ai-chat-header p,
+body.neobrutalism .ai-chat-header i {
+    color: var(--neo-text-primary) !important;
+}
+body.neobrutalism .ai-chat-window {
+    background: var(--neo-nav-bg) !important;
+}
+body.neobrutalism #chat-output {
+    background: var(--neo-nav-bg) !important;
+}
+body.neobrutalism #chat-output .bg-orange-50,
+body.neobrutalism #chat-output .bg-slate-800 {
+    background-color: var(--neo-input-bg) !important;
+    color: var(--neo-input-text) !important;
+    border: 2px solid var(--neo-border-color) !important;
+    box-shadow: 3px 3px 0px 0px var(--neo-shadow-color) !important;
+}
+
+/* Neobrutalism Toggle Icon Active State */
+#neo-toggle-desktop.active i,
+#neo-toggle-mobile.active i {
+    color: #f43f5e !important;
+    transform: scale(1.2);
+}
+
+/* Scroll To Top Button Neobrutalism Override */
+body.neobrutalism #scroll-to-top {
+    background: var(--neo-bg-primary) !important;
+    color: var(--neo-text-primary) !important;
+    border: var(--neo-border) !important;
+    box-shadow: var(--neo-shadow) !important;
+}
+body.neobrutalism #scroll-to-top:hover {
+    filter: brightness(1.1);
+    transform: translate(-2px, -2px) !important;
+    box-shadow: var(--neo-shadow-hover) !important;
+}
+body.neobrutalism #scroll-to-top:active {
+    transform: translate(2px, 2px) !important;
+    box-shadow: var(--neo-shadow-active) !important;
+}
+html.dark body.neobrutalism #scroll-to-top {
+    border-color: #000 !important;
+    box-shadow: 5px 5px 0px 0px var(--neo-bg-primary) !important;
+}

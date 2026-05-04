@@ -2,8 +2,8 @@
 
 // Inisialisasi AOS (Animasi Scroll)
 AOS.init({
-    once: true,
-    mirror: false,
+    once: false,
+    mirror: true,
     offset: 50,
     duration: 600,
     easing: 'ease-out',
@@ -31,7 +31,7 @@ AOS.init({
         if (playMusicNow) {
             const bgMusic = document.getElementById('bg-music');
             if (bgMusic && bgMusic.paused) {
-                bgMusic.play().catch(() => {});
+                bgMusic.play().catch(() => { });
             }
         } else {
             // Auto-dismissed — show music prompt toast since no user gesture happened
@@ -200,11 +200,36 @@ AOS.init({
     updateMusicToggleUI();
 })();
 
+/* ------------------- Scroll to Top Logic ------------------- */
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 500) {
+        if (scrollToTopBtn) {
+            scrollToTopBtn.classList.remove('opacity-0', 'translate-y-10', 'pointer-events-none');
+            scrollToTopBtn.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        }
+    } else {
+        if (scrollToTopBtn) {
+            scrollToTopBtn.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
+            scrollToTopBtn.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        }
+    }
+});
+
+if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
 /* ------------------- UI Logic (Navbar & Theme) ------------------- */
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 const desktopToggle = document.getElementById('theme-toggle-desktop');
 const mobileToggle = document.getElementById('theme-toggle-mobile');
+const neoDesktopToggle = document.getElementById('neo-toggle-desktop');
+const neoMobileToggle = document.getElementById('neo-toggle-mobile');
 const html = document.documentElement;
 const moonIcon = '<i class="fas fa-moon"></i>';
 const sunIcon = '<i class="fas fa-sun text-yellow-500"></i>';
@@ -247,6 +272,37 @@ function toggleTheme() {
 if (desktopToggle) desktopToggle.addEventListener('click', toggleTheme);
 if (mobileToggle) mobileToggle.addEventListener('click', toggleTheme);
 checkTheme();
+
+/* ------------------- Neobrutalism Theme Logic ------------------- */
+function checkNeoTheme() {
+    if (localStorage.neobrutalism === 'true') {
+        document.body.classList.add('neobrutalism');
+        if (neoDesktopToggle) neoDesktopToggle.classList.add('active');
+        if (neoMobileToggle) neoMobileToggle.classList.add('active');
+    } else {
+        document.body.classList.remove('neobrutalism');
+        if (neoDesktopToggle) neoDesktopToggle.classList.remove('active');
+        if (neoMobileToggle) neoMobileToggle.classList.remove('active');
+    }
+}
+
+function toggleNeoTheme() {
+    if (document.body.classList.contains('neobrutalism')) {
+        document.body.classList.remove('neobrutalism');
+        localStorage.neobrutalism = 'false';
+        if (neoDesktopToggle) neoDesktopToggle.classList.remove('active');
+        if (neoMobileToggle) neoMobileToggle.classList.remove('active');
+    } else {
+        document.body.classList.add('neobrutalism');
+        localStorage.neobrutalism = 'true';
+        if (neoDesktopToggle) neoDesktopToggle.classList.add('active');
+        if (neoMobileToggle) neoMobileToggle.classList.add('active');
+    }
+}
+
+if (neoDesktopToggle) neoDesktopToggle.addEventListener('click', toggleNeoTheme);
+if (neoMobileToggle) neoMobileToggle.addEventListener('click', toggleNeoTheme);
+checkNeoTheme();
 
 /* ------------------- Floating AI Chat Popup Logic ------------------- */
 const aiFab = document.getElementById('ai-chat-fab');
@@ -340,7 +396,7 @@ const langBtnMobile = document.getElementById('lang-btn-mobile');
 const translations = {
     en: {
         nav_home: "Home", nav_about: "About", nav_skills: "Skills", nav_projects: "Projects", nav_ai: "AI Chat", nav_contact: "Contact",
-        hero_subtitle: "Software Engineering Student", hero_greeting: "Hello, I am", hero_desc: "1st Semester Student who has been coding since Vocational School. Focused on building efficient and functional software solutions.",
+        hero_subtitle: "Software Engineering Student", hero_greeting: "Well..", hero_desc: "1st Semester Student who has been coding since Vocational School. Focused on building efficient and functional software solutions.",
         btn_projects: "View Projects", btn_contact: "Contact Me",
         about_title: "About Me", about_p1: "My journey in the world of technology started in the <strong>1st grade of Vocational School (SMK)</strong>. Early interest in programming logic led me to experiment with various languages like Java and Python.", about_p2: "Currently, I am pursuing a <strong>Bachelor's in Software Engineering (Semester 1)</strong> to deepen my understanding of software architecture. I believe that a strong foundation since SMK and high curiosity are the keys to becoming a reliable engineer.",
         stat_edu: "Software Engineering", stat_exp_val: "3+ Years", stat_exp_label: "Coding (Since SMK)", stat_focus_val: "Full Stack", stat_focus_label: "Main Interest",
@@ -357,7 +413,7 @@ const translations = {
     },
     id: {
         nav_home: "Beranda", nav_about: "Tentang", nav_skills: "Keahlian", nav_projects: "Proyek", nav_ai: "Tanya AI", nav_contact: "Kontak",
-        hero_subtitle: "Mahasiswa Software Engineering", hero_greeting: "Halo, saya", hero_desc: "Mahasiswa semester 1 yang telah menekuni dunia koding sejak SMK. Fokus membangun solusi perangkat lunak yang efisien dan fungsional.",
+        hero_subtitle: "Mahasiswa Software Engineering", hero_greeting: "Well..", hero_desc: "Mahasiswa semester 1 yang telah menekuni dunia koding sejak SMK. Fokus membangun solusi perangkat lunak yang efisien dan fungsional.",
         btn_projects: "Lihat Proyek", btn_contact: "Hubungi Saya",
         about_title: "Tentang Saya", about_p1: "Perjalanan saya di dunia teknologi dimulai sejak saya duduk di bangku <strong>kelas 1 SMK</strong>. Ketertarikan awal pada logika pemrograman membawa saya untuk bereksperimen dengan berbagai bahasa seperti Java dan Python.", about_p2: "Saat ini, saya sedang menempuh pendidikan <strong>S1 Software Engineering (Semester 1)</strong> untuk memperdalam pemahaman saya tentang arsitektur perangkat lunak. Saya percaya bahwa fondasi yang kuat sejak SMK dan rasa ingin tahu yang tinggi adalah kunci untuk menjadi engineer yang handal.",
         stat_edu: "Software Engineering", stat_exp_val: "3+ Tahun", stat_exp_label: "Koding (Sejak SMK)", stat_focus_val: "Full Stack", stat_focus_label: "Minat Utama",
@@ -559,27 +615,27 @@ function updateSemesterText(lang) {
 
     const rules = {
         en: [
-            { sel: '[data-i18n="hero_desc"]',  rx: /\b\d+(?:st|nd|rd|th)\s+Semester/i,   rep: `${ord} Semester` },
-            { sel: '[data-i18n="about_p2"]',   rx: /Semester\s+\d+/gi,                    rep: `Semester ${sem}` }
+            { sel: '[data-i18n="hero_desc"]', rx: /\b\d+(?:st|nd|rd|th)\s+Semester/i, rep: `${ord} Semester` },
+            { sel: '[data-i18n="about_p2"]', rx: /Semester\s+\d+/gi, rep: `Semester ${sem}` }
         ],
         id: [
-            { sel: '[data-i18n="hero_desc"]',  rx: /semester\s+\d+/i,                     rep: `semester ${sem}` },
-            { sel: '[data-i18n="about_p2"]',   rx: /Semester\s+\d+/gi,                    rep: `Semester ${sem}` }
+            { sel: '[data-i18n="hero_desc"]', rx: /semester\s+\d+/i, rep: `semester ${sem}` },
+            { sel: '[data-i18n="about_p2"]', rx: /Semester\s+\d+/gi, rep: `Semester ${sem}` }
         ],
         ja: [
-            { sel: '[data-i18n="hero_desc"]',  rx: /大学\d+年生/,                           rep: `大学${sem}年生` },
-            { sel: '[data-i18n="about_p2"]',   rx: /\d+学期/g,                             rep: `${sem}学期` }
+            { sel: '[data-i18n="hero_desc"]', rx: /大学\d+年生/, rep: `大学${sem}年生` },
+            { sel: '[data-i18n="about_p2"]', rx: /\d+学期/g, rep: `${sem}学期` }
         ],
         zh: [
-            { sel: '[data-i18n="hero_desc"]',  rx: /第.学期/,                              rep: `第${sem}学期` },
-            { sel: '[data-i18n="about_p2"]',   rx: /第.学期/g,                             rep: `第${sem}学期` }
+            { sel: '[data-i18n="hero_desc"]', rx: /第.学期/, rep: `第${sem}学期` },
+            { sel: '[data-i18n="about_p2"]', rx: /第.学期/g, rep: `第${sem}学期` }
         ],
         ko: [
-            { sel: '[data-i18n="hero_desc"]',  rx: /\d+학년/,                              rep: `${sem}학년` },
-            { sel: '[data-i18n="about_p2"]',   rx: /\d+학기/g,                             rep: `${sem}학기` }
+            { sel: '[data-i18n="hero_desc"]', rx: /\d+학년/, rep: `${sem}학년` },
+            { sel: '[data-i18n="about_p2"]', rx: /\d+학기/g, rep: `${sem}학기` }
         ],
         ar: [
-            { sel: '[data-i18n="about_p2"]',   rx: /\(الفصل[^)]+\)/,                      rep: `(الفصل ${sem})` }
+            { sel: '[data-i18n="about_p2"]', rx: /\(الفصل[^)]+\)/, rep: `(الفصل ${sem})` }
         ]
     };
 
