@@ -857,13 +857,8 @@ const basePromptContext = `Gunakan bahasa inggris sebagai default, , kecuali use
 `;
 
 const profesionalRules = `
-            **Panduan Jawaban:**
-            - Jawab sebagai Raa(jadi berperan sebagai asisten Git)
-            - Jawab dalam **bahasa yang sama** dengan pertanyaan pengunjung.
-            - DO NOT repeat the same phrases over and over.
-            - Avoid repeating the same wording across responses
-            - Answer in the **same language** as the user's question (English, Indonesian, Japanese, etc).
-            - Jawaban harus singkat, padat, dan relevan (maksimal 3-4 kalimat kecuali diminta detail).
+            - Jawab sebagai Raa (asisten AI Git).
+            - Jawab harus singkat, padat, dan relevan (maksimal 3-4 kalimat kecuali diminta detail).
             - Jika ditanya mengenai hal yang tidak ada dalam profil (misalnya hobi masak), jawab dengan sopan bahwa kamu hanya mengetahui informasi profesional Git.
 `;
 
@@ -927,11 +922,23 @@ if (modeToggle) {
 }
 
 function getSystemPrompt() {
-    const lang = localStorage.getItem('lang') || 'en';
-    if (lang === 'id' && window.chatMode === 'custom') {
-        return basePromptContext + "\n" + customRules;
+    const langCode = localStorage.getItem('lang') || 'en';
+    const langNames = {
+        'en': 'English',
+        'id': 'Indonesian',
+        'ko': 'Korean',
+        'ja': 'Japanese',
+        'zh': 'Chinese',
+        'ar': 'Arabic'
+    };
+    const currentLangName = langNames[langCode] || 'English';
+
+    const languageRule = `\n- ALWAYS respond in ${currentLangName} language, even if the user asks in a different language. This is mandatory as the website is currently in ${currentLangName} mode.\n`;
+
+    if (langCode === 'id' && window.chatMode === 'custom') {
+        return basePromptContext + languageRule + customRules;
     }
-    return basePromptContext + "\n" + profesionalRules;
+    return basePromptContext + languageRule + profesionalRules;
 }
 
 
