@@ -59,12 +59,26 @@ AOS.init({
 /* ------------------- Background Music Logic ------------------- */
 (function () {
     const bgMusic = document.getElementById('bg-music');
+    const musicSource = document.getElementById('music-source');
     const musicToggleDesktop = document.getElementById('music-toggle-desktop');
     const musicToggleMobile = document.getElementById('music-toggle-mobile');
     const vinylContainer = document.getElementById('vinyl-container');
+    const vinylImg = vinylContainer ? vinylContainer.querySelector('img') : null;
+    const prevTrackBtn = document.getElementById('prev-track-btn');
+    const nextTrackBtn = document.getElementById('next-track-btn');
+    const trackNameEl = document.getElementById('track-name');
+
     let isMusicPlaying = false;
     let userHasInteracted = false;
     let autoplayRetryInterval = null;
+
+    // Playlist configuration
+    const playlist = [
+        { name: "Akhir Tak Bahagia", file: "bgm.mp3", img: "profil.png" },
+        { name: "Untouchable", file: "Untouchable.mp3", img: "profil2.png" },
+        { name: "That's So True", file: "That’s So True.mp3", img: "profil3.png" }
+    ];
+    let currentTrackIndex = 0;
 
     if (!bgMusic) return;
 
@@ -79,8 +93,26 @@ AOS.init({
         if (!vinylContainer) return;
         if (isMusicPlaying) {
             vinylContainer.classList.add('spinning');
+            vinylContainer.style.transform = '';
         } else {
+            // Get current rotation
+            const style = window.getComputedStyle(vinylContainer);
+            const matrix = style.transform;
+
+            // Remove animation first
             vinylContainer.classList.remove('spinning');
+
+            if (matrix && matrix !== 'none') {
+                // Apply the captured matrix to "freeze" it before transition
+                vinylContainer.style.transform = matrix;
+
+                // Force a reflow
+                void vinylContainer.offsetWidth;
+
+                // Set transition back to 0
+                vinylContainer.style.transition = 'transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1)';
+                vinylContainer.style.transform = 'rotate(0deg)';
+            }
         }
     }
 
@@ -101,6 +133,8 @@ AOS.init({
 
     function updateMusicToggleUI() {
         const btns = [musicToggleDesktop, musicToggleMobile];
+        const track = playlist[currentTrackIndex];
+
         btns.forEach(btn => {
             if (!btn) return;
             if (isMusicPlaying) {
@@ -111,6 +145,17 @@ AOS.init({
                 btn.title = 'Play Music';
             }
         });
+
+        // Update Track Label
+        const trackLabel = document.getElementById('track-label');
+        if (trackLabel) {
+            const status = isMusicPlaying ? 'Playing' : 'Paused';
+            trackLabel.innerHTML = `${status}: <span id="track-name">${track.name}</span>`;
+
+            // Sync opacity based on status
+            trackLabel.style.opacity = isMusicPlaying ? '1' : '0.7';
+        }
+
         updateVinylSpin();
     }
 
@@ -146,9 +191,61 @@ AOS.init({
         }
     }
 
+    function switchTrack(direction = 'next') {
+        if (direction === 'next') {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+        } else {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+        }
+
+        const track = playlist[currentTrackIndex];
+
+        // Update UI
+        if (trackNameEl) trackNameEl.textContent = track.name;
+
+        // Update Image
+        if (vinylImg) {
+            vinylImg.style.opacity = '0';
+            setTimeout(() => {
+                vinylImg.src = track.img;
+                vinylImg.style.opacity = '1';
+            }, 300);
+        }
+
+        // Change source
+        const wasPlaying = isMusicPlaying;
+        bgMusic.pause();
+        musicSource.src = track.file;
+        bgMusic.load(); // Reload the audio element with new source
+
+        if (wasPlaying) {
+            playMusic();
+        } else {
+            // Update UI without playing
+            updateMusicToggleUI();
+        }
+
+        // Visual feedback on the button
+        const btn = direction === 'next' ? nextTrackBtn : prevTrackBtn;
+        if (btn) {
+            btn.classList.add('scale-125');
+            setTimeout(() => btn.classList.remove('scale-125'), 200);
+        }
+    }
+
     // Bind toggle buttons
     if (musicToggleDesktop) musicToggleDesktop.addEventListener('click', toggleMusic);
     if (musicToggleMobile) musicToggleMobile.addEventListener('click', toggleMusic);
+
+    if (nextTrackBtn) nextTrackBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Don't trigger the vinyl toggle
+        switchTrack('next');
+    });
+
+    if (prevTrackBtn) prevTrackBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Don't trigger the vinyl toggle
+        switchTrack('prev');
+    });
 
     // Also allow clicking vinyl/profile to toggle music
     if (vinylContainer) {
@@ -161,7 +258,6 @@ AOS.init({
         playMusic();
 
         // Attempt 2: retry every 300ms for first 8 seconds
-        // (browser may unblock after DOMContentLoaded or user scrolls)
         const retryTimer = setInterval(() => {
             if (isMusicPlaying) {
                 clearInterval(retryTimer);
@@ -172,8 +268,7 @@ AOS.init({
         setTimeout(() => clearInterval(retryTimer), 8000);
     }
 
-    // Fallback: play on ANY first user interaction (click, touch, scroll, key, move)
-    // Using capture phase so it fires before any other handlers
+    // Fallback: play on ANY first user interaction
     function onFirstInteraction() {
         if (musicShouldPlay && !isMusicPlaying) {
             playMusic();
@@ -187,7 +282,7 @@ AOS.init({
         document.addEventListener(evt, onFirstInteraction, { capture: true, passive: true, once: false });
     });
 
-    // Listen for audio play/pause events to keep vinyl in sync
+    // Listen for audio play/pause events
     bgMusic.addEventListener('play', () => {
         isMusicPlaying = true;
         updateMusicToggleUI();
