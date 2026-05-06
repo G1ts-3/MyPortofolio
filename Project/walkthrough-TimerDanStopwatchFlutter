@@ -1,0 +1,26 @@
+# Portfolio Screenshots: Timer & Stopwatch App
+
+I have successfully run the program in the `projek_ppb` folder and captured screenshots of all pages in mobile view (375x812).
+
+## Timer Page
+The Timer page allows users to set a countdown and manage it with Start, Stop, and Reset controls.
+
+````carousel
+![Initial Timer State](file:///C:/Users/hi/.gemini/antigravity/brain/f3bda7eb-0532-4710-967b-049079b23a5c/timer_initial_1778074871886.png)
+<!-- slide -->
+![Timer with 30 Seconds Set](file:///C:/Users/hi/.gemini/antigravity/brain/f3bda7eb-0532-4710-967b-049079b23a5c/timer_with_time_1778074900224.png)
+````
+
+## Stopwatch Page
+The Stopwatch page features precision timing with lap recording functionality.
+
+````carousel
+![Initial Stopwatch State](file:///C:/Users/hi/.gemini/antigravity/brain/f3bda7eb-0532-4710-967b-049079b23a5c/stopwatch_initial_1778074917839.png)
+<!-- slide -->
+![Active Stopwatch with Lap Recorded](file:///C:/Users/hi/.gemini/antigravity/brain/f3bda7eb-0532-4710-967b-049079b23a5c/stopwatch_active_1778074937848.png)
+````
+
+## Execution Recording
+You can see the process of capturing these screenshots in the recording below:
+
+![Browser Session Recording](file:///C:/Users/hi/.gemini/antigravity/brain/f3bda7eb-0532-4710-967b-049079b23a5c/flutter_app_screenshots_1778074845855.webp)

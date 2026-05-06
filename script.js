@@ -1103,3 +1103,275 @@ function showContactStatus(type, message) {
     }, 8000);
 }
 
+/* ------------------- Advanced Project Modal Logic ------------------- */
+const projectModal = document.getElementById('project-modal');
+const projectModalBackdrop = document.getElementById('project-modal-backdrop');
+const projectModalContent = document.getElementById('project-modal-content');
+const closeProjectModalBtn = document.getElementById('close-project-modal');
+const closeProjectModalMobileBtn = document.getElementById('close-project-modal-mobile');
+
+// Carousel Elements
+const imgElement = document.getElementById('modal-project-image');
+const imgBgElement = document.getElementById('modal-project-bg-image');
+const imgContainer = document.getElementById('modal-image-wrapper');
+const fallbackElement = document.getElementById('modal-project-fallback');
+const prevBtn = document.getElementById('modal-prev-btn');
+const nextBtn = document.getElementById('modal-next-btn');
+const dotsContainer = document.getElementById('modal-carousel-dots');
+const progressBar = document.getElementById('modal-progress-bar');
+
+let currentImages = [];
+let currentImageIndex = 0;
+
+function updateModalImage() {
+    if (currentImages.length === 0) return;
+    
+    // Smooth transition effect
+    if(imgElement) imgElement.style.opacity = '0';
+    if(imgBgElement) imgBgElement.style.opacity = '0';
+    
+    setTimeout(() => {
+        const src = currentImages[currentImageIndex].trim();
+        if(imgElement) {
+            imgElement.src = src;
+            imgElement.style.opacity = '1';
+        }
+        if(imgBgElement) {
+            imgBgElement.src = src;
+            imgBgElement.style.opacity = '0.6';
+        }
+    }, 200);
+
+    // Update dots
+    if (dotsContainer) {
+        Array.from(dotsContainer.children).forEach((dot, index) => {
+            if (index === currentImageIndex) {
+                dot.className = 'w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white] transition-all scale-125';
+            } else {
+                dot.className = 'w-2 h-2 rounded-full bg-white/50 hover:bg-white/80 transition-all cursor-pointer';
+            }
+        });
+    }
+
+    // Update Progress Bar
+    if (progressBar) {
+        const progress = ((currentImageIndex + 1) / currentImages.length) * 100;
+        progressBar.style.width = progress + '%';
+    }
+}
+
+if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentImages.length <= 1) return;
+        currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        updateModalImage();
+    });
+}
+
+if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (currentImages.length <= 1) return;
+        currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        updateModalImage();
+    });
+}
+
+window.openProjectModal = function(element) {
+    if (!projectModal) return;
+
+    // 1. Retrieve text, links and device type
+    const titleEl = element.querySelector('h3');
+    const descEl = element.querySelector('p');
+    
+    const title = titleEl ? titleEl.textContent : element.getAttribute('data-title');
+    const desc = descEl ? descEl.textContent : element.getAttribute('data-desc');
+    const imgUrlRaw = element.getAttribute('data-img');
+    const githubUrl = element.getAttribute('data-github');
+    const deviceType = element.getAttribute('data-device') || 'web';
+
+    // 2. Retrieve tech stack badges dynamically from the card
+    const badgeContainer = element.querySelector('.flex.flex-wrap.gap-2');
+    const modalTechStack = document.getElementById('modal-tech-stack');
+    if (modalTechStack) modalTechStack.innerHTML = ''; // Clear previous
+    
+    if (badgeContainer && modalTechStack) {
+        const badges = badgeContainer.querySelectorAll('span');
+        badges.forEach(badge => {
+            const clone = badge.cloneNode(true);
+            clone.className = clone.className.replace('text-[10px]', 'text-xs').replace('px-2', 'px-3').replace('py-1', 'py-1.5').replace('opacity-80', 'opacity-100');
+            modalTechStack.appendChild(clone);
+        });
+    }
+
+    // 3. Populate basic content
+    document.getElementById('modal-project-title').textContent = title;
+    document.getElementById('modal-project-desc').textContent = desc;
+    
+    // Apply Device Frame Class to the Frame Div
+    const frameDiv = document.getElementById('modal-device-frame');
+    if (frameDiv) {
+        frameDiv.className = 'relative z-10 w-full h-full flex items-center justify-center transition-all duration-500';
+        if (deviceType === 'web') {
+            frameDiv.classList.add('device-web');
+        } else if (deviceType === 'mobile') {
+            frameDiv.classList.add('device-mobile');
+        }
+    }
+
+    // Handle Carousel Images
+    currentImages = imgUrlRaw ? imgUrlRaw.split(',').map(s => s.trim()).filter(s => s) : [];
+    currentImageIndex = 0;
+    
+    if (currentImages.length > 0) {
+        if(imgElement) {
+            imgElement.classList.remove('hidden');
+            imgElement.style.transition = 'opacity 0.3s ease-in-out, transform 2s';
+        }
+        if(imgBgElement) {
+            imgBgElement.parentNode.classList.remove('hidden');
+            imgBgElement.style.transition = 'opacity 0.3s ease-in-out';
+        }
+        if (fallbackElement) fallbackElement.classList.add('hidden');
+        
+        // Show/hide controls
+        if (currentImages.length > 1) {
+            if (prevBtn) prevBtn.classList.remove('hidden');
+            if (nextBtn) nextBtn.classList.remove('hidden');
+            if (dotsContainer) {
+                dotsContainer.classList.remove('hidden');
+                dotsContainer.innerHTML = '';
+                currentImages.forEach((_, i) => {
+                    const dot = document.createElement('div');
+                    dot.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentImageIndex = i;
+                        updateModalImage();
+                    });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+        } else {
+            if (prevBtn) prevBtn.classList.add('hidden');
+            if (nextBtn) nextBtn.classList.add('hidden');
+            if (dotsContainer) dotsContainer.classList.add('hidden');
+        }
+        
+        updateModalImage();
+        
+    } else {
+        if(imgElement) {
+            imgElement.src = '';
+            imgElement.classList.add('hidden');
+        }
+        if(imgBgElement) imgBgElement.parentNode.classList.add('hidden');
+        if (fallbackElement) fallbackElement.classList.remove('hidden');
+        
+        // Hide controls
+        if (prevBtn) prevBtn.classList.add('hidden');
+        if (nextBtn) nextBtn.classList.add('hidden');
+        if (dotsContainer) dotsContainer.classList.add('hidden');
+    }
+
+    const githubBtn = document.getElementById('modal-project-github');
+    if (githubUrl) {
+        if(githubBtn) {
+            githubBtn.href = githubUrl;
+            githubBtn.classList.remove('hidden');
+            githubBtn.classList.add('inline-flex');
+        }
+    } else {
+        if(githubBtn) {
+            githubBtn.classList.add('hidden');
+            githubBtn.classList.remove('inline-flex');
+        }
+    }
+
+    // 4. Reset Animations State
+    document.querySelectorAll('.modal-anim-item').forEach(item => {
+        item.classList.add('translate-y-8', 'opacity-0');
+    });
+    
+    // Reset tilt transform
+    if (projectModalContent) projectModalContent.style.transform = `perspective(2000px) scale(0.95) rotateX(0deg) rotateY(0deg)`;
+
+    // 5. Show modal container
+    if(projectModal) {
+        projectModal.classList.remove('hidden');
+        projectModal.classList.add('flex');
+    }
+    
+    // 6. Trigger Animations
+    setTimeout(() => {
+        if(projectModalBackdrop) projectModalBackdrop.classList.remove('opacity-0');
+        if(projectModalContent) {
+            projectModalContent.classList.remove('scale-95', 'opacity-0');
+            projectModalContent.classList.add('scale-100', 'opacity-100');
+            projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+        }
+        
+        document.querySelectorAll('.modal-anim-item').forEach(item => {
+            item.classList.remove('translate-y-8', 'opacity-0');
+        });
+    }, 10);
+    
+    document.body.style.overflow = 'hidden';
+};
+
+function closeProjectModal() {
+    if (!projectModal) return;
+    
+    if(projectModalBackdrop) projectModalBackdrop.classList.add('opacity-0');
+    if(projectModalContent) {
+        projectModalContent.classList.remove('scale-100', 'opacity-100');
+        projectModalContent.classList.add('scale-95', 'opacity-0');
+        projectModalContent.style.transform = `perspective(2000px) scale(0.95) rotateX(0deg) rotateY(0deg)`;
+    }
+    
+    document.querySelectorAll('.modal-anim-item').forEach(item => {
+        item.classList.add('translate-y-8', 'opacity-0');
+    });
+    
+    setTimeout(() => {
+        projectModal.classList.add('hidden');
+        projectModal.classList.remove('flex');
+        document.body.style.overflow = '';
+    }, 500);
+}
+
+if (closeProjectModalBtn) closeProjectModalBtn.addEventListener('click', closeProjectModal);
+if (closeProjectModalMobileBtn) closeProjectModalMobileBtn.addEventListener('click', closeProjectModal);
+if (projectModalBackdrop) projectModalBackdrop.addEventListener('click', closeProjectModal);
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && projectModal && !projectModal.classList.contains('hidden')) {
+        closeProjectModal();
+    }
+});
+
+if (projectModalContent) {
+    projectModalContent.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 768) return;
+        const rect = projectModalContent.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = ((y - centerY) / centerY) * -4;
+        const rotateY = ((x - centerX) / centerX) * 4;
+        projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    projectModalContent.addEventListener('mouseleave', () => {
+        if (window.innerWidth < 768) return;
+        projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(0deg) rotateY(0deg)`;
+        projectModalContent.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s';
+    });
+    
+    projectModalContent.addEventListener('mouseenter', () => {
+        if (window.innerWidth < 768) return;
+        projectModalContent.style.transition = 'none';
+    });
+}
+

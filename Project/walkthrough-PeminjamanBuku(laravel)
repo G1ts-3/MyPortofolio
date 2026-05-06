@@ -1,0 +1,44 @@
+# Laravel Library Application - Portfolio Walkthrough
+
+I have successfully set up and run the Laravel Library application. I created two test accounts and captured screenshots of the key pages for your portfolio.
+
+## Accounts Created
+- **Admin**: `admin` / `password`
+- **Member**: `member` / `password`
+
+## Screenshots
+
+### Authentication
+![Login Page](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/login_page_1778073376297.png)
+
+---
+
+### Admin Panel
+````carousel
+![Admin Dashboard](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/admin_dashboard_1778073403097.png)
+<!-- slide -->
+![Books Management (With Data)](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/books_management_with_data_1778073866277.png)
+<!-- slide -->
+![Transactions (With Data)](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/transactions_with_data_1778073877060.png)
+<!-- slide -->
+![Users Management](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/users_management_final_1778073459772.png)
+````
+
+---
+
+### Member Panel
+````carousel
+![Member Dashboard](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/member_dashboard_1778073505937.png)
+<!-- slide -->
+![Borrow Page](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/borrow_page_1778073509372.png)
+<!-- slide -->
+![Return Page (With Data)](C:/Users/hi/.gemini/antigravity/brain/9014f91c-51f0-4595-b24d-ae0eb1066625/return_page_with_data_1778073927797.png)
+````
+
+## Summary of Work Done
+1.  **Environment Setup**: Configured the application to use SQLite and ran migrations.
+2.  **Bug Fixes**: Fixed issues in `UserFactory` and `DatabaseSeeder` where they were trying to use a non-existent `email` column.
+3.  **Data Seeding**: Created Admin and Member accounts with predefined credentials.
+4.  **Screenshot Capture**: Navigated through the application as both roles to capture high-quality screenshots.
+
+You can now use these screenshots in your portfolio to showcase the functionality of your application!

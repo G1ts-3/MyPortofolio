@@ -44,11 +44,125 @@
                         secondary: '#fff7ed', // Warm light
                         dark: '#0f172a',    // Slate gelap
                         light: '#f8fafc',   // Slate terang
+                    },
+                    animation: {
+                        'sweep': 'sweep 2s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        sweep: {
+                            '0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+                            '100%': { transform: 'translateX(200%) skewX(-15deg)' },
+                        }
                     }
                 }
             }
         }
     </script>
+        <style>
+        /* Modern Device Presentation Style */
+        #modal-device-frame {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+        }
+        
+        .device-web {
+            border: 4px solid #cbd5e1;
+            border-top: 20px solid #cbd5e1;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            background: #f8fafc;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 95%;
+        }
+        
+        .dark .device-web {
+            border-color: #334155;
+            border-top-color: #334155;
+            background: #1e293b;
+        }
+        
+        .device-web::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 10px;
+            width: 6px;
+            height: 6px;
+            background: #ef4444;
+            border-radius: 50%;
+            box-shadow: 12px 0 0 #f59e0b, 24px 0 0 #10b981;
+            z-index: 20;
+        }
+
+        .device-mobile {
+            border: 8px solid #cbd5e1;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background: #f8fafc;
+            height: 95%;
+            aspect-ratio: 9/19;
+            position: relative;
+            overflow: hidden;
+            margin: auto;
+        }
+        
+        .dark .device-mobile {
+            border-color: #1e293b;
+            background: #0f172a;
+        }
+        
+        .device-mobile::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30%;
+            height: 14px;
+            background: #cbd5e1;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 20;
+        }
+        
+        .dark .device-mobile::after {
+            background: #1e293b;
+        }
+
+        /* Interactive Carousel Progress Bar */
+        #modal-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(to right, #f59e0b, #ea580c);
+            z-index: 50;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .dark #modal-progress-bar {
+            background: linear-gradient(to right, #4ade80, #10b981);
+        }
+
+        /* Floating interaction for cards */
+        .marquee-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .marquee-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .marquee-card:hover {
+            box-shadow: 0 25px 50px -12px rgba(0, 255, 127, 0.1);
+        }
+    </style>
 </head>
 
 <body
@@ -561,7 +675,12 @@
 
                     <!-- Proyek 1 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Library Information System"
+                        data-desc="Web app for borrowing and returning books. Built using Laravel framework and MySQL database."
+                        data-img="Project/peminjaman_1.png,Project/peminjaman_2.png,Project/peminjaman_3.png,Project/peminjaman_4.png,Project/peminjaman_5.png,Project/peminjaman_6.png,Project/peminjaman_7.png,Project/peminjaman_8.png,Project/peminjaman_9.png,Project/peminjaman_10.png"
+                        data-device="web" data-github="https://github.com/G1ts-3/LSP_RaghidMuhammad_2025.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -589,7 +708,12 @@
 
                     <!-- Proyek 2 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Cashier & Game Program"
+                        data-desc="Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game."
+                        data-img="Project/portfolio.png"
+                        data-device="web" data-github="https://github.com/G1ts-3"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -618,7 +742,12 @@
 
                     <!-- Proyek 3 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Calculator App"
+                        data-desc="Basic math logic exploration implemented in three different languages for comparative study."
+                        data-img="Project/calc_portfolio.png,Project/calc_python.png"
+                        data-device="web" data-github="https://github.com/G1ts-3/Calc.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -646,7 +775,12 @@
 
                     <!-- Proyek 4 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Stopwatch & Timer"
+                        data-desc="Simple Android app for measuring time developed using Android Studio."
+                        data-img="Project/timer_1.png,Project/timer_2.png"
+                        data-device="mobile" data-github="https://github.com/G1ts-3/projek_ppb.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -682,7 +816,12 @@
 
                     <!-- Proyek 1 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Library Information System"
+                        data-desc="Web app for borrowing and returning books. Built using Laravel framework and MySQL database."
+                        data-img="Project/peminjaman_1.png,Project/peminjaman_2.png,Project/peminjaman_3.png,Project/peminjaman_4.png,Project/peminjaman_5.png,Project/peminjaman_6.png,Project/peminjaman_7.png,Project/peminjaman_8.png,Project/peminjaman_9.png,Project/peminjaman_10.png"
+                        data-device="web" data-github="https://github.com/G1ts-3/LSP_RaghidMuhammad_2025.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -710,7 +849,12 @@
 
                     <!-- Proyek 2 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Cashier & Game Program"
+                        data-desc="Collection of Python logic programs: Simple cashier simulation and Rock Paper Scissors game."
+                        data-img="Project/portfolio.png"
+                        data-device="web" data-github="https://github.com/G1ts-3"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -739,7 +883,12 @@
 
                     <!-- Proyek 3 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Calculator App"
+                        data-desc="Basic math logic exploration implemented in three different languages for comparative study."
+                        data-img="Project/calc_portfolio.png,Project/calc_python.png"
+                        data-device="web" data-github="https://github.com/G1ts-3/Calc.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -767,7 +916,12 @@
 
                     <!-- Proyek 4 -->
                     <div
-                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative">
+                        class="w-[240px] sm:w-[280px] md:w-[400px] shrink-0 marquee-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden shadow-md flex flex-col relative cursor-pointer project-item hover:shadow-xl hover:border-amber-500 dark:hover:border-green-500 transition-all duration-300 transform hover:-translate-y-2"
+                        data-title="Stopwatch & Timer"
+                        data-desc="Simple Android app for measuring time developed using Android Studio."
+                        data-img="Project/timer_1.png,Project/timer_2.png"
+                        data-device="mobile" data-github="https://github.com/G1ts-3/projek_ppb.git"
+                        onclick="openProjectModal(this)">
                         <div
                             class="h-48 bg-slate-100 dark:bg-slate-700 overflow-hidden relative group flex items-center justify-center">
                             <i
@@ -1051,6 +1205,108 @@
         </div>
     </section>
 
+    <!-- Project Modal Popup -->
+    <div id="project-modal" class="fixed inset-0 z-[1000] hidden items-center justify-center p-0 md:p-6 transition-all duration-500 perspective-[2000px]">
+        <!-- Backdrop -->
+        <div id="project-modal-backdrop" class="absolute inset-0 bg-slate-900/90 backdrop-blur-xl opacity-0 transition-opacity duration-500"></div>
+        
+        <!-- Modal Content Container -->
+        <div id="project-modal-content" class="relative bg-white dark:bg-slate-900 md:rounded-3xl shadow-[0_0_50px_rgba(0,0,0,0.5)] w-full h-full md:h-auto max-w-5xl md:max-h-[85vh] flex flex-col md:flex-row transform scale-95 opacity-0 transition-all duration-500 ease-[cubic-bezier(0.25,1,0.5,1)] overflow-hidden border border-white/10 dark:border-slate-700/50">
+            
+            <!-- Left: Image Section (Split Screen) -->
+            <div id="modal-image-wrapper" class="w-full md:w-[45%] h-64 md:h-auto min-h-[250px] relative overflow-hidden bg-slate-100 dark:bg-slate-950 flex-shrink-0 group flex items-center justify-center">
+                <!-- Progress Bar -->
+                <div id="modal-progress-bar"></div>
+
+                <!-- Blurred Background -->
+                <div class="absolute inset-0 z-0">
+                    <img id="modal-project-bg-image" src="" alt="" class="w-full h-full object-cover blur-2xl opacity-60 scale-110">
+                </div>
+
+                <!-- Device Frame Wrapper -->
+                <div id="modal-device-frame" class="relative z-10 w-full h-full flex items-center justify-center transition-all duration-500">
+                    <!-- Main Image -->
+                    <img id="modal-project-image" src="" alt="Project Preview" class="max-w-full max-h-full object-contain p-2 transition-transform duration-[2s] group-hover:scale-105 z-10 drop-shadow-2xl">
+                </div>
+                
+                <!-- Carousel Controls -->
+                <button id="modal-prev-btn" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-all hover:scale-110 z-20 hidden">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button id="modal-next-btn" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-all hover:scale-110 z-20 hidden">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <!-- Carousel Dots -->
+                <div id="modal-carousel-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20 hidden">
+                    <!-- Dots injected by JS -->
+                </div>
+
+                <!-- Overlay Gradient for text readability on mobile -->
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent md:hidden pointer-events-none z-10"></div>
+                <!-- Fallback Icon Placeholder -->
+                <div id="modal-project-fallback" class="hidden absolute inset-0 flex-col items-center justify-center text-slate-400 dark:text-slate-600 bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-900 z-10">
+                    <i class="fas fa-laptop-code text-6xl mb-3 opacity-30 drop-shadow-md"></i>
+                    <span class="text-sm font-bold tracking-widest uppercase opacity-50">No Preview</span>
+                </div>
+                <!-- Close Button (Mobile Absolute) -->
+                <button id="close-project-modal-mobile" class="md:hidden absolute top-4 right-4 w-10 h-10 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-black/60 transition-colors z-20">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Right: Content Section -->
+            <div class="w-full md:w-[55%] flex flex-col relative z-10 bg-white dark:bg-slate-900 h-[calc(100%-16rem)] md:h-auto">
+                <!-- Glow Effect Decorative -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 dark:bg-green-500/10 blur-[80px] pointer-events-none rounded-full"></div>
+
+                <!-- Close Button (Desktop) -->
+                <button id="close-project-modal" class="hidden md:flex absolute top-6 right-6 w-11 h-11 rounded-full bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-500 hover:text-rose-500 dark:text-slate-400 dark:hover:text-rose-400 transition-all duration-300 items-center justify-center hover:rotate-90 z-20 shadow-sm border border-slate-200/50 dark:border-slate-700/50">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+
+                <!-- Scrollable Content -->
+                <div class="p-6 md:p-10 lg:p-12 overflow-y-auto flex-grow custom-scrollbar relative">
+                    
+                    <!-- Animatable Content wrapper -->
+                    <div id="modal-anim-container" class="space-y-6 md:space-y-8 mt-2 md:mt-4">
+                        <!-- Title -->
+                        <div class="modal-anim-item translate-y-8 opacity-0 transition-all duration-700 delay-[50ms]">
+                            <h3 id="modal-project-title" class="text-3xl md:text-4xl font-extrabold text-dark dark:text-white bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-orange-500 dark:from-green-400 dark:to-emerald-400 drop-shadow-sm leading-tight tracking-tight">Project Title</h3>
+                        </div>
+
+                        <!-- Tech Stack Badges -->
+                        <div class="modal-anim-item translate-y-8 opacity-0 transition-all duration-700 delay-[150ms]">
+                            <div id="modal-tech-stack" class="flex flex-wrap gap-2">
+                                <!-- Injected by JS -->
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="modal-anim-item translate-y-8 opacity-0 transition-all duration-700 delay-[250ms]">
+                            <h4 class="text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest mb-3 flex items-center gap-2">
+                                <i class="fas fa-info-circle text-amber-500 dark:text-green-500"></i> Project Details
+                            </h4>
+                            <p id="modal-project-desc" class="text-slate-600 dark:text-slate-300 leading-relaxed text-base md:text-lg font-medium">
+                                Project description goes here.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Link Github -->
+                    <div class="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800 modal-anim-item translate-y-8 opacity-0 transition-all duration-700 delay-[350ms]">
+                        <a id="modal-project-github" href="#" target="_blank" class="inline-flex items-center justify-center gap-3 bg-dark dark:bg-slate-800 text-white px-8 py-4 rounded-xl hover:bg-slate-800 dark:hover:bg-slate-700 transition-all duration-300 font-bold shadow-xl hover:shadow-2xl transform hover:-translate-y-1 border border-white/5 dark:border-slate-600 group w-full relative overflow-hidden text-lg">
+                            <!-- Sweep effect -->
+                            <span class="absolute inset-0 w-[150%] h-full -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-sweep pointer-events-none"></span>
+                            <i class="fab fa-github text-3xl group-hover:scale-110 transition-transform"></i> 
+                            <span class="relative z-10 tracking-wide">View Repository</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
     <button id="scroll-to-top"
         class="fixed bottom-[100px] right-8 z-[90] w-12 h-12 bg-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 translate-y-10 transition-all duration-300 pointer-events-none hover:bg-amber-600 dark:bg-green-600 dark:hover:bg-green-700 hover:scale-110">
@@ -1074,3 +1330,13 @@
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+
+
