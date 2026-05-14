@@ -504,7 +504,8 @@ const translations = {
         ai_title: "Ask Virtual Git", ai_desc: "Curious about my experience or projects? Ask my AI Assistant trained with this portfolio data.", ai_welcome: "Hello! I'm Git's AI assistant. You can ask me about coding skills, projects, or background. What would you like to know? 😊",
         contact_title: "Connect with Me", contact_desc: "Interested in discussing technology or viewing my code in more detail?", btn_email: "Send Email",
         contact_name: "Name", contact_email: "Email", contact_subject: "Subject", contact_message: "Message", contact_send: "Send Message",
-        btn_github_all: "View All Projects on GitHub →"
+        btn_github_all: "View All Projects on GitHub →",
+        hero_typing: ["well.. well..", "I'm Software Engineer", "I'm Creative Developer", "I'm Tech Enthusiast"]
     },
     id: {
         nav_home: "Beranda", nav_about: "Tentang", nav_skills: "Keahlian", nav_projects: "Proyek", nav_ai: "Tanya AI", nav_contact: "Kontak",
@@ -521,7 +522,8 @@ const translations = {
         ai_title: "Tanya Virtual Git", ai_desc: "Penasaran tentang pengalaman atau proyek saya? Tanyakan pada Asisten AI saya yang sudah dilatih dengan data portofolio ini.", ai_welcome: "Halo! Saya asisten AI Git. Kamu bisa tanya tentang skill koding, proyek, atau latar belakang pendidikan Git. Mau tanya apa? 😊",
         contact_title: "Terhubung dengan Saya", contact_desc: "Tertarik berdiskusi tentang teknologi atau melihat kode saya lebih detail?", btn_email: "Kirim Email",
         contact_name: "Nama", contact_email: "Email", contact_subject: "Subjek", contact_message: "Pesan", contact_send: "Kirim Pesan",
-        btn_github_all: "Lihat Semua Proyek di GitHub →"
+        btn_github_all: "Lihat Semua Proyek di GitHub →",
+        hero_typing: ["well.. well..", "Aku Mahasiswa S1", "Aku Pengembang Kreatif", "Aku Antusias Teknologi"]
     },
     ja: {
         nav_home: "ホーム", nav_about: "プロフィール", nav_skills: "スキル", nav_projects: "プロジェクト", nav_ai: "AIチャット", nav_contact: "お問い合わせ",
@@ -538,7 +540,8 @@ const translations = {
         ai_title: "バーチャルGitに質問", ai_desc: "私の経験やプロジェクトについて気になりますか？このポートフォリオデータでトレーニングされたAIアシスタントに聞いてみてください。", ai_welcome: "こんにちは！GitのAIアシスタントです。コーディングスキル、プロジェクト、経歴について質問できます。何を知りたいですか？😊",
         contact_title: "連絡先", contact_desc: "技術についての議論や、コードの詳細に興味がありますか？", btn_email: "メールを送る",
         contact_name: "名前", contact_email: "メールアドレス", contact_subject: "件名", contact_message: "メッセージ", contact_send: "メッセージを送信",
-        btn_github_all: "GitHubですべてのプロジェクトを見る →"
+        btn_github_all: "GitHubですべてのプロジェクトを見る →",
+        hero_typing: ["well.. well..", "私はソフトウェアエンジニア", "私はクリエイティブデベロッパー", "私は技術愛好家"]
     },
     zh: {
         nav_home: "主页", nav_about: "关于", nav_skills: "技能", nav_projects: "项目", nav_ai: "AI 聊天", nav_contact: "联系",
@@ -555,7 +558,8 @@ const translations = {
         ai_title: "询问虚拟 Git", ai_desc: "对我的经验或项目感到好奇吗？请询问我已经过此作品集数据训练的 AI 助手。", ai_welcome: "你好！我是 Git 的 AI 助手。你可以问我关于编程技能、项目或背景的问题。你想知道什么？😊",
         contact_title: "与我联系", contact_desc: "有兴趣讨论技术或更详细地查看我的代码吗？", btn_email: "发送邮件",
         contact_name: "姓名", contact_email: "电子邮件", contact_subject: "主题", contact_message: "信息", contact_send: "发送信息",
-        btn_github_all: "在 GitHub 上查看所有项目 →"
+        btn_github_all: "在 GitHub 上查看所有项目 →",
+        hero_typing: ["well.. well..", "我是一名软件工程师。", "我是一名创意开发者", "我是一名技术爱好者"]
     },
     ko: {
         nav_home: "홈", nav_about: "소개", nav_skills: "기술", nav_projects: "프로젝트", nav_ai: "AI 채팅", nav_contact: "연락처",
@@ -572,7 +576,8 @@ const translations = {
         ai_title: "가상 Git에게 질문하기", ai_desc: "제 경험이나 프로젝트가 궁금하신가요? 이 포트폴리오 데이터로 훈련된 제 AI 비서에게 물어보세요.", ai_welcome: "안녕하세요! Git의 AI 비서입니다. 코딩 기술, 프로젝트 또는 배경에 대해 물어보실 수 있습니다. 무엇을 도와드릴까요? 😊",
         contact_title: "연결하기", contact_desc: "기술에 대해 논의하거나 제 코드를 더 자세히 보고 싶으신가요?", btn_email: "이메일 보내기",
         contact_name: "이름", contact_email: "이메일", contact_subject: "제목", contact_message: "메시지", contact_send: "메시지 보내기",
-        btn_github_all: "GitHub에서 모든 프로젝트 보기 →"
+        btn_github_all: "GitHub에서 모든 프로젝트 보기 →",
+        hero_typing: ["well.. well..", "나는 소프트웨어 엔지니어", "나는 크리에이티브 개발자", "나는 기술 애호가"]
     },
     ar: {
         nav_home: "الرئيسية", nav_about: "من أنا", nav_skills: "المهارات", nav_projects: "المشاريع", nav_ai: "محادثة AI", nav_contact: "تواصل",
@@ -589,7 +594,8 @@ const translations = {
         ai_title: "اسأل Git الافتراضي", ai_desc: "هل لديك فضول حول خبرتي أو مشاريعي؟ اسأل مساعد الذكاء الاصطناعي المدرب ببيانات هذا الملف الشخصي.", ai_welcome: "مرحباً! أنا مساعد الذكاء الاصطناعي الخاص بـ Git. يمكنك سؤالي عن مهارات البرمجة أو المشاريع أو الخلفية. ماذا تود أن تعرف؟ 😊",
         contact_title: "تواصل معي", contact_desc: "هل أنت مهتم بمناقشة التكنولوجيا أو رؤية الكود الخاص بي بمزيد من التفصيل؟", btn_email: "إرسال بريد إلكتروني",
         contact_name: "الاسم", contact_email: "البريد الإلكتروني", contact_subject: "الموضوع", contact_message: "الرسالة", contact_send: "إرسال الرسالة",
-        btn_github_all: "عرض جميع المشاريع على GitHub →"
+        btn_github_all: "عرض جميع المشاريع على GitHub →",
+        hero_typing: ["well.. well..", "أنا مهندس برمجيات", "أنا مطور مبدع", "أنا محب للتقنية"]
     }
 };
 
@@ -681,8 +687,51 @@ window.setLanguage = function (lang) {
 
         // Update semester numbers dynamically after translation applied
         setTimeout(() => updateSemesterText(lang), 50);
+        initTypewriter(lang);
     }, 300);
 };
+
+/* ------------------- Typewriter Logic ------------------- */
+let typewriterTimeout = null;
+function initTypewriter(lang) {
+    const typewriterEl = document.getElementById('typewriter-text');
+    if (!typewriterEl) return;
+
+    if (typewriterTimeout) clearTimeout(typewriterTimeout);
+
+    const phrases = translations[lang].hero_typing || ["well.. well.."];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            typewriterEl.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            typewriterEl.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 150;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            isDeleting = true;
+            typingSpeed = 2000;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500;
+        }
+
+        typewriterTimeout = setTimeout(type, typingSpeed);
+    }
+
+    type();
+}
 
 /* ------------------- Dynamic Semester Calculator ------------------- */
 function getCurrentSemester() {
@@ -1125,18 +1174,18 @@ let currentImageIndex = 0;
 
 function updateModalImage() {
     if (currentImages.length === 0) return;
-    
+
     // Smooth transition effect
-    if(imgElement) imgElement.style.opacity = '0';
-    if(imgBgElement) imgBgElement.style.opacity = '0';
-    
+    if (imgElement) imgElement.style.opacity = '0';
+    if (imgBgElement) imgBgElement.style.opacity = '0';
+
     setTimeout(() => {
         const src = currentImages[currentImageIndex].trim();
-        if(imgElement) {
+        if (imgElement) {
             imgElement.src = src;
             imgElement.style.opacity = '1';
         }
-        if(imgBgElement) {
+        if (imgBgElement) {
             imgBgElement.src = src;
             imgBgElement.style.opacity = '0.6';
         }
@@ -1178,13 +1227,13 @@ if (nextBtn) {
     });
 }
 
-window.openProjectModal = function(element) {
+window.openProjectModal = function (element) {
     if (!projectModal) return;
 
     // 1. Retrieve text, links and device type
     const titleEl = element.querySelector('h3');
     const descEl = element.querySelector('p');
-    
+
     const title = titleEl ? titleEl.textContent : element.getAttribute('data-title');
     const desc = descEl ? descEl.textContent : element.getAttribute('data-desc');
     const imgUrlRaw = element.getAttribute('data-img');
@@ -1195,7 +1244,7 @@ window.openProjectModal = function(element) {
     const badgeContainer = element.querySelector('.flex.flex-wrap.gap-2');
     const modalTechStack = document.getElementById('modal-tech-stack');
     if (modalTechStack) modalTechStack.innerHTML = ''; // Clear previous
-    
+
     if (badgeContainer && modalTechStack) {
         const badges = badgeContainer.querySelectorAll('span');
         badges.forEach(badge => {
@@ -1208,7 +1257,7 @@ window.openProjectModal = function(element) {
     // 3. Populate basic content
     document.getElementById('modal-project-title').textContent = title;
     document.getElementById('modal-project-desc').textContent = desc;
-    
+
     // Apply Device Frame Class to the Frame Div
     const frameDiv = document.getElementById('modal-device-frame');
     if (frameDiv) {
@@ -1223,18 +1272,18 @@ window.openProjectModal = function(element) {
     // Handle Carousel Images
     currentImages = imgUrlRaw ? imgUrlRaw.split(',').map(s => s.trim()).filter(s => s) : [];
     currentImageIndex = 0;
-    
+
     if (currentImages.length > 0) {
-        if(imgElement) {
+        if (imgElement) {
             imgElement.classList.remove('hidden');
             imgElement.style.transition = 'opacity 0.3s ease-in-out, transform 2s';
         }
-        if(imgBgElement) {
+        if (imgBgElement) {
             imgBgElement.parentNode.classList.remove('hidden');
             imgBgElement.style.transition = 'opacity 0.3s ease-in-out';
         }
         if (fallbackElement) fallbackElement.classList.add('hidden');
-        
+
         // Show/hide controls
         if (currentImages.length > 1) {
             if (prevBtn) prevBtn.classList.remove('hidden');
@@ -1257,17 +1306,17 @@ window.openProjectModal = function(element) {
             if (nextBtn) nextBtn.classList.add('hidden');
             if (dotsContainer) dotsContainer.classList.add('hidden');
         }
-        
+
         updateModalImage();
-        
+
     } else {
-        if(imgElement) {
+        if (imgElement) {
             imgElement.src = '';
             imgElement.classList.add('hidden');
         }
-        if(imgBgElement) imgBgElement.parentNode.classList.add('hidden');
+        if (imgBgElement) imgBgElement.parentNode.classList.add('hidden');
         if (fallbackElement) fallbackElement.classList.remove('hidden');
-        
+
         // Hide controls
         if (prevBtn) prevBtn.classList.add('hidden');
         if (nextBtn) nextBtn.classList.add('hidden');
@@ -1276,13 +1325,13 @@ window.openProjectModal = function(element) {
 
     const githubBtn = document.getElementById('modal-project-github');
     if (githubUrl) {
-        if(githubBtn) {
+        if (githubBtn) {
             githubBtn.href = githubUrl;
             githubBtn.classList.remove('hidden');
             githubBtn.classList.add('inline-flex');
         }
     } else {
-        if(githubBtn) {
+        if (githubBtn) {
             githubBtn.classList.add('hidden');
             githubBtn.classList.remove('inline-flex');
         }
@@ -1292,47 +1341,47 @@ window.openProjectModal = function(element) {
     document.querySelectorAll('.modal-anim-item').forEach(item => {
         item.classList.add('translate-y-8', 'opacity-0');
     });
-    
+
     // Reset tilt transform
     if (projectModalContent) projectModalContent.style.transform = `perspective(2000px) scale(0.95) rotateX(0deg) rotateY(0deg)`;
 
     // 5. Show modal container
-    if(projectModal) {
+    if (projectModal) {
         projectModal.classList.remove('hidden');
         projectModal.classList.add('flex');
     }
-    
+
     // 6. Trigger Animations
     setTimeout(() => {
-        if(projectModalBackdrop) projectModalBackdrop.classList.remove('opacity-0');
-        if(projectModalContent) {
+        if (projectModalBackdrop) projectModalBackdrop.classList.remove('opacity-0');
+        if (projectModalContent) {
             projectModalContent.classList.remove('scale-95', 'opacity-0');
             projectModalContent.classList.add('scale-100', 'opacity-100');
             projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(0deg) rotateY(0deg)`;
         }
-        
+
         document.querySelectorAll('.modal-anim-item').forEach(item => {
             item.classList.remove('translate-y-8', 'opacity-0');
         });
     }, 10);
-    
+
     document.body.style.overflow = 'hidden';
 };
 
 function closeProjectModal() {
     if (!projectModal) return;
-    
-    if(projectModalBackdrop) projectModalBackdrop.classList.add('opacity-0');
-    if(projectModalContent) {
+
+    if (projectModalBackdrop) projectModalBackdrop.classList.add('opacity-0');
+    if (projectModalContent) {
         projectModalContent.classList.remove('scale-100', 'opacity-100');
         projectModalContent.classList.add('scale-95', 'opacity-0');
         projectModalContent.style.transform = `perspective(2000px) scale(0.95) rotateX(0deg) rotateY(0deg)`;
     }
-    
+
     document.querySelectorAll('.modal-anim-item').forEach(item => {
         item.classList.add('translate-y-8', 'opacity-0');
     });
-    
+
     setTimeout(() => {
         projectModal.classList.add('hidden');
         projectModal.classList.remove('flex');
@@ -1362,13 +1411,13 @@ if (projectModalContent) {
         const rotateY = ((x - centerX) / centerX) * 4;
         projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
-    
+
     projectModalContent.addEventListener('mouseleave', () => {
         if (window.innerWidth < 768) return;
         projectModalContent.style.transform = `perspective(2000px) scale(1) rotateX(0deg) rotateY(0deg)`;
         projectModalContent.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s';
     });
-    
+
     projectModalContent.addEventListener('mouseenter', () => {
         if (window.innerWidth < 768) return;
         projectModalContent.style.transition = 'none';

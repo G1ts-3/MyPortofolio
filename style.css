@@ -17,6 +17,20 @@
     40% { transform: scale(1); }
 }
 
+/* Typewriter Cursor */
+.typewriter-cursor {
+    display: inline-block;
+    width: 3px;
+    margin-left: 2px;
+    animation: blink-cursor 0.8s infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 /* Markdown Styles in Chat */
 .prose ul { list-style-type: disc; padding-left: 1.5em; margin: 0.5em 0; }
 .prose strong { font-weight: 700; color: inherit; }
