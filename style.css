@@ -1,11 +1,431 @@
+/* --- NIKE-INSPIRED DESIGN SYSTEM --- */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    /* Colors */
+    --color-ink: #111111;
+    --color-on-primary: #ffffff;
+    --color-canvas: #ffffff;
+    --color-soft-cloud: #f5f5f5;
+    --color-charcoal: #39393b;
+    --color-ash: #4b4b4d;
+    --color-mute: #707072;
+    --color-stone: #9e9ea0;
+    --color-hairline: #cacacb;
+    --color-hairline-soft: #e5e5e5;
+    --color-sale: #d30005;
+
+    /* Spacing */
+    --spacing-xxs: 2px;
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 18px;
+    --spacing-xl: 24px;
+    --spacing-xxl: 30px;
+    --spacing-section: 48px;
+
+    /* Radius */
+    --radius-none: 0px;
+    --radius-sm: 18px;
+    --radius-md: 24px;
+    --radius-lg: 30px;
+    --radius-full: 9999px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography */
+.display-campaign {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 96px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.heading-xl {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.heading-lg {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.heading-md {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.75;
+}
+
+.body-md {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.body-strong {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.caption-md {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.caption-sm {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* --- ADVANCED FLUIDITY & TEXTURE --- */
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    background: var(--color-ink);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, background 0.3s;
+}
+
+.custom-cursor.active {
+    transform: scale(4);
+    background: var(--color-on-primary);
+}
+
+/* Noise Texture Overlay */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.05;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+/* Scroll Progress */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: var(--color-ink);
+    z-index: 1001;
+}
+
+/* Magnetic Button Base */
+.magnetic-wrap {
+    display: inline-block;
+    position: relative;
+    padding: 20px;
+    margin: -20px;
+}
+
+/* 3D Tilt Cards */
+.product-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.product-card-img-wrapper {
+    transform: translateZ(20px);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover .product-card-img-wrapper {
+    transform: translateZ(50px) rotateX(5deg) rotateY(-5deg);
+}
+
+/* Text Reveal Animation */
+.reveal-text {
+    overflow: hidden;
+}
+
+.reveal-text span {
+    display: block;
+    transform: translateY(110%);
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.reveal-text.active span {
+    transform: translateY(0);
+}
+
+/* Navigation Blur & Shrink */
+.primary-nav.scrolled {
+    height: 56px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+}
+
+/* Section Transitions */
+section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Refined Buttons */
+.btn-primary, .btn-secondary, .btn-outline-on-image {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), background 0.3s;
+}
+
+.btn-primary:hover {
+    background: var(--color-charcoal);
+    transform: scale(1.02);
+}
+
+/* Smooth Chat entrance */
+#chat-popup {
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Components */
+.btn-primary {
+    background-color: var(--color-ink);
+    color: var(--color-on-primary);
+    padding: 16px 32px;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    transition: transform 0.1s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
+    opacity: 0.5;
+}
+
+.btn-secondary {
+    background-color: var(--color-soft-cloud);
+    color: var(--color-ink);
+    padding: 16px 32px;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    transition: transform 0.1s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn-secondary:active {
+    transform: scale(0.95);
+    opacity: 0.5;
+}
+
+.btn-outline-on-image {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    padding: 12px 24px;
+    border-radius: var(--radius-lg);
+    font-weight: 500;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* Navigation */
+.primary-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    background: var(--color-canvas);
+    border-bottom: 1px solid var(--color-hairline-soft);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 48px;
+}
+
+.nav-left {
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -1px;
+}
+
+.nav-left a {
+    color: var(--color-ink);
+    text-decoration: none;
+}
+
+.nav-center {
+    display: flex;
+    gap: 24px;
+}
+
+.nav-center a {
+    color: var(--color-ink);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+}
+
+.nav-center a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-ink);
+    transition: width 0.3s ease;
+}
+
+.nav-center a:hover::after {
+    width: 100%;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* Campaign Tile */
+.campaign-tile {
+    position: relative;
+    height: 90vh;
+    background: var(--color-ink);
+    overflow: hidden;
+}
+
+.campaign-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.hero-content {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    max-width: 800px;
+}
+
+/* Sections */
+.container-nike {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 48px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.stat-row {
+    border-bottom: 1px solid var(--color-hairline);
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.skill-card {
+    background: var(--color-canvas);
+    padding: 32px;
+    border-radius: var(--radius-none);
+}
+
+.product-card-img-wrapper {
+    background-color: var(--color-soft-cloud);
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: var(--spacing-sm);
+}
+
+.product-card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 12px;
+}
+
+/* Contact */
+.contact-section {
+    padding: 96px 48px;
+    text-align: center;
+    background-color: var(--color-ink);
+    color: var(--color-on-primary);
+}
+
+/* Utilities */
+.section-gap {
+    margin-bottom: var(--spacing-section);
+}
+
 /* Scrollbar Customization */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-.dark ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-.dark ::-webkit-scrollbar-thumb { background: #334155; }
 ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-.dark ::-webkit-scrollbar-thumb:hover { background: #475569; }
 
 /* Typing Animation for AI Chat */
 .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
@@ -17,20 +437,114 @@
     40% { transform: scale(1); }
 }
 
-/* Chat Widget Animations */
-@keyframes bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
-}
-.animate-bounce-slow {
-    animation: bounce-slow 3s infinite ease-in-out;
+/* Chat Widget */
+#chat-toggle-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--color-ink);
+    color: var(--color-on-primary);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    transition: transform 0.2s;
 }
 
-/* Chat Popup Open State Class */
-.chat-open {
-    transform: scale(1) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+#chat-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+#chat-popup {
+    position: fixed;
+    bottom: 90px;
+    right: 24px;
+    z-index: 1050;
+    width: 380px;
+    height: 500px;
+    background: var(--color-canvas);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-none);
+    display: flex;
+    flex-direction: column;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: bottom right;
+}
+
+#chat-popup.chat-open {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+.chat-header {
+    background: var(--color-soft-cloud);
+    padding: 16px;
+    border-bottom: 1px solid var(--color-hairline-soft);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-output {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chat-input-area {
+    padding: 12px;
+    border-top: 1px solid var(--color-hairline-soft);
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-none);
+    outline: none;
+}
+
+.chat-send-btn {
+    background: var(--color-ink);
+    color: var(--color-on-primary);
+    border: none;
+    padding: 0 16px;
+    cursor: pointer;
+}
+
+.ai-bubble {
+    background: var(--color-soft-cloud);
+    padding: 12px 16px;
+    border-radius: var(--radius-none);
+    border: 1px solid var(--color-hairline-soft);
+    max-width: 85%;
+    align-self: flex-start;
+}
+
+.user-bubble {
+    background: var(--color-ink);
+    color: var(--color-on-primary);
+    padding: 12px 16px;
+    border-radius: var(--radius-none);
+    max-width: 85%;
+    align-self: flex-end;
 }
 
 /* Markdown Styles in Chat */
@@ -39,25 +553,44 @@
 .prose strong { font-weight: 700; color: inherit; }
 .prose p { margin-bottom: 0.3em; }
 .prose p:last-child { margin-bottom: 0; }
-.prose a { color: #15803d; text-decoration: underline; }
-.dark .prose a { color: #4ade80; }
-
-/* Language Transition Class */
-.fade-lang {
-    transition: opacity 0.3s ease-in-out;
-}
-.opacity-0 {
-    opacity: 0;
-}
-
-/* Navbar Fix */
-nav {
-    transform: none !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
+.prose a { color: var(--color-ink); text-decoration: underline; }
 
 /* Arabic Font Support */
 .font-arabic {
     font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .primary-nav {
+        padding: 0 24px;
+    }
+    .container-nike, .campaign-tile, .contact-section {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-center {
+        display: none;
+    }
+    .display-campaign {
+        font-size: 64px;
+    }
+    #chat-popup {
+        width: calc(100% - 48px);
+        right: 24px;
+        bottom: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .display-campaign {
+        font-size: 48px;
+    }
 }
